@@ -1,11 +1,23 @@
 var express = require('express');
 var router = express.Router();
 
-const { addShop,getShopsByPage } = require("../service/shopService");
+const { addShop,getShopsByPage ,updateShop,getEmployeeByShopId,removeEmployeeByShopId} = require("../service/shopService");
 const { uploadFile } = require("../util/upload");
 // 新增门店
 router.post('/addShop', async function (req, res, next) {
     res.send(await addShop(req.body));
+});
+// 更改门店(新增店员)
+router.post('/updateShop', async function (req, res, next) {
+    res.send(await updateShop(req.body));
+});
+// 通过门店id获取店员信息
+router.post('/getEmployeeByShopId', async function (req, res, next) {
+    res.send(await getEmployeeByShopId(req.body));
+});
+// 删除员工
+router.post('/removeEmployeeByShopId', async function (req, res, next) {
+    res.send(await removeEmployeeByShopId(req.body));
 });
 //营业执照图片上传
 router.post('/addShopLicenceImg', async function (req, res, next) {

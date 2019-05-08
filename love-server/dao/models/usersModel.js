@@ -20,22 +20,7 @@ const usersSchema = new mongoose.Schema({
     userStatus:{
         type: String, 
         default: "1"
-    },
-    // 关联商品id
-    goodsId:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'goodsModel'
-    }],
-    // 关联服务id
-    serviceId:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'serviceModel'
-    }],
-    // 关联宠物id
-    petId:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'petModel'
-    }]
+    }
 })
 
 mongoose.model('usersModel', usersSchema, "users");

@@ -1,7 +1,7 @@
 <template>
     <el-card style="width:100%">
-        <el-table :data="shops" >
-            <el-table-column  prop="shopStatus" label="门店状态">
+        <el-table :data="shops">
+            <el-table-column prop="shopStatus" label="门店状态">
             </el-table-column>
             <el-table-column prop="shopName" label="门店名称">
             </el-table-column>
@@ -11,31 +11,18 @@
             </el-table-column>
             <el-table-column label="头图">
                 <template slot-scope="scope">
-                    <el-image style="width: 100px; height: 100px" :src="scope.row.shopImg" ></el-image>
+                    <el-image style="width: 100px; height: 100px" :src="scope.row.shopImg"></el-image>
                 </template>
             </el-table-column>
-            <el-table-column label="店员">
-                    <el-button type="primary" size="small">
-                        店员详情
+            <el-table-column label="更多">
+                <template slot-scope="scope">
+                    <el-button type="text" @click="handleClick(scope.row)" size="small">
+                        <i class="el-icon-s-promotion"></i>
+                        更多详情
                     </el-button>
-            </el-table-column>
-            <el-table-column label="商品">
-                    <el-button type="primary" size="small">
-                        商品详情
-                    </el-button>
-            </el-table-column>
-            <el-table-column label="服务">
-                    <el-button type="primary" size="small">
-                        服务详情
-                    </el-button>
-            </el-table-column>
-            <el-table-column label="宠物">
-                    <el-button type="primary" size="small">
-                        宠物详情
-                    </el-button>
+                </template>
             </el-table-column>
         </el-table>
-
         <el-pagination @size-change="setEachPage" @current-change="setCurrentPage" :page-size="~~eachPage"
             :page-sizes="[1,3,5]" layout="total, sizes, prev, pager, next, jumper" :total="~~count">
         </el-pagination>
@@ -63,7 +50,14 @@
         },
         methods: {
             ...mapActions(["getShopsByPageAsync"]),
-            ...mapMutations(["setEachPage", "setCurrentPage"]),
+            ...mapMutations(["setEachPage", "setCurrentPage", "more"]),
+            // 点击更多的时候传递该门店对象添加到全局，并且实现页面跳转
+            handleClick(shopMes) {
+                if (shopMes.shopStatus === "已审批") {
+                    this.$router.push("/shopSystem/moreMes");
+                    this.more(shopMes);
+                }
+            },
         },
         //生命周期函数（mounted函数是在所有页面全部加载和状态全部加载完成后执行，类似react的componentDidMount生命周期函数）
         mounted() {
