@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     login() {
-      // document.cookie=""
       this.$router.push("/platformSystem");
     },
     register() {
@@ -40,7 +39,10 @@ export default {
     }
   },
   async beforeRouteLeave(to, from, next) {
+<<<<<<< HEAD
     document.cookie = "";
+=======
+>>>>>>> 86e233ca8df4d8b0eb5b5bb1f7bc788fee6a2c18
     if (to.name == "platformSystem") {
       let data = await loginService({
         userAccount: this.userAccount,
@@ -60,10 +62,17 @@ export default {
           confirmButtonText: "确定"
         });
         next(false);
+<<<<<<< HEAD
       } else if (data[0].userType == "0" && data[0].userStatus == "1") {
         document.cookie = `_id:${data[0]._id}`;
         next("/shopSystem");
       } else {
+=======
+      }else if (data[0].userType == "0" && data[0].userStatus == "1") {
+         document.cookie=`_id=${data[0]._id}`;
+        next('/shopSystem');
+      }else {
+>>>>>>> 86e233ca8df4d8b0eb5b5bb1f7bc788fee6a2c18
         this.$message({
           message: "账号不可用，请重新注册",
           type: "warning"

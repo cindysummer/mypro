@@ -12,5 +12,7 @@ module.exports.login = async function (user) {
 }
 //获取用户信息
 module.exports.getUserById = async function (_id) {
+    console.log(_id)
+    console.log(await mongoose.model("usersModel").find(_id))
     return await mongoose.model("usersModel").find(_id);
 }

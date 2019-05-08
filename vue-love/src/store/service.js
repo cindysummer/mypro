@@ -24,9 +24,20 @@ export default {
     mutations: {
     },
     actions: {
+        // 新增
         async addServiceAsync({ dispatch }, payload) {
-            console.log(payload)
             const data = await serviceService.addService(payload);
+            if(data){
+                alert("新增成功")
+            }else{
+                alert("新增失败")
+            }
+        },
+        // 查询
+        async getServiceAsync(context){
+            const {currentPage,eachPage}=context.state
+            const data=await serviceService.getService({currentPage,eachPage})
+            context.commit("getService",data)
         }
     }
 }
