@@ -97,7 +97,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .el-form {
   margin-top: 20px;
 }
