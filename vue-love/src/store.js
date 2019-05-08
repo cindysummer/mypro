@@ -4,7 +4,7 @@ import shop from './store/shop';
 import goods from './store/goods';
 import pets from './store/pets';
 import service from './store/service';
-import users from './store/users';
+
 
 //中间件机制use
 Vue.use(Vuex)
@@ -16,6 +16,6 @@ export default new Vuex.Store({
     goods,
     pets,
     service,
-    users
+
   }
 })
