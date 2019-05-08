@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { addGoods, getGoods } = require("../service/goodsService");
+const { addGoods, getGoods, getGoodsByPage, removeGoodById } = require("../service/goodsService");
 const { uploadFile } = require("../util/upload");
 //新增商品
 router.post('/addGoods', async function (req, res, next) {
@@ -20,4 +20,17 @@ router.post('/addImg', async function (req, res, next) {
   });
   res.send(result)
 })
+
+//按分页进行查询goods
+router.get('/getGoodsByPage', async function (req, res, next) {
+  console.log(req.query)
+  res.send(await getGoodsByPage(req.query))
+});
+
+//，根据id删除商品
+router.post('/removeGoodById', async function (req, res, next) {
+  res.send(await removeGoodById(req.body))
+})
+
+
 module.exports = router;

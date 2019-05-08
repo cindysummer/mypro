@@ -63,9 +63,9 @@ export default {
             }
         },
         // 删除员工
-        async removeEmployeeByShopIdAsync({ state,dispatch },{_id}) {
+        async removeEmployeeByShopIdAsync({ state, dispatch }, { _id }) {
             const shopId = state.eachShop._id;
-            const data = await ShopService.removeEmployeeByShopId({_id:shopId,shopEmployeeId:_id});
+            const data = await ShopService.removeEmployeeByShopId({ _id: shopId, shopEmployeeId: _id });
             if (data) {
                 dispatch("getEmployeeByShopIdAsync")
             }
