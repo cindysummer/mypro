@@ -1,4 +1,5 @@
-<template>
+
+ <template>
   <el-card style="width:100%">
     <el-table :data="shops">
       <el-table-column prop="shopStatus" label="门店状态"></el-table-column>
@@ -22,8 +23,7 @@
       <el-table-column label="宠物">
         <el-button type="primary" size="small">宠物详情</el-button>
       </el-table-column>
-    </el-table>
-
+    </el-table>-
     <el-pagination
       @size-change="setEachPage"
       @current-change="setCurrentPage"
@@ -34,7 +34,7 @@
     ></el-pagination>
   </el-card>
 </template>
-<script>
+ <script>
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers("shop");
 export default {
@@ -64,3 +64,4 @@ export default {
   }
 };
 </script>
+

@@ -32,7 +32,11 @@ const goodsSchema = new mongoose.Schema({
     // 图片
     goodsImg:[{
         type:String
-    }]
+    }],
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'usersModel'
+    }
 })
 
 mongoose.model('goodsModel', goodsSchema, "goods");
