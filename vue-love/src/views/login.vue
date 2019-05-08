@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     login() {
-      // document.cookie=""
       this.$router.push("/platformSystem");
     },
     register() {
@@ -40,7 +39,6 @@ export default {
     }
   },
   async beforeRouteLeave(to, from, next) {
-    document.cookie=""
     if (to.name == "platformSystem") {
       let data = await loginService({
         userAccount: this.userAccount,
@@ -61,7 +59,7 @@ export default {
         });
         next(false);
       }else if (data[0].userType == "0" && data[0].userStatus == "1") {
-         document.cookie=`_id:${data[0]._id}`;
+         document.cookie=`_id=${data[0]._id}`;
         next('/shopSystem');
       }else {
         this.$message({

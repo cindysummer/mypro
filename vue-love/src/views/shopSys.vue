@@ -24,7 +24,7 @@
         </div>
       </el-col>
     </el-row>
-    <el-row class="tac">
+    <el-row style="display:flex" class="tac">
       <el-col :span="4">
         <el-menu
           router
@@ -97,7 +97,7 @@ export default {
     }
   },
   async mounted() {
-    let string = document.cookie.slice(4, -2);
+    let string = document.cookie.slice(4);
     let [data] = await getUserById(string);
     this.userAccount = data.userAccount
   }
