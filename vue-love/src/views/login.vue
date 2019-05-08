@@ -40,38 +40,45 @@ export default {
     }
   },
   async beforeRouteLeave(to, from, next) {
-    document.cookie=""
+    document.cookie = "";
     if (to.name == "platformSystem") {
-      let data = await loginService({
-        userAccount: this.userAccount,
-        userPwd: this.userPwd
-      });
-      if (!data) {
+      if (this.userAccount == "" || this.userPwd == "") {
         this.$message({
-          message: "账号不存在，请注册",
+          message: "请填写账号或密码",
           type: "warning"
         });
-        next("/register");
-      } else if (data[0].userType == "1") {
-        document.cookie=`_id=${data[0]._id}`;
-        next();
-      } else if (data[0].userType == "0" && data[0].userStatus == "0") {
-        this.$alert("账号正在等待审核", "提示", {
-          confirmButtonText: "确定",
+      } else {
+        let data = await loginService({
+          userAccount: this.userAccount,
+          userPwd: this.userPwd
         });
-        next(false);
-      }else if (data[0].userType == "0" && data[0].userStatus == "1") {
-         document.cookie=`_id:${data[0]._id}`;
-        next('/shopSystem');
-      }else {
-        this.$message({
-          message: "账号不可用，请重新注册",
-          type: "warning"
-        });
-        next("/register");
+        if (!data) {
+          this.$message({
+            message: "账号不存在，请注册",
+            type: "warning"
+          });
+          next("/register");
+        } else if (data[0].userType == "1") {
+          document.cookie = `_id=${data[0]._id}`;
+          next();
+        } else if (data[0].userType == "0" && data[0].userStatus == "0") {
+          this.$alert("账号正在等待审核", "提示", {
+            confirmButtonText: "确定"
+          });
+          next(false);
+        } else if (data[0].userType == "0" && data[0].userStatus == "1") {
+          document.cookie = `_id:${data[0]._id}`;
+          next("/shopSystem");
+        } else {
+          this.$message({
+            message: "账号不可用，请重新注册",
+            type: "warning"
+          });
+          next("/register");
+        }
       }
     } else {
-      next()
+      next();
     }
   }
 };
