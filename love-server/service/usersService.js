@@ -1,4 +1,4 @@
-const { getUserMesById, login, getUserById,register } = require("../dao/usersDao");
+const { getUserMesById, login, getUserById,register,getShopUsers } = require("../dao/usersDao");
 module.exports.getUserMesById = async (userId) => {
     let data = await getUserMesById(userId);
     const { goodsId, serviceId, petId } = data[0];
@@ -28,6 +28,10 @@ module.exports.login = async function (user) {
 }
 module.exports.getUserById = async function (id) {
     return await getUserById(id);
+}
+
+module.exports.getShopUsers = async function (userType) {
+    return await getShopUsers(userType);
 }
 
 module.exports.register = async function (user) {

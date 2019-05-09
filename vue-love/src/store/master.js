@@ -1,4 +1,4 @@
-import {getShopUsers} from "../service/users"
+import MasterServe from "../service/master"
 export default {
     namespaced: true,
     state: {
@@ -6,10 +6,10 @@ export default {
         eachPage: 3,
         totalPage: 2,
         count: 0,
-        users: [],
+        masters: [],
     },
     mutations: {
-        getShopUsers: (state, payload) => {
+        getMastersByPage: (state, payload) => {
             Object.assign(state, payload)
         },
 
@@ -18,10 +18,10 @@ export default {
     },
 
     actions: {
-        async getShopUsersAsync(context) {
+        async getMastersByPageAsync(context) {
             const { currentPage, eachPage } = context.state
-            const data = await getShopUsers({ currentPage, eachPage });
-            context.commit("getShopUsers", data)
+            const data = await MasterServe.getMastersByPage({ currentPage, eachPage });
+            context.commit("getMastersByPage", data)
         }
     },
 }
