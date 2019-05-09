@@ -135,13 +135,9 @@ const removePetsOnShop = async (obj) => await fetch(`/shop/removePetsOnShop`, {
     body: JSON.stringify(obj)
 }).then(response => response.json());
 export default {
-<<<<<<< HEAD
     addShop, getUserMesById, getShopsByPage, updateShop,
     getEmployeeByShopId, removeEmployeeByShopId, getServicesByUserId,
     addServiceIdOnShops, getServiceByShopId, removeServiceOnShop,
     getGoodsByUserId, addGoodsIdOnShops, getGoodsByShopId, removeGoodsOnShop,
     getPetsByUserId, addPetsIdOnShops, getPetsByShopId, removePetsOnShop
-=======
-    addShop, getUserMesById, getShopsByPage, updateShop, getEmployeeByShopId,removeEmployeeByShopId,getShopByUserId
->>>>>>> da40a15ac58a592cb7a18c14a410040a71ebee8d
 }
