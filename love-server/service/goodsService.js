@@ -21,6 +21,8 @@ module.exports.getGoodsByPage = async function ({ currentPage, eachPage }) {
 //删除商品
 module.exports.removeGoodById = async function (id) {
     let data = await removeGoodById(id);
+    console.log(data);
+    
     if (data.ok > 0) {
         return true
     } else {
