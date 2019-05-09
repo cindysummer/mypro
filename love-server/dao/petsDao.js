@@ -8,7 +8,9 @@ module.exports.addPets = async (shop) => {
 
 //宠物列表
 module.exports.findPets = async (shop) => {
-    let pet = await mongoose.model("petModel").find();
+    // console.log(shop);
+    
+    let pet = await mongoose.model("petModel").find({userId:shop.userId});
     return pet
     
 }

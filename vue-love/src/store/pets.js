@@ -8,6 +8,7 @@ export default {
             name2: "45645",
             name3: "45645",
             name4: "4564564",
+            price:"45",
             date1: ""
         },
         rules: {
@@ -46,6 +47,10 @@ export default {
                     message: "请选择日期",
                     trigger: "change"
                 }
+            ],
+            price: [
+                { required: true, message: "请输入宠物价格", trigger: "blur" },
+                {  min: 1, max: 6, message: "长度在 1 到 6 个数字", trigger: "blur" }
             ]
         },
         pageData: {

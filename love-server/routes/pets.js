@@ -31,3 +31,18 @@ router.post('/removePets', async function(req, res, next) {
 });
 
 module.exports = router;
+
+
+// db.users.insert({
+//   userAccount:"123",
+//   userPwd:"123",
+//   userType:"1",
+//   userStatus:"1"
+// })
+
+// db.users.insert({
+//   userAccount:"456",
+//   userPwd:"456",
+//   userType:"0",
+//   userStatus:"1"
+// })

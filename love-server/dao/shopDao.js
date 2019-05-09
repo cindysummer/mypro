@@ -17,11 +17,11 @@ module.exports.removeEmployeeByShopId = async function (shop) {
     const newShopEmployee = data.shopEmployee.filter(item => item._id != shopEmployeeId);
     return await mongoose.model("shopModel").updateOne({ _id }, { shopEmployee: newShopEmployee });
 }
-module.exports.getShopsByPage = async function ({ currentPage, eachPage }) {
-    let count = await mongoose.model("shopModel").countDocuments();
+module.exports.getShopsByPage = async function ({ currentPage, eachPage, userId }) {
+    let count = await mongoose.model("shopModel").find({ userId }).countDocuments();
     let totalPage = Math.ceil(count / eachPage);
     let shops = await mongoose.model("shopModel")
-        .find()
+        .find({ userId })
         .skip((currentPage - 1) * eachPage)
         .limit(eachPage - 0);
     let pageData = {

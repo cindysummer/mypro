@@ -14,7 +14,7 @@
           </el-col>
         </el-form-item>
       </div>
-     <el-form-item label="使用规格:">
+      <el-form-item label="使用规格:">
         <el-radio-group v-model="form.serviceDetial" style="width: 500px">
           <el-radio label="大型宠物"></el-radio>
           <el-radio label="中型宠物"></el-radio>
@@ -43,36 +43,37 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="handleClick">确定</el-button>
-        <el-button >取消</el-button>
+        <el-button>取消</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
-  "service"
-);
-export default {
-  name: "addService",
-  computed: {
-    ...mapState(["form"])
-  },
-  methods: {
-    ...mapActions(["addServiceAsync"]),
-    handleClick() {
-      this.form.servicePrice = ~~this.form.servicePrice;
-      this.addServiceAsync(this.form);
-     
+  import { createNamespacedHelpers } from "vuex";
+  const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+    "service"
+  );
+  export default {
+    name: "addService",
+    computed: {
+      ...mapState(["form"])
     },
-    reset(){
+    methods: {
+      ...mapActions(["addServiceAsync"]),
+      handleClick() {
+        this.form.servicePrice = ~~this.form.servicePrice;
+        const userId = document.cookie.slice(4);
+        const data = Object.assign(this.form, { userId });
+        this.addServiceAsync(data);
+      },
+      reset() {
 
+      }
+    },
+    mounted() {
+      // 该生命周期发生时，页面所有节点都已经加载完毕，此时需要向后台获取数据
+      // this.getMessageAsync();
     }
-  },
-  mounted() {
-    // 该生命周期发生时，页面所有节点都已经加载完毕，此时需要向后台获取数据
-    // this.getMessageAsync();
-  }
-};
+  };
 </script>
