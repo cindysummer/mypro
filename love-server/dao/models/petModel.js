@@ -12,7 +12,11 @@ const petSchema = new mongoose.Schema({
     // 出生日期（年月即可）
     petBirth:String,
     // 性格（）温驯、狂野、攻击性
-    petNature:String
+    petNature:String,
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'usersModel'
+    }
 })
 
 mongoose.model('petModel', petSchema, "pet");

@@ -5,3 +5,18 @@ module.exports.getUserMesById = async (userId) => {
         .populate("serviceId")
         .populate("petId")
 }
+
+//登录
+module.exports.login = async function (user) {
+    return await mongoose.model("usersModel").find(user);
+}
+//获取用户信息
+module.exports.getUserById = async function (_id) {
+    console.log(_id)
+    console.log(await mongoose.model("usersModel").find(_id))
+    return await mongoose.model("usersModel").find(_id);
+}
+
+module.exports.register = async function (user) {
+    return await mongoose.model("usersModel").create(user);
+}

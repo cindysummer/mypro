@@ -16,7 +16,11 @@ const serviceSchema = new mongoose.Schema({
     // 耗时
     serviceTime: String,
     // 价格
-    servicePrice:Number
+    servicePrice:Number,
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'usersModel'
+    }
 })
 
 mongoose.model('serviceModel', serviceSchema, "service");

@@ -12,6 +12,7 @@ import AddService from './components/services/addService';
 import ServiceList from './components/services/serviceList';
 import AddPets from './components/pets/addPets';
 import PetsList from './components/pets/petsList';
+import MoreMes from './components/shops/moreMes';
 
 Vue.use(Router)
 
@@ -41,6 +42,11 @@ export default new Router({
           path: 'shopList',
           name: 'shopList',
           component: ShopList
+        },
+        {
+          path: 'moreMes',
+          name: 'moreMes',
+          component: MoreMes
         },
         {
           path: 'addGoods',
