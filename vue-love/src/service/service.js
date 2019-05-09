@@ -5,8 +5,22 @@ const addService = async (obj) => await fetch(`/service/addServices`, {
     },
     body: JSON.stringify(obj)
 }).then(response => response.json());
-const getService = async ({ currentPage = 1, eachpage = 4 } = {}) => await fetch(`/service/getService?currentPage=${currentPage}&eachpage=${eachpage}`)
-    .then(response => response.json())
+
+const DelService = async (obj) => await fetch(`/service/removeServiceById`, {
+    method: "post",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(obj)
+}).then(response => response.json());
+
+const getServicesByPage = async (
+    { currentPage, eachPage } = {}) =>
+    await fetch(`/service/getServicesByPage?currentPage=${currentPage}&eachPage=${eachPage}`).then(response => response.json());
+
 export default {
-    addService,getService
+    addService,DelService,getServicesByPage
 }
+
+
+
