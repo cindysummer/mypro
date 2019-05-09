@@ -46,7 +46,7 @@ export default {
             const userId=document.cookie.slice(4);
             console.log(userId)
             const data = await ShopService.getShopsByPage({ currentPage, eachPage,userId });
-            //将从后台拿到的数据从异步转回同步，相当于在组件里面的methods方法下面
+            //将从后台拿到的数据从异步转回同步，相当于在组件里面的methods方法下面 
             commit("getShopsByPage", data);
         },
         // 获取员工信息
@@ -65,9 +65,9 @@ export default {
             }
         },
         // 删除员工
-        async removeEmployeeByShopIdAsync({ state,dispatch },{_id}) {
+        async removeEmployeeByShopIdAsync({ state, dispatch }, { _id }) {
             const shopId = state.eachShop._id;
-            const data = await ShopService.removeEmployeeByShopId({_id:shopId,shopEmployeeId:_id});
+            const data = await ShopService.removeEmployeeByShopId({ _id: shopId, shopEmployeeId: _id });
             if (data) {
                 dispatch("getEmployeeByShopIdAsync")
             }

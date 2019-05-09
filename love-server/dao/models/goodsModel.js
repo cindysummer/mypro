@@ -4,37 +4,38 @@ const goodsSchema = new mongoose.Schema({
     //商品名称
     goodsName: String,
     // 品类（狗粮、猫粮、猫砂、玩具等）
-    goodsType: String, 
+    goodsType: String,
     // 材质（玩具等用品）、制作方法（粮食的烘培、膨化等）
     goodsMaterial: String,
     // 适用规格（适用幼犬、成犬、幼猫等）
-    goodsCanFor:String,
+    goodsCanFor: String,
     // 专属规格（贵宾专用、比熊专用等）
-    goodsOnlyFor:String,
+    goodsOnlyFor: String,
     // 包装规格（1KG、5KG等）
-    goodsSize:String,
+    goodsSize: String,
     // 口味（鸡肉味、牛肉味）
-    goodsTaste:String,
+    goodsTaste: String,
     // 特殊功用（美毛、去泪痕）
-    goodsSpecial:String,
+    goodsSpecial: String,
     // 产地（国产、广州、加拿大、美国等）
-    goodsRegion:String,
+    goodsRegion: String,
     // 生产日期
-    goodsDate:String,
+    goodsDate: String,
     // 保质期
-    goodsTime:String,
+    goodsTime: String,
     // 供应商
-    goodsSupplier:String,
+    goodsSupplier: String,
     // 特色说明
-    goodsIntro:String,
+    goodsIntro: String,
     // 价格（基准价格）
-    goodsPrice:Number,
+    goodsPrice: Number,
     // 图片
-    goodsImg:[{
-        type:String
+    goodsImg: [{
+        type: String
     }],
-    userId:{
-        type: mongoose.Schema.Types.ObjectId
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'usersModel'
     }
 })
 

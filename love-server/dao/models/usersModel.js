@@ -24,3 +24,12 @@ const usersSchema = new mongoose.Schema({
 })
 
 mongoose.model('usersModel', usersSchema, "users");
+// db.users.save({
+//     userAccount: "lisi",
+//     userPwd: "11",
+//     userPhone: "10010",
+//     userEmail: "10010",
+//     userName: "lisi",
+//     userType: "0",
+//     userStatus: "1"
+// })
