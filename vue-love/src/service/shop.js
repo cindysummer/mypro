@@ -46,6 +46,7 @@ const removeEmployeeByShopId = async (obj) => await fetch(`/shop/removeEmployeeB
     },
     body: JSON.stringify(obj)
 }).then(response => response.json());
+
 const getServicesByUserId = async (_id) => await fetch(`/service/getServicesByUserId`, {
     method: "post",
     headers: {

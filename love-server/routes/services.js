@@ -20,7 +20,7 @@ router.get('/getServices', async function (req, res, next) {
 
 //，根据id删除服务
 router.post('/removeServiceById', async function (req, res, next) {
-  console.log(req.body);
+  console.log("req.body");
   res.send(await removeServiceById(req.body));
 })
 
