@@ -13,6 +13,7 @@ const petSchema = new mongoose.Schema({
     petBirth:String,
     // 性格（）温驯、狂野、攻击性
     petNature:String,
+    price:String,
     userId:{
         type: mongoose.Schema.Types.ObjectId
     }
