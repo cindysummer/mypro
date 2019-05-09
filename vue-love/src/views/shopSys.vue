@@ -17,7 +17,7 @@
             </li>
             <li style="margin-left:20px">
               <a href="javascript:;" title="退出登录">
-                <i class="el-icon-switch-button"></i>
+                <i class="el-icon-switch-button" @click="quit"></i>
               </a>
             </li>
           </ul>
@@ -96,8 +96,13 @@ export default {
         userAccount:"",
     }
   },
+  methods: {
+    quit(){
+      this.$router.push("/")
+    }
+  },
   async mounted() {
-    let string = document.cookie.slice(4, -2);
+    let string = document.cookie.slice(4);
     let [data] = await getUserById(string);
     this.userAccount = data.userAccount
   }

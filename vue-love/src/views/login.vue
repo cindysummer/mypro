@@ -40,7 +40,6 @@ export default {
     }
   },
   async beforeRouteLeave(to, from, next) {
-    document.cookie = "";
     if (to.name == "platformSystem") {
       if (this.userAccount == "" || this.userPwd == "") {
         this.$message({
@@ -67,7 +66,7 @@ export default {
           });
           next(false);
         } else if (data[0].userType == "0" && data[0].userStatus == "1") {
-          document.cookie = `_id:${data[0]._id}`;
+          document.cookie = `_id=${data[0]._id}`;
           next("/shopSystem");
         } else {
           this.$message({
