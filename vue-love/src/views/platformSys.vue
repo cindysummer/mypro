@@ -65,6 +65,8 @@
 </template>
 <script>
 import { getUserById } from "../service/users";
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("audit");
 export default {
   name: "shopSystem",
   data() {
@@ -72,6 +74,7 @@ export default {
       userAccount: ""
     };
   },
+
   methods: {
     quit() {
       this.$router.push("/");
@@ -84,7 +87,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 * {
   margin: 0;
   padding: 0;
@@ -146,5 +149,9 @@ export default {
 }
 .el-menu-vertical-demo {
   height: 500px;
+}
+.infos {
+  color: red;
+  font-size: bold;
 }
 </style>

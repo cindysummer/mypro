@@ -4,6 +4,7 @@ import shop from './store/shop';
 import goods from './store/goods';
 import pets from './store/pets';
 import service from './store/service';
+import audit from './store/audit'
 
 
 //中间件机制use
@@ -16,6 +17,6 @@ export default new Vuex.Store({
     goods,
     pets,
     service,
-
+    audit
   }
 })

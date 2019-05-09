@@ -21,7 +21,7 @@ export default {
             userId: ""
         },
         currentPage: 1,
-        eachPage: 1,
+        eachPage: 5,
         count: 0,
         totalPage: 0,
         goods: []
@@ -41,6 +41,9 @@ export default {
         setCurrentPage: (state, currentPage) => {
             state.currentPage = currentPage;
         },
+        editGoods: (state, payload) => {
+            state.form = payload
+        }
     },
     actions: {
         //新增商品
@@ -48,8 +51,6 @@ export default {
             const data = await GoodsService.addGoods(payload);
             if (data) {
                 alert("新增成功");
-
-
             } else {
                 alert("新增失败")
             }
@@ -58,17 +59,24 @@ export default {
         async getGoodsByPageAsync(context) {
             const { currentPage, eachPage } = context.state
             const data = await GoodsService.getGoodsByPage({ currentPage, eachPage });
-            // console.log(data.goods)
             context.commit("getGoodsByPage", data)
         },
         //通过商品id删除商品
-        async removeGoodByIdAsync({ dispatch }, payload) {
-            // console.log(payload)
+        async removeGoodsByIdAsync({ dispatch }, payload) {
             const data = await GoodsService.removedGoodById({ _id: payload });
-            console.log(data);
             if (data) {
                 dispatch("getGoodsByPageAsync")
             }
+        },
+        //更新商品信息
+        async updateGoodsAsync({ dispatch }, payload) {
+            // console.log(payload);
+            const data = await GoodsService.updateGoods(payload);
+            if (data) {
+                dispatch("getGoodsByPageAsync")
+            }
+
         }
+
     }
 }

@@ -19,6 +19,16 @@ const removedGoodById = async (obj) => await fetch(`/goods/removeGoodById`, {
     },
     body: JSON.stringify(obj)
 }).then(response => response.json());
+
+//更新商品信息
+const updateGoods = async (obj) => await fetch(`/goods/updateGoods`, {
+    method: "post",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(obj)
+}).then(response => response.json());
+
 export default {
-    addGoods, getGoodsByPage, removedGoodById
+    addGoods, getGoodsByPage, removedGoodById, updateGoods
 }

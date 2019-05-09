@@ -66,19 +66,20 @@ export default {
           msg.petKind = this.ruleForm.name2;
           msg.petColor = this.ruleForm.name3;
           msg.petNature = this.ruleForm.name4;
-          msg.petBirth = this.moment(this.ruleForm.date1).format("YYYY年MM月DD日");
+          msg.petBirth = this.moment(this.ruleForm.date1).format(
+            "YYYY年MM月DD日"
+          );
           // console.log(msg);
           // alert("submit!");
           this.addpetsAsync(msg);
         } else {
-          
           return false;
         }
       });
     },
-   resetForm(formName) {
+    resetForm(formName) {
       this.$refs[formName].resetFields();
-    } 
+    }
   }
 };
 </script>
