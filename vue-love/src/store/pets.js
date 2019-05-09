@@ -47,13 +47,26 @@ export default {
                     trigger: "change"
                 }
             ]
-        }
+        },
+        pageData: {
+            total: 0,
+            currentPage: 1,
+            pageSize: 3
+        },
+
+        tableData: [
+
+        ]
     },
     mutations: {
         // getMessage: (state, payload) => {
         //     //一定不能解构state赋值，这样会破坏掉vue原本的响应式原理
         //     Object.assign(state, { message: payload });
         // }
+        update: (state, payload) => {
+            state.tableData = payload.data;
+            Object.assign(state.pageData, payload.state)
+        }
 
 
     },
@@ -67,10 +80,36 @@ export default {
             const data = await petsService.addPets(payload);
             if (data) {
                 alert("添加成功");
+
             }
             // if (data) {
             //     dispatch("getMessageAsync")
             // }
-        }
+        },
+
+        async findpetsAsync({ commit }, payload) {
+            const data = await petsService.findPets(payload);
+            commit("update", data);
+        },
+
+        async removePetsAsync({ dispatch }, payload) {
+            console.log(payload)
+            const data = await petsService.removePets(payload);
+            if (data) {
+                alert("删除成功");
+                delete data._id;
+                if ((data.total-1)%data.pageSize==0) {
+                    data.currentPage = data.currentPage-1;
+                }
+                
+                dispatch("findpetsAsync", data)
+
+            }
+        },
+
+
+
+
+
     }
 }
