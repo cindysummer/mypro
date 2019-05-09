@@ -1,5 +1,5 @@
 <template>
-  <div style="float: left">
+  <div style="float: left;margin-left: 50px;margin-top: 50px">
     <el-table :data="tableData">
       <el-table-column prop="date" label="名称" width="130" align="center"></el-table-column>
       <el-table-column prop="name" label="服务类型" width="130" align="center"></el-table-column>
@@ -27,6 +27,7 @@
 </template>
 
 <style>
+
 .text {
   font-size: 14px;
 }
@@ -40,6 +41,10 @@
 }
 </style>
 <script>
+  import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "service"
+);
 export default {
   methods: {
     handleClick(row) {

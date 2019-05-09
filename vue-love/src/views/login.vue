@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     login() {
-      // document.cookie=""
       this.$router.push("/platformSystem");
     },
     register() {

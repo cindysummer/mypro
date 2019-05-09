@@ -24,7 +24,7 @@
         </div>
       </el-col>
     </el-row>
-    <el-row class="tac">
+    <el-row style="display:flex" class="tac">
       <el-col :span="4">
         <el-menu
           router

@@ -44,8 +44,7 @@ export default {
         async getShopsByPageAsync({ state, commit }) {
             const { currentPage, eachPage } = state;
             const data = await ShopService.getShopsByPage({ currentPage, eachPage });
-            //将从后台拿到的数据从异步转回同步，相当于在组件里面的methods方法下面操作getStudentsByPage方法并传参
-            commit("getShopsByPage", data);
+            //将从后台拿到的数据从异步转回同步，相当于在组件里面的methods方法下面            commit("getShopsByPage", data);
         },
         // 获取员工信息
         async getEmployeeByShopIdAsync({ state, commit }) {
@@ -63,9 +62,9 @@ export default {
             }
         },
         // 删除员工
-        async removeEmployeeByShopIdAsync({ state,dispatch },{_id}) {
+        async removeEmployeeByShopIdAsync({ state, dispatch }, { _id }) {
             const shopId = state.eachShop._id;
-            const data = await ShopService.removeEmployeeByShopId({_id:shopId,shopEmployeeId:_id});
+            const data = await ShopService.removeEmployeeByShopId({ _id: shopId, shopEmployeeId: _id });
             if (data) {
                 dispatch("getEmployeeByShopIdAsync")
             }

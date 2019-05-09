@@ -1,8 +1,8 @@
 <template>
-  <div style="display: flex;justify-content: center">
+  <div style="display: flex;">
     <el-form ref="form" :model="form" label-width="90px" style="float: left;margin-left: 20px">
       <el-form-item label="名称:" style="margin-top: 30px">
-        <el-input v-model="form.serviceName" style="width: 500px"></el-input>
+        <el-input v-model="form.serviceName" style="width: 500px;"></el-input>
       </el-form-item>
       <el-form-item label="服务类型:">
         <el-input style="width: 500px" v-model="form.serviceType"></el-input>
@@ -14,17 +14,15 @@
           </el-col>
         </el-form-item>
       </div>
-      <el-form-item label="适用规格:">
-        <el-checkbox-group>
-          <el-radio-group v-model="form.serviceCanFor">
-            <el-radio label="大型宠物"></el-radio>
-            <el-radio label="中型宠物"></el-radio>
-            <el-radio label="小型宠物"></el-radio>
-          </el-radio-group>
-        </el-checkbox-group>
+     <el-form-item label="使用规格:">
+        <el-radio-group v-model="form.serviceDetial" style="width: 500px">
+          <el-radio label="大型宠物"></el-radio>
+          <el-radio label="中型宠物"></el-radio>
+          <el-radio label="小型宠物"></el-radio>
+        </el-radio-group>
       </el-form-item>
       <el-form-item label="服务规格:">
-        <el-radio-group v-model="form.serviceDetial">
+        <el-radio-group v-model="form.serviceCanFor">
           <el-radio label="高级"></el-radio>
           <el-radio label="中级"></el-radio>
           <el-radio label="普通"></el-radio>
@@ -66,6 +64,7 @@ export default {
     handleClick() {
       this.form.servicePrice = ~~this.form.servicePrice;
       this.addServiceAsync(this.form);
+     
     },
     reset(){
 

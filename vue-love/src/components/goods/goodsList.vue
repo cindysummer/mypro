@@ -1,88 +1,87 @@
 <template>
   <div>
-    <el-table :data="tableData" border style="width: 80%">
-      <el-table-column fixed prop="date" label="商品名称" width="150"></el-table-column>
-      <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-      <el-table-column prop="province" label="省份" width="120"></el-table-column>
-      <el-table-column prop="city" label="市区" width="120"></el-table-column>
-      <el-table-column prop="address" label="地址" width="300"></el-table-column>
-      <el-table-column prop="zip" label="邮编" width="120"></el-table-column>
-      <el-table-column fixed="right" label="操作" width="100">
+    <el-table :data="goods" border style="width: 80%">
+      <el-table-column prop="_id" label="商品编号" width="90"></el-table-column>
+      <el-table-column prop="goodsName" label="商品名称" width="90"></el-table-column>
+      <el-table-column prop="goodsType" label="商品类型" width="90"></el-table-column>
+      <el-table-column prop="goodsMaterial" label="材质" width="90"></el-table-column>
+      <el-table-column prop="goodsCanFor" label="适用" width="90"></el-table-column>
+      <el-table-column prop="goodsOnlyFor" label="专属" width="90"></el-table-column>
+      <el-table-column prop="goodsSize" label="规则" width="90"></el-table-column>
+      <el-table-column prop="goodsTaste" label="口味" width="90"></el-table-column>
+      <el-table-column prop="goodsSpecial" label="特殊功用" width="90"></el-table-column>
+      <el-table-column prop="goodsRegion" label="产地" width="90"></el-table-column>
+      <el-table-column prop="goodsDate" label="生产日期" width="90"></el-table-column>
+      <el-table-column prop="goodsTime" label="保质期" width="90"></el-table-column>
+      <el-table-column prop="goodsSupplier" label="供应商" width="90"></el-table-column>
+      <el-table-column prop="goodsIntro" label="简介" width="90"></el-table-column>
+      <el-table-column prop="goodsPrice" label="价格" width="90"></el-table-column>
+      <el-table-column prop="goodsImg" label="图片" width="90">
+        <img src alt srcset>
+      </el-table-column>
+      <el-table-column label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-          <el-button type="text" size="small">编辑</el-button>
+          <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
+          <el-button type="text" @click="removeGood">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
     <div class="block">
       <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage4"
-        :page-sizes="[100, 200, 300, 400]"
-        :page-size="100"
+        @size-change="setEachPage"
+        @current-change="setCurrentPage"
+        :page-sizes="[1,2,3]"
+        :page-size="~~eachPage"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="400"
+        :total="~~count"
       ></el-pagination>
     </div>
   </div>
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("goods");
 export default {
+  computed: {
+    ...mapState(["currentPage", "eachPage", "totalPage", "count", "goods"])
+  },
+  watch: {
+    eachPage() {
+      this.getGoodsByPageAsync();
+    },
+    currentPage() {
+      this.getGoodsByPageAsync();
+    }
+  },
   methods: {
+    ...mapActions(["getGoodsByPageAsync"]),
+    ...mapMutations(["setEachPage", "setCurrentPage"]),
     handleClick(row) {
       console.log(row);
     },
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+    removeGood() {
+      this.$confirm("此操作将永久删除, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
     }
   },
-
-  data() {
-    return {
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1517 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1519 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1516 弄",
-          zip: 200333
-        }
-      ],
-      currentPage1: 5,
-      currentPage2: 5,
-      currentPage3: 5,
-      currentPage4: 4
-    };
+  mounted() {
+    this.getGoodsByPageAsync();
   }
 };
 </script>

@@ -5,6 +5,8 @@ const addService = async (obj) => await fetch(`/service/addServices`, {
     },
     body: JSON.stringify(obj)
 }).then(response => response.json());
+const getService = async ({ currentPage = 1, eachpage = 4 } = {}) => await fetch(`/service/getService?currentPage=${currentPage}&eachpage=${eachpage}`)
+    .then(response => response.json())
 export default {
-    addService
+    addService,getService
 }
