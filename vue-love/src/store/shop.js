@@ -43,8 +43,11 @@ export default {
         // 通过页面限制获取门店信息
         async getShopsByPageAsync({ state, commit }) {
             const { currentPage, eachPage } = state;
-            const data = await ShopService.getShopsByPage({ currentPage, eachPage });
-            //将从后台拿到的数据从异步转回同步，相当于在组件里面的methods方法下面            commit("getShopsByPage", data);
+            const userId=document.cookie.slice(4);
+            console.log(userId)
+            const data = await ShopService.getShopsByPage({ currentPage, eachPage,userId });
+            //将从后台拿到的数据从异步转回同步，相当于在组件里面的methods方法下面
+            commit("getShopsByPage", data);
         },
         // 获取员工信息
         async getEmployeeByShopIdAsync({ state, commit }) {
@@ -68,6 +71,12 @@ export default {
             if (data) {
                 dispatch("getEmployeeByShopIdAsync")
             }
+        },
+        // 通过用户id去获取所有的服务
+        async getServicesByUserIdAsync(context){
+            const userId=document.cookie.slice(4);
+            const data=await ShopService.getServicesByUserId(userId);
+            console.log(data)
         },
         async getUserMesByIdAsync({ commit }, _id) {
             // const data = await ShopService.getUserMesById(_id);

@@ -53,14 +53,16 @@
                     shopTel: "",
                     shopImg: "",
                     shopFeature: "",
-                    shopStatus: "申请中"
+                    shopStatus: "已审批"
                 }
             }
         },
         methods: {
             ...mapActions(["addShopAsync", "getUserMesByIdAsync"]),
             handleClick() {
-                this.addShopAsync(this.shopData);
+                const userId=document.cookie.slice(4);
+                const data=Object.assign(this.shopData,{userId});
+                this.addShopAsync(data);
             },
             // 获取头图的路径
             addShopImg(response, file, fileList) {
