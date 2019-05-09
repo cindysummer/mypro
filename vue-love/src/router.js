@@ -13,6 +13,8 @@ import ServiceList from './components/services/serviceList';
 import AddPets from './components/pets/addPets';
 import PetsList from './components/pets/petsList';
 import MoreMes from './components/shops/moreMes';
+import MastersList from "./components/masters/mastersList"
+import ShopUsersList from "./components/users/shopUsersList"
 
 Vue.use(Router)
 
@@ -83,7 +85,20 @@ export default new Router({
     {
       path: '/platformSystem',
       name: 'platformSystem',
-      component: PlatformSystem
+      component: PlatformSystem,
+      children: [
+        {
+          path: 'mastersList',
+          name: 'mastersList',
+          component: MastersList,
+        },
+        {
+          path: 'shopUsersList',
+          name: 'shopUsersList',
+          component: ShopUsersList,
+          
+        },
+      ]
     }
   ]
 })

@@ -51,10 +51,10 @@
               <span>用户管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/shopSystem/addService">门店管理员信息</el-menu-item>
+              <el-menu-item index="/platformSystem/shopUsersList">门店管理员信息</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
-              <el-menu-item index="/shopSystem/serviceList">宠主信息</el-menu-item>
+              <el-menu-item index="/platformSystem/mastersList">宠主信息</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>

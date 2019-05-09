@@ -8,3 +8,4 @@ const addPets = async (obj) => await fetch(`/pet/addPets`, {
 export default {
     addPets
 }
+

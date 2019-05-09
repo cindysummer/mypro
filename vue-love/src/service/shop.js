@@ -30,6 +30,12 @@ const getUserMesById = async (_id) => await fetch(`/users/getUserMesById`, {
     },
     body: `_id=${_id}`
 }).then(response => response.json());
+
+//通过用户id获取门店
+export const getShopByUserId = async (_id) => await
+    fetch(`/shop/getShopByUserId?_id=${_id}`)
+        .then(Response => Response.json())
+
 // 通过当前页和每一页显示的条数去获取门店信息
 const getShopsByPage = async ({ currentPage = 1, eachPage = 3 } = {}) => await fetch(`/shop/getShopsByPage?currentPage=${currentPage}&eachPage=${eachPage}`).then(response => response.json())
 // 删除员工
@@ -41,5 +47,5 @@ const removeEmployeeByShopId = async (obj) => await fetch(`/shop/removeEmployeeB
     body: JSON.stringify(obj)
 }).then(response => response.json());
 export default {
-    addShop, getUserMesById, getShopsByPage, updateShop, getEmployeeByShopId,removeEmployeeByShopId
+    addShop, getUserMesById, getShopsByPage, updateShop, getEmployeeByShopId,removeEmployeeByShopId,getShopByUserId
 }
