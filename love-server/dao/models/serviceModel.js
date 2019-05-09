@@ -18,8 +18,7 @@ const serviceSchema = new mongoose.Schema({
     // 价格
     servicePrice:Number,
     userId:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'usersModel'
+        type: mongoose.Schema.Types.ObjectId
     }
 })
 
