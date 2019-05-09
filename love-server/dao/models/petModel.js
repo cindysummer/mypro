@@ -15,7 +15,7 @@ const petSchema = new mongoose.Schema({
     petNature:String,
     price:String,
     userId:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId
     }
 })
 
