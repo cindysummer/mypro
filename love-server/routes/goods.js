@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { addGoods, getGoods, getGoodsByPage, removeGoodById } = require("../service/goodsService");
+const { addGoods, getGoods, getGoodsByPage, removeGoodById,getGoodsByUserId } = require("../service/goodsService");
 const { uploadFile } = require("../util/upload");
 //新增商品
 router.post('/addGoods', async function (req, res, next) {
@@ -30,6 +30,9 @@ router.get('/getGoodsByPage', async function (req, res, next) {
 router.post('/removeGoodById', async function (req, res, next) {
   res.send(await removeGoodById(req.body))
 })
-
+// 通过用户id去拿其名下所有的商品
+router.post('/getGoodsByUserId',async function(req, res, next) {
+  res.send(await getGoodsByUserId(req.body));
+})
 
 module.exports = router;

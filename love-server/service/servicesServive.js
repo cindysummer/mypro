@@ -1,6 +1,7 @@
 // 服务管理
 // 逻辑层
-let { addServices ,getServices,removeServiceById,getServicesByPage,getServicesByUserId} = require("../dao/servicesDao");
+let { addServices ,getServices,removeServiceById,getServicesByPage,
+    getServicesByUserId} = require("../dao/servicesDao");
 module.exports.addServices = async function (user) {
     let data = await addServices(user);
     if (data.length > 0) {
@@ -11,9 +12,6 @@ module.exports.addServices = async function (user) {
 }
 module.exports.getServicesByUserId=async function(userId){
     return await getServicesByUserId(userId);
-console.log(data);
-//  await addServices(user);
-console.log(data);
 }
 
 //获取全部商品

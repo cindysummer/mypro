@@ -32,3 +32,7 @@ module.exports.getGoodsByPage = async function ({ currentPage, eachPage }) {
 module.exports.removeGoodById = async function (_id) {
     return await mongoose.model("goodsModel").deleteOne(_id)
 }
+// 通过用户id获取对应商品
+module.exports.getGoodsByUserId = async function (userId) {
+    return await mongoose.model("goodsModel").find(userId);
+}

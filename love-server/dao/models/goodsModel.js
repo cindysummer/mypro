@@ -34,8 +34,7 @@ const goodsSchema = new mongoose.Schema({
         type: String
     }],
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'usersModel'
+        type: mongoose.Schema.Types.ObjectId
     }
 })
 

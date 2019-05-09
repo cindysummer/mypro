@@ -1,7 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-const { addShop,getShopsByPage ,updateShop,getEmployeeByShopId,removeEmployeeByShopId} = require("../service/shopService");
+const { addShop,getShopsByPage ,updateShop,
+    getEmployeeByShopId,removeEmployeeByShopId,
+    addServiceIdOnShops,getServiceByShopId,removeServiceOnShop,
+    addGoodsIdOnShops,getGoodsByShopId,removeGoodsOnShop,
+    addPetsIdOnShops,getPetsByShopId,removePetsOnShop } = require("../service/shopService");
 const { uploadFile } = require("../util/upload");
 // 新增门店
 router.post('/addShop', async function (req, res, next) {
@@ -38,5 +42,41 @@ router.post('/addShopImg', async function (req, res, next) {
 //通过传过来的页数获取门店数据
 router.get("/getShopsByPage", async function (req, res, next) {
     res.send(await getShopsByPage(req.query));
+});
+// 新增服务
+router.post("/addServiceIdOnShops", async function (req, res, next) {
+    res.send(await addServiceIdOnShops(req.body));
+});
+// 获取服务
+router.post("/getServiceByShopId", async function (req, res, next) {
+    res.send(await getServiceByShopId(req.body));
+});
+// 删除服务
+router.post("/removeServiceOnShop", async function (req, res, next) {
+    res.send(await removeServiceOnShop(req.body));
+});
+// 新增商品
+router.post("/addGoodsIdOnShops", async function (req, res, next) {
+    res.send(await addGoodsIdOnShops(req.body));
+});
+// 获取商品
+router.post("/getGoodsByShopId", async function (req, res, next) {
+    res.send(await getGoodsByShopId(req.body));
+});
+// 删除商品
+router.post("/removeGoodsOnShop", async function (req, res, next) {
+    res.send(await removeGoodsOnShop(req.body));
+});
+// 新增宠物
+router.post("/addPetsIdOnShops", async function (req, res, next) {
+    res.send(await addPetsIdOnShops(req.body));
+});
+// 获取宠物
+router.post("/getPetsByShopId", async function (req, res, next) {
+    res.send(await getPetsByShopId(req.body));
+});
+// 删除宠物
+router.post("/removePetsOnShop", async function (req, res, next) {
+    res.send(await removePetsOnShop(req.body));
 });
 module.exports = router;

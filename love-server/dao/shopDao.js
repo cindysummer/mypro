@@ -17,6 +17,60 @@ module.exports.removeEmployeeByShopId = async function (shop) {
     const newShopEmployee = data.shopEmployee.filter(item => item._id != shopEmployeeId);
     return await mongoose.model("shopModel").updateOne({ _id }, { shopEmployee: newShopEmployee });
 }
+// 新增服务
+module.exports.addServiceIdOnShops=async function({_id,serviceId}){
+    const [data]=await mongoose.model("shopModel").find({ _id });
+    data.serviceId.push(serviceId);
+    return await mongoose.model("shopModel").updateOne({ _id }, { serviceId: data.serviceId });
+}
+// 获取服务
+module.exports.getServiceByShopId=async function({shopId}){
+    const [data]=await mongoose.model("shopModel").find({_id:shopId}).populate("serviceId");
+    const service=data.serviceId;
+    return service;
+}
+// 删除服务
+module.exports.removeServiceOnShop=async function({_id,serviceId}){
+    const [data] = await mongoose.model("shopModel").find({ _id });
+    const newSer=data.serviceId.filter(item=>item!=serviceId);
+    return await mongoose.model("shopModel").updateOne({ _id }, { serviceId: newSer });
+}
+// 新增商品
+module.exports.addGoodsIdOnShops=async function({_id,goodsId}){
+    const [data]=await mongoose.model("shopModel").find({ _id });
+    data.goodsId.push(goodsId);
+    return await mongoose.model("shopModel").updateOne({ _id }, { goodsId: data.goodsId });
+}
+// 获取商品
+module.exports.getGoodsByShopId=async function({shopId}){
+    const [data]=await mongoose.model("shopModel").find({_id:shopId}).populate("goodsId");
+    const goods=data.goodsId;
+    return goods;
+}
+// 删除商品
+module.exports.removeGoodsOnShop=async function({_id,goodsId}){
+    const [data] = await mongoose.model("shopModel").find({ _id });
+    const newGoods=data.goodsId.filter(item=>item!=goodsId);
+    return await mongoose.model("shopModel").updateOne({ _id }, { goodsId: newGoods });
+}
+// 新增宠物
+module.exports.addPetsIdOnShops=async function({_id,petsId}){
+    const [data]=await mongoose.model("shopModel").find({ _id });
+    data.petsId.push(petsId);
+    return await mongoose.model("shopModel").updateOne({ _id }, { petsId: data.petsId });
+}
+// 获取宠物
+module.exports.getPetsByShopId=async function({shopId}){
+    const [data]=await mongoose.model("shopModel").find({_id:shopId}).populate("petsId");
+    const pets=data.petsId;
+    return pets;
+}
+// 删除宠物
+module.exports.removePetsOnShop=async function({_id,petsId}){
+    const [data] = await mongoose.model("shopModel").find({ _id });
+    const newPets=data.petsId.filter(item=>item!=petsId);
+    return await mongoose.model("shopModel").updateOne({ _id }, { petsId: newPets });
+}
 module.exports.getShopsByPage = async function ({ currentPage, eachPage, userId }) {
     let count = await mongoose.model("shopModel").find({ userId }).countDocuments();
     let totalPage = Math.ceil(count / eachPage);
