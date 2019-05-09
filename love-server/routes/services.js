@@ -1,7 +1,7 @@
 // 页面层 服务管理
 var express = require('express');
 var router = express.Router();
-const { addServices,getServicesByUserId } = require("../service/servicesServive");
+const { addServices,getServicesByUserId,getServicesByPage,getServices,removeServiceById } = require("../service/servicesServive");
   
 /* GET home page. */
 router.post('/addServices',async function(req, res, next) {
