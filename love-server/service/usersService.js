@@ -1,4 +1,5 @@
-const { login, getUserById,register } = require("../dao/usersDao");
+const {  login, getUserById,register,getShopUsers } = require("../dao/usersDao");
+
 module.exports.login = async function (user) {
     let data = await login(user);
     if (data.length > 0) {
@@ -9,6 +10,10 @@ module.exports.login = async function (user) {
 }
 module.exports.getUserById = async function (id) {
     return await getUserById(id);
+}
+
+module.exports.getShopUsers = async function (userType) {
+    return await getShopUsers(userType);
 }
 
 module.exports.register = async function (user) {

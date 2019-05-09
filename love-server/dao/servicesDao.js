@@ -30,7 +30,9 @@ module.exports.getServicesByPage = async function ({ currentPage, eachPage }) {
     };
     return pageDate
 }
-
+//通过id删除服务
 module.exports.removeServiceById = async function (_id) {
+    console.log(_id);
+    
     return await mongoose.model("serviceModel").deleteOne(_id)
 }

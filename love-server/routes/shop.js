@@ -79,4 +79,7 @@ router.post("/getPetsByShopId", async function (req, res, next) {
 router.post("/removePetsOnShop", async function (req, res, next) {
     res.send(await removePetsOnShop(req.body));
 });
+router.get("/getShopByUserId", async function (req, res, next) {
+    res.send(await getShopByUserId(req.query));
+});
 module.exports = router;

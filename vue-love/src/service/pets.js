@@ -30,3 +30,4 @@ const removePets = async (obj) => await fetch(`/pet/removePets`, {
 export default {
     addPets,findPets,removePets
 }
+

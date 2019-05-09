@@ -1,8 +1,11 @@
 <template>
+<div class="total">
   <el-container>
-    <el-header height="120px" class="el-header">爱宠帮</el-header>
+    <el-header height="120px" class="el-header" style="text-align:right">
+     <img src="../assets/logo.png" alt="">
+      <img src="../assets/logo1.png" alt="" width="100px">
+    </el-header>
     <el-main class="el-main">
-      <img src="../assets/login.jpg" alt width="400px" height="322px">
       <el-card class="box-card">
         <el-form label-width="100px" class="demo-ruleForm">
           <el-form-item label="用户名">
@@ -11,14 +14,17 @@
           <el-form-item label="密码">
             <el-input type="password" v-model="userPwd"></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item class="cen">
             <el-button type="primary" @click="login">登录</el-button>
-            <el-button type="primary" @click="register">注册</el-button>
+          </el-form-item>
+           <el-form-item class="goreg">
+           <el-link  type="info" @click="register">去注册</el-link>
           </el-form-item>
         </el-form>
       </el-card>
     </el-main>
   </el-container>
+  </div>
 </template>
 <script>
 import { loginService } from "../service/users";
@@ -83,9 +89,13 @@ export default {
 </script>
 
 <style scoped>
+.total{
+  background: url("../assets/bcg.png") no-repeat ;
+  background-position: 208px 100px;
+}
 .el-main {
-  margin: auto;
-  width: 800px;
+  margin: 0px auto 0;
+  width: 650px;
   padding: 0;
 }
 .el-card {
@@ -93,9 +103,16 @@ export default {
   height: 322px;
   box-sizing: border-box;
   float: right;
-  padding-top: 65px;
+  padding-top: 55px;
 }
-.el-header {
+.cen{
+  padding-left: 55px;
+  box-sizing: border-box;
+}
+.goreg{
+   padding-left: 67px;
+}
+/* .el-header {
   background-color: #fff;
   color: #86e3ce;
   margin: auto;
@@ -103,5 +120,5 @@ export default {
   line-height: 120px;
   margin-bottom: 20px;
   font-family: "FZWeiBei-S03S", Arial, serif;
-}
+} */
 </style>

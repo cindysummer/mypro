@@ -25,6 +25,11 @@ module.exports.updateShop = async function (shopMes) {
 module.exports.getEmployeeByShopId = async function (shopId) {
     return await getEmployeeByShopId(shopId);
 }
+
+module.exports.getShopByUserId = async function (userId) {
+    return await getShopByUserId(userId);
+}
+
 module.exports.removeEmployeeByShopId = async function (shop) {
     const data = await removeEmployeeByShopId(shop);
     if (data.ok > 0) {

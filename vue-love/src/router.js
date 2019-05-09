@@ -13,6 +13,8 @@ import ServiceList from './components/services/serviceList';
 import AddPets from './components/pets/addPets';
 import PetsList from './components/pets/petsList';
 import MoreMes from './components/shops/moreMes';
+import MastersList from "./components/masters/mastersList"
+import ShopUsersList from "./components/users/shopUsersList"
 import AuditShopkeepers from "./components/audit/auditShopkeepers";
 import AuditShops from "./components/audit/auditShops"
 
@@ -88,6 +90,16 @@ export default new Router({
       component: PlatformSystem,
       children: [
         {
+          path: 'mastersList',
+          name: 'mastersList',
+          component: MastersList,
+        },
+        {
+          path: 'shopUsersList',
+          name: 'shopUsersList',
+          component: ShopUsersList,
+          
+        },{
           path: 'auditShopkeepers',
           name: 'audit',
           component: AuditShopkeepers,

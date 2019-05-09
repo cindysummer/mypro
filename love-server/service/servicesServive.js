@@ -12,6 +12,7 @@ module.exports.addServices = async function (user) {
 }
 module.exports.getServicesByUserId=async function(userId){
     return await getServicesByUserId(userId);
+//  await addServices(user);
 }
 
 //获取全部商品

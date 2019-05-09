@@ -18,3 +18,8 @@ export const registerService = async (obj) => await fetch(`/users/register`, {
     },
     body: JSON.stringify(obj)
 }).then(response => response.json());
+
+
+export const getShopUsers = async ({ currentPage = "1", eachPage = "3" } = {}) => await
+    fetch(`/users/getShopUsers?currentPage=${currentPage}&eachPage=${eachPage}`)
+    .then(Response => Response.json())
