@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { addPets,findPets,removePets
+const { addPets,findPets,removePets,getPetsByUserId
 } = require("../service/petsService.js");
 
 
@@ -29,5 +29,23 @@ router.post('/removePets', async function(req, res, next) {
   // console.log(req.body);
   res.send(await removePets(req.body));
 });
-
+// 通过用户id去拿其名下所有的宠物
+router.post('/getPetsByUserId',async function(req, res, next) {
+  res.send(await getPetsByUserId(req.body));
+})
 module.exports = router;
+
+
+// db.users.insert({
+//   userAccount:"123",
+//   userPwd:"123",
+//   userType:"1",
+//   userStatus:"1"
+// })
+
+// db.users.insert({
+//   userAccount:"456",
+//   userPwd:"456",
+//   userType:"0",
+//   userStatus:"1"
+// })

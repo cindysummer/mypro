@@ -23,6 +23,9 @@
       <el-form-item label="性格" prop="name4">
         <el-input v-model="ruleForm.name4"></el-input>
       </el-form-item>
+      <el-form-item label="价格" prop="price">
+        <el-input v-model="ruleForm.price"></el-input>
+      </el-form-item>
       <el-form-item label="出生日期" required>
         <el-col :span="50">
           <el-form-item prop="date1">
@@ -69,8 +72,16 @@ export default {
           msg.petBirth = this.moment(this.ruleForm.date1).format(
             "YYYY年MM月DD日"
           );
+          msg.petBirth = this.moment(this.ruleForm.date1).format(
+            "YYYY年MM月DD日"
+          );
+          const userId = document.cookie.slice(4);
+          msg.userId = userId;
+          msg.price = this.ruleForm.price;
+
           // console.log(msg);
           // alert("submit!");
+
           this.addpetsAsync(msg);
         } else {
           return false;

@@ -55,9 +55,9 @@ export default {
     ...mapActions(["findpetsAsync"]),
     ...mapActions(["removePetsAsync"]),
     open(a) {
-      // console.log(a._id);
+      // console.log(a);
       
-      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+      this.$confirm(`是否删除  ${a.petName}  这条宠物信息?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
@@ -91,7 +91,9 @@ export default {
     // console.log(555555);
      let msg = this.pageData;
       msg.currentPage = 1;
-    this.findpetsAsync(this.pageData);
+      const userId = document.cookie.slice(4);
+     msg.userId =userId;
+    this.findpetsAsync(msg);
   }
 };
 </script>

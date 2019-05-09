@@ -30,6 +30,10 @@ module.exports.getUserById = async function (id) {
     return await getUserById(id);
 }
 
+module.exports.getShopUsers = async function (userType) {
+    return await getShopUsers(userType);
+}
+
 module.exports.register = async function (user) {
     return await register(user);
 }

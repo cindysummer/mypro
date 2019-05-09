@@ -34,3 +34,7 @@ module.exports.removeGoodById = async function (_id) {
 module.exports.updateGoods = async function (goods) {
     return await mongoose.model("goodsModel").updateOne({ _id: goods._id }, goods)
 }
+// 通过用户id获取对应商品
+module.exports.getGoodsByUserId = async function (userId) {
+    return await mongoose.model("goodsModel").find(userId);
+}

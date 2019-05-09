@@ -14,6 +14,7 @@ module.exports.getServicesByUserId = async function (userId) {
     console.log(data);
     //  await addServices(user);
     console.log(data);
+    //  await addServices(user);
 }
 
 //获取全部商品

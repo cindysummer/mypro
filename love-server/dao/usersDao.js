@@ -1,10 +1,4 @@
 const mongoose = require("mongoose");
-module.exports.getUserMesById = async (userId) => {
-    return await mongoose.model("usersModel").find(userId)
-        .populate("goodsId")
-        .populate("serviceId")
-        .populate("petId")
-}
 
 //登录
 module.exports.login = async function (user) {
@@ -37,7 +31,23 @@ module.exports.getAuditShopkeepersByPage = async function ({ currentPage, eachPa
 }
 //审核
 module.exports.editStatusByUserId = async function ({ _id, userStatus }) {
-    return await mongoose.model("usersModel").updateOne({ _id },{userStatus})
+    return await mongoose.model("usersModel").updateOne({ _id }, { userStatus })
 
 }
 
+module.exports.getShopUsers = async function ({ currentPage, eachPage }) {
+    let count = await mongoose.model("usersModel").find({ userType: "0", userStatus: "1" }).countDocuments();
+    let totalPage = Math.ceil(count / eachPage);
+    let users = await mongoose.model("usersModel")
+        .find({ userType: "0", userStatus: "1" })
+        .skip((currentPage - 1) * eachPage)
+        .limit(eachPage - 0);
+    let pageData = {
+        currentPage, //当前页码
+        eachPage, //每页显示条数
+        totalPage, //总页数
+        count, //总条数
+        users
+    }
+    return pageData;
+}

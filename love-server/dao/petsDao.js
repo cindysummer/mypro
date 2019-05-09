@@ -8,7 +8,9 @@ module.exports.addPets = async (shop) => {
 
 //宠物列表
 module.exports.findPets = async (shop) => {
-    let pet = await mongoose.model("petModel").find();
+    // console.log(shop);
+    
+    let pet = await mongoose.model("petModel").find({userId:shop.userId});
     return pet
     
 }
@@ -23,4 +25,8 @@ module.exports.removePets = async (shop) => {
     // return pet
     
     
+}
+// 通过用户id获取对应宠物
+module.exports.getPetsByUserId = async function (userId) {
+    return await mongoose.model("petModel").find(userId);
 }

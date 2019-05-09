@@ -3,12 +3,10 @@ var router = express.Router();
 
 const { getUserMesById, login, getUserById,
   register, getAuditShopkeepersByPage, editStatusByUserId } = require("../service/usersService");
+// const { login, getUserById, register, getShopUsers } = require("../service/usersService");
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
-});
-router.post('/getUserMesById', async function (req, res, next) {
-  res.send(await getUserMesById(req.body));
 });
 
 router.post('/login', async function (req, res, next) {
@@ -35,6 +33,10 @@ router.get('/editStatusByUserId', async function (req, res, next) {
   res.send(await editStatusByUserId(req.query))
 
 })
+//获取门店管理员信息
+router.get('/getShopUsers',async function(req, res, next) {
+  res.send(await getShopUsers(req.query));
+});
 
 
 module.exports = router;

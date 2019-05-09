@@ -34,7 +34,19 @@ const shopSchema = new mongoose.Schema({
     // 关联门店管理员id
     userId: {
         type: mongoose.Schema.Types.ObjectId
-    }
+    },
+    serviceId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"serviceModel"
+    }],
+    goodsId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"goodsModel"
+    }],
+    petsId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"petModel"
+    }]
 })
 
 mongoose.model('shopModel', shopSchema, "shop");
