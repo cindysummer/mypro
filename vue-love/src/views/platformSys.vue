@@ -17,7 +17,7 @@
             </li>
             <li style="margin-left:20px">
               <a href="javascript:;" title="退出登录">
-                <i class="el-icon-switch-button"  @click="quit"></i>
+                <i class="el-icon-switch-button" @click="quit"></i>
               </a>
             </li>
           </ul>
@@ -39,10 +39,10 @@
               <span>待办事项</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/shopSystem/addGoods">待审核门店管理员</el-menu-item>
+              <el-menu-item index="/platformSystem/auditShopkeepers">待审核门店管理员</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
-              <el-menu-item index="/shopSystem/goodsList">待审核门店管理员</el-menu-item>
+              <el-menu-item index="/platformSystem/auditShops">待审核门店</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="2">
@@ -51,10 +51,17 @@
               <span>用户管理</span>
             </template>
             <el-menu-item-group>
+<<<<<<< HEAD
               <el-menu-item index="/platformSystem/shopUsersList">门店管理员信息</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
               <el-menu-item index="/platformSystem/mastersList">宠主信息</el-menu-item>
+=======
+              <el-menu-item index="/platformSystem/addService">门店管理员信息</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group>
+              <el-menu-item index="/platformSystem/serviceList">宠主信息</el-menu-item>
+>>>>>>> 4117e5d263f256e27f2c26f53fc2f710093e15a1
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -64,13 +71,13 @@
   </div>
 </template>
 <script>
-import  {getUserById} from "../service/users";
+import { getUserById } from "../service/users";
 export default {
   name: "shopSystem",
-   data(){
-    return{
-        userAccount:"",
-    }
+  data() {
+    return {
+      userAccount: ""
+    };
   },
   methods: {
     quit() {

@@ -37,7 +37,7 @@ export const getShopByUserId = async (_id) => await
         .then(Response => Response.json())
 
 // 通过当前页和每一页显示的条数去获取门店信息
-const getShopsByPage = async ({ currentPage = 1, eachPage = 3 } = {}) => await fetch(`/shop/getShopsByPage?currentPage=${currentPage}&eachPage=${eachPage}`).then(response => response.json())
+const getShopsByPage = async ({ currentPage = 1, eachPage = 3, userId } = {}) => await fetch(`/shop/getShopsByPage?currentPage=${currentPage}&eachPage=${eachPage}&userId=${userId}`).then(response => response.json())
 // 删除员工
 const removeEmployeeByShopId = async (obj) => await fetch(`/shop/removeEmployeeByShopId`, {
     method: "post",
@@ -45,6 +45,13 @@ const removeEmployeeByShopId = async (obj) => await fetch(`/shop/removeEmployeeB
         "Content-Type": "application/json"
     },
     body: JSON.stringify(obj)
+}).then(response => response.json());
+const getServicesByUserId = async (_id) => await fetch(`/service/getServicesByUserId`, {
+    method: "post",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded" //设置请求头为表单提交的方式
+    },
+    body: `userId=${_id}`
 }).then(response => response.json());
 export default {
     addShop, getUserMesById, getShopsByPage, updateShop, getEmployeeByShopId,removeEmployeeByShopId,getShopByUserId

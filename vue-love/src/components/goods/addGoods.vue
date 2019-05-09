@@ -19,13 +19,13 @@
       <el-form-item required label="包装规格" prop="goodsSize">
         <el-input v-model="form.goodsSize"></el-input>
       </el-form-item>
-      <el-form-item required label="口味" prop="goodsTast">
-        <el-input v-model="form.goodsTast"></el-input>
+      <el-form-item required label="口味" prop="goodsTaste">
+        <el-input v-model="form.goodsTaste"></el-input>
       </el-form-item>
       <el-form-item required label="产地" prop="goodsRegion">
         <el-input v-model="form.goodsRegion"></el-input>
       </el-form-item>
-      <el-form-item required label="出日厂期" prop="goodsDate">
+      <el-form-item required label="生产日期" prop="goodsDate">
         <div class="block">
           <el-date-picker v-model="form.goodsDate" type="date" placeholder="选择日期"></el-date-picker>
         </div>
@@ -49,6 +49,8 @@
       <el-form-item required label="图片">
         <el-upload
           action="/goods/addImg"
+          ref="upload"
+          :auto-upload="false"
           :on-success="successUpload"
           list-type="picture-card"
           :limit="1"
@@ -77,8 +79,11 @@ export default {
   },
   methods: {
     ...mapActions(["addGoodsAsync"]),
+    ...mapMutations(["setUserId"]),
     //提交事件
     onSubmit() {
+      this.$refs.upload.submit(); //上传图片
+      this.$refs.form.resetFields(); //恢复表单默认
       this.form.goodsDate = this.moment(this.form.goodsDate).format(
         "YYYY-MM-DD"
       );
@@ -87,12 +92,17 @@ export default {
     successUpload(response, file, fileList) {
       //图片路径
       this.form.goodsImg.push(response.data.url);
+      //清空图片
+      this.$refs.upload.clearFiles();
     },
     //重置
     resetForm(formName) {
-      console.log(this.$refs[formName]);
       this.$refs[formName].resetFields();
     }
+  },
+  mounted() {
+    const userId = document.cookie.slice(4);
+    this.form.userId = userId;
   }
 };
 </script>

@@ -11,12 +11,12 @@
       <el-table-column prop="petType" label="宠物品类" width="150"></el-table-column>
       <el-table-column prop="petKind" label="宠物种类" width="120"></el-table-column>
       <el-table-column prop="petColor" label="颜色" width="120"></el-table-column>
-      <el-table-column prop="petNature" label="性格" width="300"></el-table-column>
-      <el-table-column prop="petBirth" label="出生日期" width="120"></el-table-column>
+      <el-table-column prop="petNature" label="性格" width="270"></el-table-column>
+      <el-table-column prop="petBirth" label="出生日期" width="150"></el-table-column>
       <el-table-column label="操作" width="120">
-        <template style="width:100px">
+        <template slot-scope="scope" style="width:100px">
           <el-button type="text" size="medium">修改</el-button>
-          <el-button type="text" size="medium">删除</el-button>
+          <el-button type="text" size="medium" @click="open(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -24,81 +24,77 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[3, 5,7]"
+        :current-page="pageData.currentPage"
+        :page-sizes="[3, 4,5]"
         :page-size="3"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
+        :total="pageData.total"
       ></el-pagination>
     </div>
   </div>
 </template>
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("pets");
 export default {
-   methods: {
+  methods: {
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      let msg = this.pageData;
+      msg.pageSize = `${val}`;
+      msg.currentPage = 1;
+      this.findpetsAsync(msg);
+      // console.log(`每页 ${val} 条`);
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      let msg = this.pageData;
+      msg.currentPage = `${val}` - 0;
+      //  console.log(msg);
+      this.findpetsAsync(msg);
+      // console.log(`当前页: ${val}`);
+    },
+    ...mapActions(["findpetsAsync"]),
+    ...mapActions(["removePetsAsync"]),
+    open(a) {
+      // console.log(a);
+      
+      this.$confirm(`是否删除  ${a.petName}  这条宠物信息?`, "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          let msg = this.pageData;
+          msg._id=a._id
+          this.removePetsAsync(msg);         
+          // this.$message({
+          //   type: "success",
+          //   message: "删除成功!"
+          // });
+
+
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
     }
   },
 
-  data() {
-    return {
-      total: 201,
-      currentPage: 1,
-      pageSize:3,
-      tableData: [
-        {
-          petName: "64645",
-          petType: "546456",
-          petKind: "45645",
-          petColor: "45645",
-          petNature: "456456466456455555555555555",
-          petBirth: "2019-05-16",
-          __v: 0
-        },
-        {
-          petName: "64645",
-          petType: "546456",
-          petKind: "45645",
-          petColor: "45645",
-          petNature: "4564564",
-          petBirth: "2019-05-16",
-          __v: 0
-        },
-        {
-          petName: "64645",
-          petType: "546456",
-          petKind: "45645",
-          petColor: "45645",
-          petNature: "4564564",
-          petBirth: "2019-05-16",
-          __v: 0
-        },
-        {
-          petName: "64645",
-          petType: "546456",
-          petKind: "45645",
-          petColor: "45645",
-          petNature: "4564564",
-          petBirth: "2019-05-16",
-          __v: 0
-        },
-        {
-          petName: "64645",
-          petType: "546456",
-          petKind: "45645",
-          petColor: "45645",
-          petNature: "4564564",
-          petBirth: "2019-05-16",
-          __v: 0
-        }
-      ]
-    };
+  computed: {
+    ...mapState(["pageData"]),
+    ...mapState(["tableData"])
   },
- 
+
+  mounted() {
+    // console.log(555555);
+     let msg = this.pageData;
+      msg.currentPage = 1;
+      const userId = document.cookie.slice(4);
+     msg.userId =userId;
+    this.findpetsAsync(msg);
+  }
 };
 </script>
 <style scoped>

@@ -15,6 +15,8 @@ import PetsList from './components/pets/petsList';
 import MoreMes from './components/shops/moreMes';
 import MastersList from "./components/masters/mastersList"
 import ShopUsersList from "./components/users/shopUsersList"
+import AuditShopkeepers from "./components/audit/auditShopkeepers";
+import AuditShops from "./components/audit/auditShops"
 
 Vue.use(Router)
 
@@ -97,7 +99,16 @@ export default new Router({
           name: 'shopUsersList',
           component: ShopUsersList,
           
+        },{
+          path: 'auditShopkeepers',
+          name: 'audit',
+          component: AuditShopkeepers,
         },
+        {
+          path: 'auditShops',
+          name: 'auditShops',
+          component: AuditShops,
+        }
       ]
     }
   ]

@@ -4,7 +4,6 @@ const { addGoods, getGoods, getGoodsByPage, removeGoodById } = require("../servi
 const { uploadFile } = require("../util/upload");
 //新增商品
 router.post('/addGoods', async function (req, res, next) {
-  console.log(req.body)
   res.send(await addGoods(req.body))
 });
 
