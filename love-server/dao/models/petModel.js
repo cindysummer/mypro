@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 // 宠物集合
 const petSchema = new mongoose.Schema({
     // 名字
-    petName:String,
+    petName: String,
     // 品类(猫、狗类)
-    petType:String,
+    petType: String,
     // 种类（泰迪，比熊等）
-    petKind:String,
+    petKind: String,
     // 颜色
-    petColor:String,
+    petColor: String,
     // 出生日期（年月即可）
-    petBirth:String,
+    petBirth: String,
     // 性格（）温驯、狂野、攻击性
-    petNature:String,
-    price:String,
-    userId:{
+    petNature: String,
+    price: String,
+    userId: {
         type: mongoose.Schema.Types.ObjectId
     }
 })
@@ -22,3 +22,16 @@ const petSchema = new mongoose.Schema({
 mongoose.model('petModel', petSchema, "pet");
 
 
+
+
+
+db.master.insert({
+    memberPhone: "13536985214",
+    memberAcount: "疯狂的泰迪",
+    memberName: "王石",
+    menberCard: "111114785",
+    memberAdd: "抚琴东南路",
+    memberArea: "金牛区",
+    memberPoint: "66",
+    petId: ["5cd545416486608bf8388062"]
+})
