@@ -1,6 +1,6 @@
 // 服务管理
 // 逻辑层
-let { addServices, getServices, removeServiceById, getServicesByPage, getServicesByUserId } = require("../dao/servicesDao");
+let { addServices, getServices, removeServiceById, getServicesByPage, getServicesByUserId,updateServices } = require("../dao/servicesDao");
 module.exports.addServices = async function (user) {
     let data = await addServices(user);
     if (data.length > 0) {
@@ -34,4 +34,15 @@ module.exports.removeServiceById = async function (id) {
 //按分页获取goods
 module.exports.getServicesByPage = async function ({ currentPage, eachPage }) {
     return await getServicesByPage({ currentPage, eachPage });
+}
+
+
+//更新商品信息
+module.exports.updateServices = async function (data) {
+    let ret = await updateServices(data);
+    if (ret.ok) {
+        return true
+    } else {
+        return false
+    }
 }
