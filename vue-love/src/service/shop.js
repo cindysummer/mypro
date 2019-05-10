@@ -1,143 +1,36 @@
+import Fetch from '../server/fetch';
 // 新增
-const addShop = async (obj) => await fetch(`/shop/addShop`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
+const addShop = async (obj) => await Fetch(`/shop/addShop`,obj).then(res=>res);
 // 更改门店（新增店员）
-const updateShop = async (obj) => await fetch(`/shop/updateShop`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
+const updateShop = async (obj) => await Fetch(`/shop/updateShop`,obj).then(res=>res);
 // 通过门店id获取门店店员信息
-const getEmployeeByShopId = async (_id) => await fetch(`/shop/getEmployeeByShopId`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/x-www-form-urlencoded" //设置请求头为表单提交的方式
-    },
-    body: `_id=${_id}`
-}).then(response => response.json());
-// 根据门店管理员id去获取对应的商品、服务、宠物信息
-const getUserMesById = async (_id) => await fetch(`/users/getUserMesById`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/x-www-form-urlencoded" //设置请求头为表单提交的方式
-    },
-    body: `_id=${_id}`
-}).then(response => response.json());
-
+const getEmployeeByShopId = async (obj) => await Fetch(`/shop/getEmployeeByShopId`,obj).then(res=>res);
 //通过用户id获取门店
-export const getShopByUserId = async (_id) => await
-    fetch(`/shop/getShopByUserId?_id=${_id}`)
-        .then(Response => Response.json())
+const getShopByUserId = async (_id) => await fetch(`/shop/getShopByUserId?_id=${_id}`).then(Response => Response.json());
 
 // 通过当前页和每一页显示的条数去获取门店信息
 const getShopsByPage = async ({ currentPage = 1, eachPage = 3, userId } = {}) => await fetch(`/shop/getShopsByPage?currentPage=${currentPage}&eachPage=${eachPage}&userId=${userId}`).then(response => response.json())
 // 删除员工
-const removeEmployeeByShopId = async (obj) => await fetch(`/shop/removeEmployeeByShopId`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-
-const getServicesByUserId = async (_id) => await fetch(`/service/getServicesByUserId`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/x-www-form-urlencoded" //设置请求头为表单提交的方式
-    },
-    body: `userId=${_id}`
-}).then(response => response.json());
+const removeEmployeeByShopId = async (obj) => await Fetch(`/shop/removeEmployeeByShopId`,obj).then(res=>res);
+const getServicesByUserId = async (obj) => await Fetch(`/service/getServicesByUserId`,obj).then(res=>res);
 // 新增服务
-const addServiceIdOnShops = async (obj) => await fetch(`/shop/addServiceIdOnShops`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-const getServiceByShopId = async (obj) => await fetch(`/shop/getServiceByShopId`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-const removeServiceOnShop = async (obj) => await fetch(`/shop/removeServiceOnShop`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-const getGoodsByUserId = async (_id) => await fetch(`/goods/getGoodsByUserId`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/x-www-form-urlencoded" //设置请求头为表单提交的方式
-    },
-    body: `userId=${_id}`
-}).then(response => response.json());
+const addServiceIdOnShops = async (obj) => await Fetch(`/shop/addServiceIdOnShops`,obj).then(res=>res);
+const getServiceByShopId = async (obj) => await Fetch(`/shop/getServiceByShopId`,obj).then(res=>res);
+const removeServiceOnShop = async (obj) => await Fetch(`/shop/removeServiceOnShop`,obj).then(res=>res);
+const getGoodsByUserId = async (obj) => await Fetch(`/goods/getGoodsByUserId`,obj).then(res=>res);
 // 新增商品
-const addGoodsIdOnShops = async (obj) => await fetch(`/shop/addGoodsIdOnShops`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-const getGoodsByShopId = async (obj) => await fetch(`/shop/getGoodsByShopId`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-const removeGoodsOnShop = async (obj) => await fetch(`/shop/removeGoodsOnShop`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-const getPetsByUserId = async (_id) => await fetch(`/pet/getPetsByUserId`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/x-www-form-urlencoded" //设置请求头为表单提交的方式
-    },
-    body: `userId=${_id}`
-}).then(response => response.json());
+const addGoodsIdOnShops = async (obj) => await Fetch(`/shop/addGoodsIdOnShops`,obj).then(res=>res);
+const getGoodsByShopId = async (obj) => await Fetch(`/shop/getGoodsByShopId`,obj).then(res=>res);
+const removeGoodsOnShop = async (obj) => await Fetch(`/shop/removeGoodsOnShop`,obj).then(res=>res);
+const getPetsByUserId = async (obj) => await Fetch(`/pet/getPetsByUserId`,obj).then(res=>res);
 // 新增宠物
-const addPetsIdOnShops = async (obj) => await fetch(`/shop/addPetsIdOnShops`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-const getPetsByShopId = async (obj) => await fetch(`/shop/getPetsByShopId`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-const removePetsOnShop = async (obj) => await fetch(`/shop/removePetsOnShop`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
+const addPetsIdOnShops = async (obj) => await Fetch(`/shop/addPetsIdOnShops`,obj).then(res=>res);
+const getPetsByShopId = async (obj) => await Fetch(`/shop/getPetsByShopId`,obj).then(res=>res);
+const removePetsOnShop = async (obj) => await Fetch(`/shop/removePetsOnShop`,obj).then(res=>res);
 export default {
-    addShop, getUserMesById, getShopsByPage, updateShop,
+    addShop,  getShopsByPage, updateShop,
     getEmployeeByShopId, removeEmployeeByShopId, getServicesByUserId,
     addServiceIdOnShops, getServiceByShopId, removeServiceOnShop,
     getGoodsByUserId, addGoodsIdOnShops, getGoodsByShopId, removeGoodsOnShop,
-    getPetsByUserId, addPetsIdOnShops, getPetsByShopId, removePetsOnShop
+    getPetsByUserId, addPetsIdOnShops, getPetsByShopId, removePetsOnShop,getShopByUserId
 }

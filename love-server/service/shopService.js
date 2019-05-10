@@ -1,8 +1,8 @@
-const { addShop, getShopsByPage, updateShop, 
-    getEmployeeByShopId, removeEmployeeByShopId,
+const {
+    getEmployeeByShopId, removeEmployeeByShopId,addShop,getShopsByPage,updateShop,findshops,updateshops,
     addServiceIdOnShops,getServiceByShopId,removeServiceOnShop,
     addGoodsIdOnShops,getGoodsByShopId,removeGoodsOnShop,
-    addPetsIdOnShops,getPetsByShopId,removePetsOnShop } = require("../dao/shopDao");
+    addPetsIdOnShops,getPetsByShopId,removePetsOnShop,getShopByUserId } = require("../dao/shopDao");
 module.exports.addShop = async (shop) => {
     let data = await addShop(shop);
     if (data) {
@@ -27,6 +27,7 @@ module.exports.getEmployeeByShopId = async function (shopId) {
 }
 
 module.exports.getShopByUserId = async function (userId) {
+   
     return await getShopByUserId(userId);
 }
 
@@ -38,6 +39,22 @@ module.exports.removeEmployeeByShopId = async function (shop) {
         return false;
     }
 }
+
+//
+module.exports.findshops = async function (shop) {
+    const data = await findshops(shop);
+    return data;
+}
+//
+
+module.exports.updateshops = async function (shop) {
+    const data = await updateshops(shop);
+    if (data.ok > 0) {
+        delete shop._id;
+        delete shop.shopStatus;
+        return shop;
+    }
+}
 // 新增服务
 module.exports.addServiceIdOnShops=async function(obj){
     const data= await addServiceIdOnShops(obj);
@@ -47,6 +64,7 @@ module.exports.addServiceIdOnShops=async function(obj){
         return false;
     }
 }
+
 // 获取服务
 module.exports.getServiceByShopId=async function(shopId){
     return await getServiceByShopId(shopId);

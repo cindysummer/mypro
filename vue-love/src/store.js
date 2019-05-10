@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue';
 import Vuex from 'vuex';//vuex是专用于vue.js的状态机
 import shop from './store/shop';
 import goods from './store/goods';

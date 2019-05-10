@@ -88,6 +88,21 @@ module.exports.getShopsByPage = async function ({ currentPage, eachPage, userId 
     return pageData;
 }
 
-module.exports.getShopByUserId = async (userId) => {
-    return await mongoose.model("shopModel").find(userId);
+module.exports.findshops = async function (shop) {
+    let count = await mongoose.model("shopModel").find({ shopStatus: "申请中" }).countDocuments();
+    let msg = await mongoose.model("shopModel").find({ shopStatus: "申请中" })
+                                            .skip((shop.currentPage - 1) * shop.pageSize)
+                                            .limit(shop.pageSize - 0);
+    let obj={}
+    obj.state=Object.assign(shop,{total:count});
+    obj.msg=msg;
+    return obj;
 }
+
+module.exports.updateshops = async function (shop) {
+    return await mongoose.model("shopModel").updateOne({_id:shop._id},{shopStatus:shop.shopStatus})
+}
+module.exports.getShopByUserId = async (userId) => {
+    return await mongoose.model("shopModel").find({userId});
+}
+   

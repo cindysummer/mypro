@@ -2,13 +2,23 @@ import petsService from '../service/pets';
 export default {
     namespaced: true,
     state: {
+        petMsg: {
+            petBirth: "",
+            petColor: "",
+            petKind: "",
+            petName: "",
+            petNature: "",
+            petType: "",
+            price: "",
+            _id: "",
+        },
         ruleForm: {
             name: "64645",
             name1: "546456",
             name2: "45645",
             name3: "45645",
             name4: "4564564",
-            price:"45",
+            price: "45",
             date1: ""
         },
         rules: {
@@ -50,7 +60,7 @@ export default {
             ],
             price: [
                 { required: true, message: "请输入宠物价格", trigger: "blur" },
-                {  min: 1, max: 6, message: "长度在 1 到 6 个数字", trigger: "blur" }
+                { min: 1, max: 6, message: "长度在 1 到 6 个数字", trigger: "blur" }
             ]
         },
         pageData: {
@@ -71,7 +81,7 @@ export default {
         update: (state, payload) => {
             state.tableData = payload.data;
             Object.assign(state.pageData, payload.state)
-        }
+        },
 
 
     },
@@ -82,10 +92,16 @@ export default {
         // },
         async addpetsAsync({ dispatch }, payload) {
             // console.log(payload)
+            let k=payload.k;
+            delete payload.k;
             const data = await petsService.addPets(payload);
             if (data) {
-                alert("添加成功");
-
+                k.$message({
+                    showClose: true,
+                    message: '新增成功',
+                    type: 'success'
+                  });
+                
             }
             // if (data) {
             //     dispatch("getMessageAsync")
@@ -93,28 +109,43 @@ export default {
         },
 
         async findpetsAsync({ commit }, payload) {
+            if (payload.currentPage==0) {
+                payload.currentPage=1
+            }
             const data = await petsService.findPets(payload);
             commit("update", data);
         },
 
         async removePetsAsync({ dispatch }, payload) {
-            console.log(payload)
             const data = await petsService.removePets(payload);
             if (data) {
-                alert("删除成功");
-                delete data._id;
-                if ((data.total-1)%data.pageSize==0) {
-                    data.currentPage = data.currentPage-1;
-                }
                 
+                delete data._id;
+                if ((data.total - 1) % data.pageSize == 0) {
+                    data.currentPage = data.currentPage - 1;
+                }
+                // console.log(data);
                 dispatch("findpetsAsync", data)
 
             }
         },
+        async updatePetsAsync({ dispatch }, payload) {
+            let k = payload.this;
+            delete payload.this;
+            const data = await petsService.updatePets(payload);
+            // commit("update", data);
+            delete data._id;
+            // delete data.userId;
+            // console.log(data);
+            dispatch("findpetsAsync", data);
+            k.$message({
+                showClose: true,
+                message: '修改成功',
+                type: 'success'
+              });
 
 
 
-
-
+        },
     }
 }

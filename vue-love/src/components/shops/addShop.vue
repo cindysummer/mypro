@@ -1,5 +1,5 @@
 <template>
-  <el-card>
+  <div>
     <el-form :inline="true" :model="shopData" ref="shopData" label-width="100px">
       <el-form-item label="门店名称">
         <el-input v-model="shopData.shopName"></el-input>
@@ -20,80 +20,68 @@
         <el-input v-model="shopData.shopLicenceNum"></el-input>
       </el-form-item>
       <el-form-item label="头图">
-        <el-upload
-          class="upload-demo"
-          action="/shop/addShopImg"
-          :on-success="addShopImg"
-          :limit="1"
-        >
+        <el-upload class="upload-demo" action="/shop/addShopImg" :on-success="addShopImg" :limit="1">
           <el-button size="small" type="primary">点击上传</el-button>
         </el-upload>
       </el-form-item>
       <el-form-item label="营业执照图片">
-        <el-upload
-          class="upload-demo"
-          action="/shop/addShopLicenceImg"
-          :on-success="addShopLicenceImg"
-          :limit="1"
-        >
+        <el-upload class="upload-demo" action="/shop/addShopLicenceImg" :on-success="addShopLicenceImg" :limit="1">
           <el-button size="small" type="primary">点击上传</el-button>
         </el-upload>
       </el-form-item>
       <el-form-item style="text-align:center;width:80%">
-        <el-button type="primary" @click="handleClick">新增</el-button>
+        <el-button type="primary"  @click="handleClick">新增</el-button>
       </el-form-item>
     </el-form>
-  </el-card>
+  </div>
 </template>
 
 <script>
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers("shop");
-export default {
-  name: "addShop",
-  data() {
-    return {
-      shopData: {
-        shopName: "",
-        shopLicenceNum: "",
-        shopLicenceImg: "",
-        shopAdd: "",
-        shopCorporate: "",
-        shopTel: "",
-        shopImg: "",
-        shopFeature: "",
-        shopStatus: "已审批"
+  import { createNamespacedHelpers } from 'vuex';
+  const { mapState, mapActions, mapMutations } = createNamespacedHelpers('shop');
+  export default {
+    name: "addShop",
+    data() {
+      return {
+        shopData: {
+          shopName: "",
+          shopLicenceNum: "",
+          shopLicenceImg: "",
+          shopAdd: "",
+          shopCorporate: "",
+          shopTel: "",
+          shopImg: "",
+          shopFeature: "",
+          shopStatus: "申请中"
+        }
       }
-    };
-  },
-  methods: {
-    ...mapActions(["addShopAsync", "getUserMesByIdAsync"]),
-    handleClick() {
-      const userId = document.cookie.slice(4);
-      const data = Object.assign(this.shopData, { userId });
-      this.addShopAsync(data);
     },
-    // 获取头图的路径
-    addShopImg(response, file, fileList) {
-      this.shopData.shopImg = response.data.url;
-    },
-    // 获取营业执照的图片的路径
-    addShopLicenceImg(response, file, fileList) {
-      this.shopData.shopLicenceImg = response.data.url;
+    methods: {
+      ...mapActions(["addShopAsync", "getUserMesByIdAsync"]),
+      handleClick() {
+        const userId = document.cookie.slice(4);
+        const data = Object.assign(this.shopData, { userId });
+        this.addShopAsync({data,this:this});
+      },
+      // 获取头图的路径
+      addShopImg(response, file, fileList) {
+        this.shopData.shopImg = response.data.url;
+      },
+      // 获取营业执照的图片的路径
+      addShopLicenceImg(response, file, fileList) {
+        this.shopData.shopLicenceImg = response.data.url;
+      },
     }
-  },
-  mounted() {
-    this.getUserMesByIdAsync("5cd0fd8207833622b912a97f");
   }
-};
+
 </script>
 
 <style scoped>
-.el-card {
-  height: 500px;
-}
+  .el-card {
+    height: 500px;
+  }
 
-.el-form-item {
-  width: 40%;
-}
+  .el-form-item {
+    width: 40%;
+  }
 </style>

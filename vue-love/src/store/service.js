@@ -44,6 +44,9 @@ export default {
         setCurrentPage: (state, currentPage) => {
             state.currentPage = currentPage;
         },
+        editServices: (state, payload) => {
+            state.form = payload
+        }
     },
     actions: {
         // 新增
@@ -56,22 +59,27 @@ export default {
             }
         },
 
-        // async DelServiceAsync({ dispatch }, payload) {
-        //     return await serviceService.DelService(payload);
-        // },
-
-        //通过分页信息获取商品列表
+        //通过分页信息获取服务列表
         async getServicesByPageAsync(context) {
             const { currentPage, eachPage } = context.state
             const data = await serviceService.getServicesByPage({ currentPage, eachPage });
             context.commit("getServicesByPage", data)
         },
-    //通过商品id删除商品
-    async removeServiceByIdAsync({dispatch }, payload) {
-        const data = await serviceService.removeServiceById({ _id: payload });
-        if (data) {
-            dispatch("getServicesByPageAsync")
+        //通过id删除服务
+        async removeServiceByIdAsync({ dispatch }, payload) {
+            const data = await serviceService.removeServiceById({ _id: payload });
+            if (data) {
+                dispatch("getServicesByPageAsync")
+            }
+        },
+        //更新服务信息
+        async updateServicesAsync({ dispatch }, payload) {
+            // console.log(payload);
+            const data = await serviceService.updateServices(payload);
+            if (data) {
+                dispatch("getServicesByPageAsync")
+            }
+
         }
     }
-    } 
 }

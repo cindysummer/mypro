@@ -1,10 +1,9 @@
 // 页面层 服务管理
 var express = require('express');
 var router = express.Router();
-const { addServices, getServicesByUserId, getServicesByPage,
-  getServices, removeServiceById, addShopIdOnService, getServiceByShopId,
-  removeServiceShopId } = require("../service/servicesServive");
-
+const { addServices,getServicesByUserId,getServicesByPage,
+  getServices,removeServiceById,updateServices} = require("../service/servicesServive");
+  
 /* GET home page. */
 router.post('/addServices', async function (req, res, next) {
   res.send(await addServices(req.body));
@@ -21,7 +20,6 @@ router.get('/getServices', async function (req, res, next) {
 
 //，根据id删除服务
 router.post('/removeServiceById', async function (req, res, next) {
-  console.log("req.body");
   res.send(await removeServiceById(req.body));
 })
 
@@ -29,5 +27,10 @@ router.post('/removeServiceById', async function (req, res, next) {
 router.get('/getServicesByPage', async function (req, res, next) {
   res.send(await getServicesByPage(req.query))
 });
+
+//更新商品信息
+router.post('/updateServices', async function (req, res, next) {
+  res.send(await updateServices(req.body))
+})
 
 module.exports = router;
