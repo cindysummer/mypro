@@ -13,6 +13,16 @@ module.exports.register = async function (user) {
     return await mongoose.model("usersModel").create(user);
 }
 
+module.exports.removeUser = async function (_id) {
+    return await mongoose.model("usersModel").deleteOne(_id);
+}
+
+module.exports.updataUser = async function ({ _id, userPwd, userPhone,userEmail}) {
+    return await mongoose.model("usersModel").updateOne({ _id }, { userPwd, userPhone,userEmail })
+
+}
+
+
 module.exports.getAuditShopkeepersByPage = async function ({ currentPage, eachPage, userStatus }) {
     let count = await mongoose.model("usersModel").find({ userStatus }).countDocuments();
     let totalPage = Math.ceil(count / eachPage);

@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 const { getUserMesById, login, getUserById,
-  register, getAuditShopkeepersByPage, editStatusByUserId,getShopUsers } = require("../service/usersService");
+  register, getAuditShopkeepersByPage, editStatusByUserId,getShopUsers ,removeUser,updataUser} = require("../service/usersService");
+// const { login, getUserById, register, getShopUsers } = require("../service/usersService");
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
@@ -10,6 +11,16 @@ router.get('/', function (req, res, next) {
 
 router.post('/login', async function (req, res, next) {
   let data = await login(req.body);
+  res.send(data);
+});
+
+router.post('/removeUser', async function (req, res, next) {
+  let data = await removeUser(req.body);
+  res.send(data);
+});
+
+router.post('/updataUser', async function (req, res, next) {
+  let data = await updataUser(req.body);
   res.send(data);
 });
 
