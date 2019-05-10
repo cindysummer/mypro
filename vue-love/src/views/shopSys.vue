@@ -159,9 +159,9 @@
   }
   .el-main{
     padding:5px!important;
-    height: 100vh;
+    /* height: 100vh; */
   }
   .el-card{
-    height: 100vh;
+    height: 98vh;
   }
 </style>

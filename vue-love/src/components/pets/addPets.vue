@@ -70,7 +70,7 @@ export default {
           msg.petColor = this.ruleForm.name3;
           msg.petNature = this.ruleForm.name4;
           msg.petBirth = this.moment(this.ruleForm.date1).format(
-            "YYYY年MM月DD日"
+            "YYYY-MM-DD"
           );
           const userId = document.cookie.slice(4);
           msg.userId = userId;
