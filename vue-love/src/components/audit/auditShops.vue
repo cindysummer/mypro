@@ -9,15 +9,19 @@
     >
       <el-table-column prop="shopName" label="门店名" width="120"></el-table-column>
       <el-table-column prop="shopLicenceNum" label="营业执照号码" width="150"></el-table-column>
-      <el-table-column prop="shopLicenceImg" label="营业执照图片" width="170"></el-table-column>
+      <el-table-column prop="shopLicenceImg" label="营业执照图片" width="170">
+        <template slot-scope="scope">
+          <el-image style="width: 100px; height: 100px" :src="scope.row.shopLicenceImg"></el-image>
+        </template>
+      </el-table-column>
       <el-table-column prop="shopAdd" label="地址" width="160"></el-table-column>
       <el-table-column prop="shopCorporate" label="法人" width="90"></el-table-column>
       <el-table-column prop="shopTel" label="联系电话" width="150"></el-table-column>
       <el-table-column prop="shopStatus" label="状态" width="90"></el-table-column>
       <el-table-column label="操作" width="120">
         <template slot-scope="scope" style="width:100px">
-          <el-button type="text" size="medium" @click="open1(scope.row)">禁止</el-button>
-          <el-button type="text" size="medium" @click="open(scope.row)">审核通过</el-button>
+          <el-button type="text" size="medium" @click="open(scope.row)">禁止</el-button>
+          <el-button type="text" size="medium" @click="open1(scope.row)">审核通过</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -33,7 +37,6 @@
       ></el-pagination>
     </div>
   </div>
-  
 </template>
 <script>
 import { createNamespacedHelpers } from "vuex";
@@ -54,6 +57,7 @@ export default {
     ...mapActions(["findshopsAsync"]),
     ...mapActions(["updateshopsAsync"]),
     open(a) {
+      console.log(a);
 
       this.$confirm(`是否通过  ${a.shopName}  的审核?`, "提示", {
         confirmButtonText: "确定",
@@ -63,8 +67,8 @@ export default {
         .then(() => {
           let msg = this.pageData;
           msg._id = a._id;
-          msg.shopStatus="已审批"
-          this.updateshopsAsync(msg); 
+          msg.shopStatus = "已审批";
+          this.updateshopsAsync(msg);
         })
         .catch(() => {
           this.$message({
@@ -73,7 +77,7 @@ export default {
           });
         });
     },
-     open1(a) {
+    open1(a) {
       this.$confirm(`是否禁止  ${a.shopName}  审核的通过?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -82,8 +86,8 @@ export default {
         .then(() => {
           let msg = this.pageData;
           msg._id = a._id;
-          msg.shopStatus="禁止"
-          this.updateshopsAsync(msg); 
+          msg.shopStatus = "禁止";
+          this.updateshopsAsync(msg);
         })
         .catch(() => {
           this.$message({
