@@ -24,3 +24,5 @@ const usersSchema = new mongoose.Schema({
 })
 
 mongoose.model('usersModel', usersSchema, "users");
+
+
