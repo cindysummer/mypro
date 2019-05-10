@@ -24,8 +24,8 @@ router.post('/removeServiceById', async function (req, res, next) {
 })
 
 //按分页进行查询
-router.get('/getServicesByPage', async function (req, res, next) {
-  res.send(await getServicesByPage(req.query))
+router.post('/getServicesByPage', async function (req, res, next) {
+  res.send(await getServicesByPage(req.body))
 });
 
 //更新商品信息
