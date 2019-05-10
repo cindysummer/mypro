@@ -122,11 +122,12 @@ export default {
       "updateServicesAsync"
     ]),
     ...mapMutations(["setEachPage", "setCurrentPage", "editServices"]),
-    handleClick(row) {},
-    edit(row) {
+   //
+   edit(row) {
       this.dialogFormVisible = true;
       this.editServices(row);
     },
+    //
     comfire() {
       this.updateServicesAsync(this.form);
       this.dialogFormVisible = false;
@@ -138,7 +139,6 @@ export default {
         type: "warning"
       })
         .then(() => {
-          // console.log(a)
           this.removeServiceByIdAsync(a);
           this.$message({
             type: "success",
@@ -152,6 +152,7 @@ export default {
           });
         });
     }
+    
   },
   mounted() {
     this.getServicesByPageAsync();
