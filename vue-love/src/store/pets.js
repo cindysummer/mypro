@@ -2,13 +2,17 @@ import petsService from '../service/pets';
 export default {
     namespaced: true,
     state: {
+        search:{
+            input:"",
+            select:"",
+        },
         petMsg: {
             petBirth: "",
             petColor: "",
             petKind: "",
             petName: "",
             petNature: "",
-            petType: "",
+            petType: "",// 品类(猫、狗类)
             price: "",
             _id: "",
         },
@@ -66,7 +70,9 @@ export default {
         pageData: {
             total: 0,
             currentPage: 1,
-            pageSize: 3
+            pageSize: 3,
+            userInputLastTime:"",
+            userSelectLastTime:"",
         },
 
         tableData: [

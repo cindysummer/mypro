@@ -14,13 +14,22 @@ module.exports.getServices = async (data) => {
 }
 
 //按页获取services
-module.exports.getServicesByPage = async function ({ currentPage, eachPage }) {
-    let count = await mongoose.model("serviceModel").find().countDocuments();
+module.exports.getServicesByPage = async function ({ currentPage, eachPage, service, text, userId }) {
+    let count, services;
+    if (text === undefined) {
+        count = await mongoose.model("serviceModel").find({ userId }).countDocuments();
+        services = await mongoose.model("serviceModel")
+            .find({ userId })
+            .skip((currentPage - 1) * eachPage)
+            .limit(eachPage - 0);
+    } else {
+        count = await mongoose.model("serviceModel").find({ userId, [service]: text }).countDocuments();
+        services = await mongoose.model("serviceModel")
+            .find({ userId, [service]: text })
+            .skip((currentPage - 1) * eachPage)
+            .limit(eachPage - 0);
+    }
     let totalPage = Math.ceil(count / eachPage);
-    let services = await mongoose.model("serviceModel")
-        .find()
-        .skip((currentPage - 1) * eachPage)
-        .limit(eachPage - 0);
     let pageDate = {
         currentPage: ~~currentPage,
         eachPage: ~~eachPage,
@@ -31,7 +40,7 @@ module.exports.getServicesByPage = async function ({ currentPage, eachPage }) {
     return pageDate
 }
 //通过id删除服务
-module.exports.removeServiceById = async function (_id) { 
+module.exports.removeServiceById = async function (_id) {
     return await mongoose.model("serviceModel").deleteOne(_id)
 }
 
