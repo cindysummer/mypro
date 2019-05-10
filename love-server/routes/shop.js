@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-const { addShop,getShopsByPage ,updateShop,getEmployeeByShopId,removeEmployeeByShopId} = require("../service/shopService");
+const { addShop,getShopsByPage ,updateShop,getEmployeeByShopId,
+    removeEmployeeByShopId,findshops,updateshops} = require("../service/shopService");
 const { uploadFile } = require("../util/upload");
 // 新增门店
 router.post('/addShop', async function (req, res, next) {
@@ -38,5 +39,19 @@ router.post('/addShopImg', async function (req, res, next) {
 //通过传过来的页数获取门店数据
 router.get("/getShopsByPage", async function (req, res, next) {
     res.send(await getShopsByPage(req.query));
+});
+
+//寻找待审核门店
+router.post('/findshops', async function (req, res, next) {
+    res.send(await findshops(req.body))
+  
+    // console.log(req.body);
+    
+});
+
+//updateshops  更改门店状态
+router.post('/updateshops', async function (req, res, next) {
+    res.send(await updateshops(req.body))
+    
 });
 module.exports = router;

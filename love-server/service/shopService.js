@@ -1,4 +1,5 @@
-const { addShop, getShopsByPage, updateShop, getEmployeeByShopId, removeEmployeeByShopId } = require("../dao/shopDao");
+const { addShop, getShopsByPage, updateShop, 
+    getEmployeeByShopId, removeEmployeeByShopId ,findshops,updateshops} = require("../dao/shopDao");
 module.exports.addShop = async (shop) => {
     let data = await addShop(shop);
     if (data) {
@@ -21,6 +22,7 @@ module.exports.updateShop = async function (shopMes) {
 module.exports.getEmployeeByShopId = async function (shopId) {
     return await getEmployeeByShopId(shopId);
 }
+
 module.exports.removeEmployeeByShopId = async function (shop) {
     const data = await removeEmployeeByShopId(shop);
     if (data.ok > 0) {
@@ -29,3 +31,26 @@ module.exports.removeEmployeeByShopId = async function (shop) {
         return false;
     }
 }
+
+//
+module.exports.findshops = async function (shop) {
+    // console.log(shop);
+    const data = await findshops(shop);
+    // console.log(data);
+    
+    return data;
+
+}
+//
+
+module.exports.updateshops = async function (shop) {
+    const data = await updateshops(shop);
+    if (data.ok > 0) {
+        delete shop._id;
+        delete shop.shopStatus;
+        return shop;
+    } else {
+        return false;
+    }
+}
+

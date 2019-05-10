@@ -53,7 +53,7 @@
                     shopTel: "",
                     shopImg: "",
                     shopFeature: "",
-                    shopStatus: "已审批"
+                    shopStatus: "申请中"
                 }
             }
         },

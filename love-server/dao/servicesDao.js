@@ -34,3 +34,10 @@ module.exports.getServicesByPage = async function ({ currentPage, eachPage }) {
 module.exports.removeServiceById = async function (_id) {
     return await mongoose.model("serviceModel").deleteOne(_id)
 }
+
+module.exports.findshops = async function (shop) {
+    console.log(shop);
+    
+
+    // return await mongoose.model("serviceModel").deleteOne(_id)
+}

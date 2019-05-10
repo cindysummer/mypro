@@ -23,11 +23,7 @@ module.exports.getServices = async function () {
 
 module.exports.removeServiceById = async function (id) {
     let data = await removeServiceById(id);
-    if (data.ok > 0) {
-        return true
-    } else {
-        return false;
-    }
+   
 }
 
 //按分页获取goods

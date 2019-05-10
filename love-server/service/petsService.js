@@ -1,4 +1,4 @@
-const { addPets,findPets,removePets
+const { addPets,findPets,removePets,updatePets
 } = require("../dao/petsDao.js");
 
 module.exports.addPets = async (shop) => {
@@ -38,3 +38,12 @@ module.exports.removePets = async (shop) => {
     return data;
   
 }
+//修改宠物信息
+module.exports.updatePets = async (shop) => {
+    let data = await updatePets(shop);
+    return data
+ 
+  
+}
+
+
