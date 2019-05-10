@@ -108,12 +108,7 @@ export default {
   }
 };
 </script>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-}
-
+<style scoped>
 .grid-content {
   height: 100px;
   padding: 0 20px;
