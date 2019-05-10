@@ -36,5 +36,8 @@ module.exports.updatePets = async (shop) => {
         return false;
     }
     
-
+}
+// 通过用户id获取对应宠物
+module.exports.getPetsByUserId = async function (userId) {
+    return await mongoose.model("petModel").find(userId);
 }

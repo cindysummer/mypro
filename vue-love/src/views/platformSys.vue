@@ -51,10 +51,10 @@
               <span>用户管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/platformSystem/addService">门店管理员信息</el-menu-item>
+              <el-menu-item index="/platformSystem/shopUsersList">门店管理员信息</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
-              <el-menu-item index="/platformSystem/serviceList">宠主信息</el-menu-item>
+              <el-menu-item index="/platformSystem/mastersList">宠主信息</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -65,6 +65,8 @@
 </template>
 <script>
 import { getUserById } from "../service/users";
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("audit");
 export default {
   name: "shopSystem",
   data() {
@@ -72,6 +74,7 @@ export default {
       userAccount: ""
     };
   },
+
   methods: {
     quit() {
       this.$router.push("/");
@@ -84,7 +87,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 * {
   margin: 0;
   padding: 0;
@@ -146,5 +149,9 @@ export default {
 }
 .el-menu-vertical-demo {
   height: 500px;
+}
+.infos {
+  color: red;
+  font-size: bold;
 }
 </style>

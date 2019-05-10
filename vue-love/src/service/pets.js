@@ -39,3 +39,4 @@ const updatePets = async (obj) => await fetch(`/pet/updatePets`, {
 export default {
     addPets,findPets,removePets,updatePets
 }
+

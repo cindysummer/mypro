@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 module.exports.addServices = async function (data) {
     return await mongoose.model("serviceModel").create(data);
 }
-module.exports.getServicesByUserId=async function(userId){
+module.exports.getServicesByUserId = async function (userId) {
     return await mongoose.model("serviceModel").find(userId);
 }
 
@@ -30,8 +30,10 @@ module.exports.getServicesByPage = async function ({ currentPage, eachPage }) {
     };
     return pageDate
 }
-
+//通过id删除服务
 module.exports.removeServiceById = async function (_id) {
+    console.log(_id);
+    
     return await mongoose.model("serviceModel").deleteOne(_id)
 }
 
