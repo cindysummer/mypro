@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 module.exports.addServices = async function (data) {
     return await mongoose.model("serviceModel").create(data);
 }
-module.exports.getServicesByUserId=async function(userId){
+module.exports.getServicesByUserId = async function (userId) {
     return await mongoose.model("serviceModel").find(userId);
 }
 
@@ -35,4 +35,14 @@ module.exports.removeServiceById = async function (_id) {
     console.log(_id);
     
     return await mongoose.model("serviceModel").deleteOne(_id)
+}
+
+module.exports.findshops = async function (shop) {
+    console.log(shop);
+    
+}
+    // return await mongoose.model("serviceModel").deleteOne(_id)
+//更新商品信息
+module.exports.updateServices = async function (data) {
+    return await mongoose.model("serviceModel").updateOne({ _id: data._id }, data)
 }

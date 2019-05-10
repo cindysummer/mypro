@@ -23,6 +23,21 @@ module.exports.removePets = async (shop) => {
     }
 
     // return pet
+}
+
+//updatePets
+
+module.exports.updatePets = async (shop) => {
+    // console.log(shop);
+    let pet = await mongoose.model("petModel").updateOne({_id:shop.petMsg._id},shop.petMsg)
+    if (pet.ok > 0) {
+        return shop.pageData;
+    } else {
+        return false;
+    }
     
-    
+}
+// 通过用户id获取对应宠物
+module.exports.getPetsByUserId = async function (userId) {
+    return await mongoose.model("petModel").find(userId);
 }

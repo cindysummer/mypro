@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-const { addPets,findPets,removePets
+
+const { addPets,findPets,removePets,getPetsByUserId,updatePets
 } = require("../service/petsService.js");
 
 
@@ -30,6 +31,17 @@ router.post('/removePets', async function(req, res, next) {
   res.send(await removePets(req.body));
 });
 
+//修改宠物信息
+router.post('/updatePets', async function(req, res, next) {
+  // console.log(req.body);
+  res.send(await updatePets(req.body));
+});
+
+
+// 通过用户id去拿其名下所有的宠物
+router.post('/getPetsByUserId',async function(req, res, next) {
+  res.send(await getPetsByUserId(req.body));
+})
 module.exports = router;
 
 

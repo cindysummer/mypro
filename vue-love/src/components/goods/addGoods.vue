@@ -82,18 +82,20 @@ export default {
     ...mapMutations(["setUserId"]),
     //提交事件
     onSubmit() {
-      this.$refs.upload.submit(); //上传图片
-      this.$refs.form.resetFields(); //恢复表单默认
+      //格式化时间
       this.form.goodsDate = this.moment(this.form.goodsDate).format(
         "YYYY-MM-DD"
       );
-      this.addGoodsAsync(this.form);
+      this.$refs.upload.submit(); //上传图片
     },
     successUpload(response, file, fileList) {
-      //图片路径
+      //保存图片路径
       this.form.goodsImg.push(response.data.url);
       //清空图片
+      this.addGoodsAsync(this.form);
+      this.$refs.form.resetFields(); //恢复表单默认
       this.$refs.upload.clearFiles();
+      this.form.goodsImg = [];
     },
     //重置
     resetForm(formName) {
