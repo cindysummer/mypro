@@ -9,21 +9,45 @@ module.exports.getGoods = async () => {
 }
 
 // 按页获取goods
-module.exports.getGoodsByPage = async function ({ currentPage, eachPage }) {
-    let count = await mongoose.model("goodsModel").countDocuments();
-    let totalPage = Math.ceil(count / eachPage);
-    let goods = await mongoose.model("goodsModel")
-        .find()
-        .skip((currentPage - 1) * eachPage)
-        .limit(eachPage - 0);
-    let pageDate = {
-        currentPage: ~~currentPage,
-        eachPage: ~~eachPage,
-        totalPage,
-        count,
-        goods,
-    };
-    return pageDate
+module.exports.getGoodsByPage = async function ({ currentPage, eachPage, userId, goodsType, text }) {
+    if (goodsType == undefined || text == undefined) {
+        let count = await mongoose.model("goodsModel").find({ userId }).countDocuments();
+        let totalPage = Math.ceil(count / eachPage);
+        let goods = await mongoose.model("goodsModel")
+            .find({ userId })
+            .skip((currentPage - 1) * eachPage)
+            .limit(eachPage - 0);
+        let pageDate = {
+            currentPage: ~~currentPage,
+            eachPage: ~~eachPage,
+            totalPage,
+            count,
+            goods,
+        };
+        return pageDate
+    }
+    else {
+        let count = await mongoose.model("goodsModel").find({ userId, [goodsType]: text }).countDocuments();
+        let totalPage = Math.ceil(count / eachPage);
+        let goods = await mongoose.model("goodsModel")
+            .find({ userId, [goodsType]: text })
+            .skip((currentPage - 1) * eachPage)
+            .limit(eachPage - 0);
+        let pageDate = {
+            currentPage: ~~currentPage,
+            eachPage: ~~eachPage,
+            totalPage,
+            count,
+            goods,
+        };
+        return pageDate
+    }
+
+}
+
+//搜索
+module.exports.searchGoodsByPage = async function ({ currentPage, eachPage, userId, goodsType, content }) {
+
 }
 
 //通过id删除商品

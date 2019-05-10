@@ -42,7 +42,7 @@ module.exports.getAuditShopkeepersByPage = async function (userStatus) {
     return await getAuditShopkeepersByPage(userStatus);
 }
 
-//审核
+//对门店管理员的审核
 module.exports.editStatusByUserId = async function ({ _id, userStatus }) {
     const data = await editStatusByUserId({ _id, userStatus });
     if (data.ok) {

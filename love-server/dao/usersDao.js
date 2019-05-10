@@ -29,12 +29,10 @@ module.exports.getAuditShopkeepersByPage = async function ({ currentPage, eachPa
     };
     return pageDate
 }
-//审核
+//对门店管理员的审核
 module.exports.editStatusByUserId = async function ({ _id, userStatus }) {
     return await mongoose.model("usersModel").updateOne({ _id }, { userStatus })
-
 }
-
 module.exports.getShopUsers = async function ({ currentPage, eachPage }) {
     let count = await mongoose.model("usersModel").find({ userType: "0", userStatus: "1" }).countDocuments();
     let totalPage = Math.ceil(count / eachPage);

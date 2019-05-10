@@ -11,10 +11,10 @@ export default {
         shopEmployee: [],
         serviceArr: [],
         shopService: [],
-        goodsArr:[],
-        shopGoods:[],
-        petsArr:[],
-        shopPets:[]
+        goodsArr: [],
+        shopGoods: [],
+        petsArr: [],
+        shopPets: []
     },
     mutations: {
         getShopsByPage: (state, payload) => {
