@@ -106,5 +106,6 @@ module.exports.updateshops = async function (shop) {
     return await mongoose.model("shopModel").updateOne({_id:shop._id},{shopStatus:shop.shopStatus})
 }
 module.exports.getShopByUserId = async (userId) => {
-    return await mongoose.model("shopModel").find(userId);
+    return await mongoose.model("shopModel").find({userId});
 }
+   

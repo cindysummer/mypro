@@ -80,7 +80,9 @@ export default {
     ...mapMutations(["setCurrentPage", "setEachPage"]),
    async  shop(index,row) {
       this.dialogTableVisible=true;
-      this.shopArr=await shop.getShopByUserId(row._id);
+      let data =await shop.getShopByUserId(row._id);
+      this.shopArr=data
+      console.log(data)
     }
   },
   //生命周期，加载完成

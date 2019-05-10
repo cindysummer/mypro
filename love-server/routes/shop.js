@@ -5,7 +5,7 @@ const { addShop,getShopsByPage ,updateShop,findshops,updateshops,
     getEmployeeByShopId,removeEmployeeByShopId,
     addServiceIdOnShops,getServiceByShopId,removeServiceOnShop,
     addGoodsIdOnShops,getGoodsByShopId,removeGoodsOnShop,
-    addPetsIdOnShops,getPetsByShopId,removePetsOnShop } = require("../service/shopService");
+    addPetsIdOnShops,getPetsByShopId,removePetsOnShop,getShopByUserId } = require("../service/shopService");
 const { uploadFile } = require("../util/upload");
 // 新增门店
 router.post('/addShop', async function (req, res, next) {
