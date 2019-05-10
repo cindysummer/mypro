@@ -1,5 +1,5 @@
 <template>
-    <el-card style="width:100%">
+    <div>
         <el-table :data="shops">
             <el-table-column prop="shopStatus" label="门店状态">
             </el-table-column>
@@ -26,7 +26,7 @@
         <el-pagination @size-change="setEachPage" @current-change="setCurrentPage" :page-size="~~eachPage"
             :page-sizes="[1,3,5]" layout="total, sizes, prev, pager, next, jumper" :total="~~count">
         </el-pagination>
-    </el-card>
+    </div>
 </template>
 <script>
     import { createNamespacedHelpers } from 'vuex';

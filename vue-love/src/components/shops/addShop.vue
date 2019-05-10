@@ -1,5 +1,5 @@
 <template>
-  <el-card>
+  <div>
     <el-form :inline="true" :model="shopData" ref="shopData" label-width="100px">
       <el-form-item label="门店名称">
         <el-input v-model="shopData.shopName"></el-input>
@@ -43,7 +43,7 @@
         <el-button type="primary" @click="handleClick">新增</el-button>
       </el-form-item>
     </el-form>
-  </el-card>
+  </div>
 </template>
 
 <script>

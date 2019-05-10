@@ -1,5 +1,5 @@
 <template>
-  <el-card style="width:100%">
+  <div>
     <el-form ref="form" :inline="true" :model="form" label-width="80px">
       <el-form-item required label="商品名称" prop="goodsName">
         <el-input v-model="form.goodsName"></el-input>
@@ -66,7 +66,7 @@
         <el-button @click="resetForm('form')">重置</el-button>
       </el-form-item>
     </el-form>
-  </el-card>
+  </div>
 </template>
 >
 <script>
@@ -116,4 +116,5 @@ export default {
 .el-form-item {
   width: 40%;
 }
+
 </style>

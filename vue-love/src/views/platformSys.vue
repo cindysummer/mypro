@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <el-row>
-      <el-col :span="24">
-        <div class="grid-content">
+  <el-container>
+    <el-header>
           <div class="logo">
             <img src="../assets/logo1.png" alt>
             <span>爱宠帮</span>
@@ -21,11 +19,9 @@
               </a>
             </li>
           </ul>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row class="tac" style="display:flex">
-      <el-col :span="4">
+        </el-header>
+    <el-container>
+      <el-aside>
         <el-menu
           router
           class="el-menu-vertical-demo"
@@ -58,10 +54,12 @@
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
-      </el-col>
-      <router-view></router-view>
-    </el-row>
-  </div>
+       </el-aside>
+      <el-main>
+        <el-card><router-view></router-view></el-card>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 <script>
 import { getUserById } from "../service/users";
@@ -88,68 +86,68 @@ export default {
 };
 </script>
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-}
+.el-header {
+    background-color: rgb(84, 92, 100);
+    padding-top: 35px !important;
+    padding-bottom: 35px !important;
+    font-family: "Helvetica Neue";
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.grid-content {
-  height: 100px;
-  padding: 0 20px;
-  font-family: "Helvetica Neue";
-  background: rgb(84, 92, 100);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  .el-header .logo {
+    width: 111px;
+    height: 60px;
+    display: flex;
+  }
 
-.logo {
-  width: 111px;
-  height: 60px;
-  display: flex;
-}
+  .el-header .logo>img {
+    width: 100%;
+    margin-right: 5px;
+  }
 
-.logo > img {
-  width: 100%;
-  margin-right: 5px;
-}
+  .el-header .logo>span {
+    color: #fff;
+    font-size: 16px;
+  }
 
-.logo > span {
-  color: #fff;
-  font-size: 16px;
-}
+  li {
+    list-style: none;
+  }
 
-.grid-content h2 {
-  color: #fff;
-}
+  .el-header ul {
+    display: flex;
+  }
 
-.grid-content ul {
-  display: flex;
-}
+  .el-header a {
+    text-decoration: none;
+    color: #fff;
+  }
 
-.grid-content li {
-  list-style: none;
-}
+  .el-header a i {
+    font-size: 22px;
+  }
 
-.grid-content a {
-  text-decoration: none;
-  color: #fff;
-}
+  .el-header a:hover {
+    color: #fdcb32;
+  }
 
-.grid-content a i {
-  font-size: 22px;
-}
-
-.grid-content a:hover {
-  color: #fdcb32;
-}
-.el-aside {
-  height: 100%;
-  background-color: #fdcb32;
-}
-.el-menu-vertical-demo {
-  height: 500px;
-}
+  .el-aside {
+    width: 200px!important;
+    height: 100vh;
+  }
+  .el-menu-vertical-demo {
+    height: 100%;
+  }
+  .el-main{
+    padding:5px!important;
+    height: 100vh;
+  }
+  .el-card{
+    height: 100vh;
+  }
 .infos {
   color: red;
   font-size: bold;

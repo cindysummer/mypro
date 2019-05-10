@@ -1,15 +1,15 @@
 <template>
-  <div style="float: left;margin-left: 50px;margin-top: 50px">
+  <div>
     <el-table :data="services">
-      <el-table-column prop="serviceName" label="名称" width="130" align="center"></el-table-column>
-      <el-table-column prop="serviceType" label="服务类型" width="130" align="center"></el-table-column>
-      <el-table-column prop="serviceSchedule" label="服务时间" width="130" align="center"></el-table-column>
-      <el-table-column prop="serviceDetial" label="适用规格" width="130" align="center"></el-table-column>
-      <el-table-column prop="serviceCanFor" label="服务规格" width="130" align="center"></el-table-column>
-      <el-table-column prop="serviceTime" label="耗时" width="130" align="center"></el-table-column>
-      <el-table-column prop="serviceLevel" label="服务员等级" width="130" align="center"></el-table-column>
-      <el-table-column prop="servicePrice" label="价格" width="130" align="center"></el-table-column>
-      <el-table-column label="操作" width="100">
+      <el-table-column prop="serviceName" label="名称" ></el-table-column>
+      <el-table-column prop="serviceType" label="服务类型" ></el-table-column>
+      <el-table-column prop="serviceSchedule" label="服务时间" ></el-table-column>
+      <el-table-column prop="serviceDetial" label="适用规格" ></el-table-column>
+      <el-table-column prop="serviceCanFor" label="服务规格" ></el-table-column>
+      <el-table-column prop="serviceTime" label="耗时" ></el-table-column>
+      <el-table-column prop="serviceLevel" label="服务员等级" ></el-table-column>
+      <el-table-column prop="servicePrice" label="价格" ></el-table-column>
+      <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="text" @click="edit(scope.row)">编辑</el-button>
           <el-button type="text" @click="removeService(scope.row._id)">删除</el-button>

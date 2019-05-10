@@ -39,6 +39,10 @@ export default {
     },
     actions: {
         async findshopsAsync({ commit }, payload) {
+            console.log(payload)
+            if (payload.currentPage == 0) {
+                payload.currentPage = 1
+            }
             const data = await auditService.findShops(payload);
             // console.log(data);
 
@@ -46,6 +50,7 @@ export default {
         },
         async updateshopsAsync({ dispatch }, payload) {
             const data = await auditService.updateshops(payload);
+            console.log(data)
             if (data) {
                 alert("操作成功");
                 if ((data.total - 1) % data.pageSize == 0) {

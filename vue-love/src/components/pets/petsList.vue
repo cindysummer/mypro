@@ -3,20 +3,17 @@
     <el-table
       :data="tableData"
       border
-      style="width: 1050px"
       :stripe="true"
       :highlight-current-row="true"
     >
-      <el-table-column prop="petName" label="宠物名" width="120"></el-table-column>
-      <el-table-column prop="petType" label="宠物品类" width="120"></el-table-column>
-      <el-table-column prop="petKind" label="宠物种类" width="100"></el-table-column>
-
-      <el-table-column prop="price" label="价格(单位:元)" width="90"></el-table-column>
-
-      <el-table-column prop="petColor" label="颜色" width="120"></el-table-column>
-      <el-table-column prop="petNature" label="性格" width="270"></el-table-column>
-      <el-table-column prop="petBirth" label="出生日期" width="130"></el-table-column>
-      <el-table-column label="操作" width="100">
+      <el-table-column prop="petName" label="宠物名"></el-table-column>
+      <el-table-column prop="petType" label="宠物品类"></el-table-column>
+      <el-table-column prop="petKind" label="宠物种类"></el-table-column>
+      <el-table-column prop="price" label="价格(单位:元)"></el-table-column>
+      <el-table-column prop="petColor" label="颜色"></el-table-column>
+      <el-table-column prop="petNature" label="性格" ></el-table-column>
+      <el-table-column prop="petBirth" label="出生日期"></el-table-column>
+      <el-table-column label="操作" fixed="right" width="100">
         <template slot-scope="scope" style="width:100px">
           <el-button type="text" @click="change(scope.row)">修改</el-button>
           <el-button type="text" size="medium" @click="open(scope.row)">删除</el-button>

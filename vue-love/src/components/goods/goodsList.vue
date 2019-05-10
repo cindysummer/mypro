@@ -1,25 +1,25 @@
 <template>
   <div>
     <el-table :data="goods" border style="width: 90%">
-      <el-table-column prop="goodsName" label="商品名称" width="80"></el-table-column>
-      <el-table-column label="商品图片">
+      <el-table-column prop="goodsName" label="商品名称"></el-table-column>
+      <el-table-column label="商品图片" width="120px">
         <template slot-scope="scope">
           <el-image style="width: 100px; height: 100px" :src="scope.row.goodsImg[0]"></el-image>
         </template>
       </el-table-column>
-      <el-table-column prop="goodsType" label="商品类型" width="80"></el-table-column>
-      <el-table-column prop="goodsMaterial" label="材质" width="80"></el-table-column>
-      <el-table-column prop="goodsCanFor" label="适用" width="80"></el-table-column>
-      <el-table-column prop="goodsOnlyFor" label="专属" width="80"></el-table-column>
-      <el-table-column prop="goodsSize" label="规则" width="80"></el-table-column>
-      <el-table-column prop="goodsTaste" label="口味" width="80"></el-table-column>
-      <el-table-column prop="goodsSpecial" label="特殊功用" width="80"></el-table-column>
-      <el-table-column prop="goodsRegion" label="产地" width="80"></el-table-column>
-      <el-table-column prop="goodsDate" label="生产日期" width="80"></el-table-column>
-      <el-table-column prop="goodsTime" label="保质期" width="80"></el-table-column>
-      <el-table-column prop="goodsSupplier" label="供应商" width="80"></el-table-column>
-      <el-table-column prop="goodsIntro" label="简介" width="80"></el-table-column>
-      <el-table-column prop="goodsPrice" label="价格" width="80"></el-table-column>
+      <el-table-column prop="goodsType" label="商品类型"></el-table-column>
+      <el-table-column prop="goodsMaterial" label="材质"></el-table-column>
+      <el-table-column prop="goodsCanFor" label="适用"></el-table-column>
+      <el-table-column prop="goodsOnlyFor" label="专属"></el-table-column>
+      <el-table-column prop="goodsSize" label="规则"></el-table-column>
+      <el-table-column prop="goodsTaste" label="口味"></el-table-column>
+      <el-table-column prop="goodsSpecial" label="特殊功用"></el-table-column>
+      <el-table-column prop="goodsRegion" label="产地"></el-table-column>
+      <el-table-column prop="goodsDate" label="生产日期"></el-table-column>
+      <el-table-column prop="goodsTime" label="保质期"></el-table-column>
+      <el-table-column prop="goodsSupplier" label="供应商"></el-table-column>
+      <el-table-column prop="goodsIntro" label="简介"></el-table-column>
+      <el-table-column prop="goodsPrice" label="价格"></el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
           <el-button type="text" @click="edit(scope.row)">编辑</el-button>
