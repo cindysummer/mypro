@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 //新增goods
 module.exports.addGoods = async (goods) => {
-    console.log(goods);
-    
     return await mongoose.model("goodsModel").create(goods);
 }
 //获取所有goods
@@ -31,6 +29,10 @@ module.exports.getGoodsByPage = async function ({ currentPage, eachPage }) {
 //通过id删除商品
 module.exports.removeGoodById = async function (_id) {
     return await mongoose.model("goodsModel").deleteOne(_id)
+}
+//更新商品信息
+module.exports.updateGoods = async function (goods) {
+    return await mongoose.model("goodsModel").updateOne({ _id: goods._id }, goods)
 }
 // 通过用户id获取对应商品
 module.exports.getGoodsByUserId = async function (userId) {

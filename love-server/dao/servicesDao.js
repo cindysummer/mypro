@@ -36,3 +36,13 @@ module.exports.removeServiceById = async function (_id) {
     
     return await mongoose.model("serviceModel").deleteOne(_id)
 }
+
+module.exports.findshops = async function (shop) {
+    console.log(shop);
+    
+}
+    // return await mongoose.model("serviceModel").deleteOne(_id)
+//更新商品信息
+module.exports.updateServices = async function (data) {
+    return await mongoose.model("serviceModel").updateOne({ _id: data._id }, data)
+}

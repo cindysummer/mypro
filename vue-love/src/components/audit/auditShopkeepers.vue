@@ -1,94 +1,92 @@
 <template>
-  <el-table
-    :data="tableData"
-    border
-    style="width: 100%">
-    <el-table-column
-      fixed
-      prop="date"
-      label="日期"
-      width="150">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="province"
-      label="省份"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="city"
-      label="市区"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址"
-      width="300">
-    </el-table-column>
-    <el-table-column
-      prop="zip"
-      label="邮编"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      fixed="right"
-      label="操作"
-      width="100">
-      <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-        <el-button type="text" size="small">编辑</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
+  <div style="width:100%">
+    <el-table :data="rows" border style="width:100%">
+      <el-table-column prop="userAccount" label="申请名称" width="200"></el-table-column>
+      <el-table-column prop="userName" label="申请人姓名" width="200"></el-table-column>
+      <el-table-column prop="userPhone" label="手机号" width="200"></el-table-column>
+      <el-table-column prop="userEmail" label="邮箱" width="200"></el-table-column>
+      <el-table-column label="操作" width="200">
+        <template slot-scope="scope">
+          <el-button type="text" @click="pass(scope.row._id)">审核通过</el-button>
+          <el-button type="text" @click="forbid(scope.row._id)">禁止</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <div class="block">
+      <el-pagination
+        @size-change="setEachPage"
+        @current-change="setCurrentPage"
+        :page-sizes="[1,2,3]"
+        :page-size="~~eachPage"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="~~count"
+      ></el-pagination>
+    </div>
+  </div>
 </template>
 
 <script>
-  export default {
-    methods: {
-      handleClick(row) {
-        console.log(row);
-      }
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("audit");
+export default {
+  computed: {
+    ...mapState(["currentPage", "eachPage", "totalPage", "count", "rows"])
+  },
+  watch: {
+    eachPage() {
+      this.getAuditShopkeepersByPageAsync();
     },
-
-    data() {
-      return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1517 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1519 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1516 弄',
-          zip: 200333
-        }]
-      }
-    },
-    mounted(){
-        console.log("2213")
+    currentPage() {
+      this.getAuditShopkeepersByPageAsync();
     }
+  },
+  methods: {
+    ...mapActions(["getAuditShopkeepersByPageAsync", "editStatusAsync"]),
+    ...mapMutations(["setEachPage", "setCurrentPage"]),
+    pass(a) {
+      this.$confirm("是否确认审核通过, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.editStatusAsync({ _id: a, userStatus: "1" });
+          this.$message({
+            type: "success",
+            message: "审核通过!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消"
+          });
+        });
+    },
+    forbid(a) {
+      this.$confirm("审核不通过", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.editStatusAsync({ _id: a, userStatus: "2" });
+          this.$message({
+            type: "success",
+            message: "审核不通过!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消"
+          });
+        });
+    }
+  },
+  mounted() {
+    this.getAuditShopkeepersByPageAsync();
   }
+  //
+};
 </script>

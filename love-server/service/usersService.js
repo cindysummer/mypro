@@ -1,4 +1,22 @@
-const {  login, getUserById,register,getShopUsers } = require("../dao/usersDao");
+const { getUserMesById, login, getUserById, register, getAuditShopkeepersByPage, editStatusByUserId } = require("../dao/usersDao");
+module.exports.getUserMesById = async (userId) => {
+    let data = await getUserMesById(userId);
+    const { goodsId, serviceId, petId } = data[0];
+    const goodsArr = goodsId.map(item => ({
+        _id: item._id,
+        goodsName: item.goodsName
+    }));
+    const serviceArr = serviceId.map(item => ({
+        _id: item._id,
+        serviceName: item.serviceName
+    }));
+    const petArr = petId.map(item => ({
+        _id: item._id,
+        petName: item.petName
+    }));
+    const result = { goodsArr, serviceArr, petArr }
+    return result;
+}
 
 module.exports.login = async function (user) {
     let data = await login(user);
@@ -19,3 +37,19 @@ module.exports.getShopUsers = async function (userType) {
 module.exports.register = async function (user) {
     return await register(user);
 }
+//获取待审核门店管理员
+module.exports.getAuditShopkeepersByPage = async function (userStatus) {
+    return await getAuditShopkeepersByPage(userStatus);
+}
+
+//审核
+module.exports.editStatusByUserId = async function ({ _id, userStatus }) {
+    const data = await editStatusByUserId({ _id, userStatus });
+    if (data.ok) {
+        return true
+    } else {
+        return false
+    }
+
+}
+

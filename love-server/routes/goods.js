@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
-const { addGoods, getGoods, getGoodsByPage, removeGoodById,getGoodsByUserId } = require("../service/goodsService");
+const { addGoods, getGoods, getGoodsByPage, removeGoodById, updateGoods,getGoodsByUserId} = require("../service/goodsService");
+// const { addGoods, getGoods, getGoodsByPage, removeGoodById, } = require("../service/goodsService");
 const { uploadFile } = require("../util/upload");
 //新增商品
 router.post('/addGoods', async function (req, res, next) {
+  console.log(req.body);
   res.send(await addGoods(req.body))
 });
 
@@ -22,7 +24,6 @@ router.post('/addImg', async function (req, res, next) {
 
 //按分页进行查询goods
 router.get('/getGoodsByPage', async function (req, res, next) {
-  console.log(req.query)
   res.send(await getGoodsByPage(req.query))
 });
 
@@ -30,6 +31,14 @@ router.get('/getGoodsByPage', async function (req, res, next) {
 router.post('/removeGoodById', async function (req, res, next) {
   res.send(await removeGoodById(req.body))
 })
+//更新商品信息
+router.post('/updateGoods', async function (req, res, next) {
+  console.log(req.body);
+  
+  res.send(await updateGoods(req.body))
+})
+
+
 // 通过用户id去拿其名下所有的商品
 router.post('/getGoodsByUserId',async function(req, res, next) {
   res.send(await getGoodsByUserId(req.body));

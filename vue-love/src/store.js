@@ -1,9 +1,10 @@
-import Vue from 'vue'
+import Vue from 'vue';
 import Vuex from 'vuex';//vuex是专用于vue.js的状态机
 import shop from './store/shop';
 import goods from './store/goods';
 import pets from './store/pets';
 import service from './store/service';
+import audit from './store/audit'
 import masters from "./store/master";
 import users from "./store/users"
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     goods,
     pets,
     service,
+    audit,
     masters,
     users
 
