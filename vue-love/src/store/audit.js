@@ -15,12 +15,7 @@ export default {
         totalPage: 0,
     },
     mutations: {
-        // getMessage: (state, payload) => {
-        //     //一定不能解构state赋值，这样会破坏掉vue原本的响应式原理
-        //     Object.assign(state, { message: payload });
-        // }
         update: (state, payload) => {
-            // console.log(payload);
             state.shopData = payload.msg;
             Object.assign(state.pageData, payload.state)
         },
@@ -44,8 +39,6 @@ export default {
                 payload.currentPage = 1
             }
             const data = await auditService.findShops(payload);
-            // console.log(data);
-
             commit("update", data);
         },
         async updateshopsAsync({ dispatch }, payload) {
@@ -63,13 +56,11 @@ export default {
         async getAuditShopkeepersByPageAsync(context) {
             const { currentPage, eachPage } = context.state
             const data = await auditService.getAuditShopkeepersByPage({ currentPage, eachPage });
-            console.log(data)
             context.commit("getAuditShopkeepersByPage", data)
         },
         //审核待办门店管理员
         async editStatusAsync({ dispatch }, payload) {
             const data = await auditService.editStatus(payload);
-            // console.log(data);
             if (data) {
                 dispatch("getAuditShopkeepersByPageAsync")
             }

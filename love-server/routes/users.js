@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const { getUserMesById, login, getUserById,
-  register, getAuditShopkeepersByPage, editStatusByUserId } = require("../service/usersService");
+  register, getAuditShopkeepersByPage, editStatusByUserId,getShopUsers } = require("../service/usersService");
 // const { login, getUserById, register, getShopUsers } = require("../service/usersService");
 /* GET users listing. */
 router.get('/', function (req, res, next) {

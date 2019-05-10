@@ -108,3 +108,4 @@ module.exports.updateshops = async function (shop) {
 module.exports.getShopByUserId = async (userId) => {
     return await mongoose.model("shopModel").find({userId});
 }
+   
