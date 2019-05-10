@@ -61,10 +61,7 @@
       handleClick() {
         const userId = document.cookie.slice(4);
         const data = Object.assign(this.shopData, { userId });
-        this.addShopAsync(data);
-        this.$message({
-          message: '新增成功！'
-        });
+        this.addShopAsync({data,this:this});
       },
       // 获取头图的路径
       addShopImg(response, file, fileList) {

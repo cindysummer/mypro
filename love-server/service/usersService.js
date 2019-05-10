@@ -1,4 +1,4 @@
-const { getUserMesById, login, getUserById, register, getAuditShopkeepersByPage, editStatusByUserId,getShopUsers } = require("../dao/usersDao");
+const { getUserMesById, login, getUserById, register, getAuditShopkeepersByPage,updataUser, editStatusByUserId,getShopUsers,removeUser } = require("../dao/usersDao");
 module.exports.getUserMesById = async (userId) => {
     let data = await getUserMesById(userId);
     const { goodsId, serviceId, petId } = data[0];
@@ -29,6 +29,14 @@ module.exports.login = async function (user) {
 module.exports.getUserById = async function (id) {
     return await getUserById(id);
 }
+module.exports.updataUser = async function (obj) {
+    return await updataUser(obj);
+}
+
+module.exports.removeUser = async function (id) {
+    return await removeUser(id);
+}
+
 
 module.exports.getShopUsers = async function (userType) {
     return await getShopUsers(userType);
@@ -42,7 +50,7 @@ module.exports.getAuditShopkeepersByPage = async function (userStatus) {
     return await getAuditShopkeepersByPage(userStatus);
 }
 
-//审核
+//对门店管理员的审核
 module.exports.editStatusByUserId = async function ({ _id, userStatus }) {
     const data = await editStatusByUserId({ _id, userStatus });
     if (data.ok) {

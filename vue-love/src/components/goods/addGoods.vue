@@ -95,7 +95,7 @@ export default {
       this.addGoodsAsync(this.form);
       this.$refs.form.resetFields(); //恢复表单默认
       this.$refs.upload.clearFiles();
-      this.form.goodsImg = [];
+      // this.form.goodsImg = [];
     },
     //重置
     resetForm(formName) {

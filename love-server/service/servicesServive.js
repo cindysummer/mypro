@@ -28,8 +28,8 @@ module.exports.removeServiceById = async function (id) {
 }
 
 //按分页获取goods
-module.exports.getServicesByPage = async function ({ currentPage, eachPage }) {
-    return await getServicesByPage({ currentPage, eachPage });
+module.exports.getServicesByPage = async function (obj) {
+    return await getServicesByPage(obj);
 }
 
 

@@ -21,3 +21,7 @@ module.exports.getMastersByPage = async function ({ currentPage, eachPage }) {
 module.exports.addMaster = async (master) => {
     return await mongoose.model("masterModel").create(master);
 }
+
+module.exports.removeMaster = async function (_id) {
+    return await mongoose.model("masterModel").deleteOne(_id);
+}

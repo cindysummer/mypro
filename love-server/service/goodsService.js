@@ -1,4 +1,4 @@
-const { addGoods, getGoods, getGoodsByPage, removeGoodById, updateGoods,getGoodsByUserId } = require("../dao/goodsDao");
+const { addGoods, getGoods, getGoodsByPage, removeGoodById, updateGoods, getGoodsByUserId } = require("../dao/goodsDao");
 // const { addGoods, getGoods, getGoodsByPage, removeGoodById,  } = require("../dao/goodsDao");
 //新增商品
 module.exports.addGoods = async function (goods) {
@@ -15,8 +15,11 @@ module.exports.getGoods = async function () {
 }
 
 //按分页获取goods
-module.exports.getGoodsByPage = async function ({ currentPage, eachPage }) {
-    return await getGoodsByPage({ currentPage, eachPage });
+module.exports.getGoodsByPage = async function ({ currentPage, eachPage, userId, goodsType, text }) {
+    const data = await getGoodsByPage({ currentPage, eachPage, userId, goodsType, text });
+    console.log(data);
+    
+    return data
 }
 
 //删除商品
