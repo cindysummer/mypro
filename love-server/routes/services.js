@@ -2,8 +2,7 @@
 var express = require('express');
 var router = express.Router();
 const { addServices,getServicesByUserId,getServicesByPage,
-  getServices,removeServiceById,updateServices,addShopIdOnService ,getServiceByShopId,
-  removeServiceShopId} = require("../service/servicesServive");
+  getServices,removeServiceById,updateServices} = require("../service/servicesServive");
   
 /* GET home page. */
 router.post('/addServices',async function(req, res, next) {
