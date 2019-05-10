@@ -13,6 +13,16 @@ module.exports.register = async function (user) {
     return await mongoose.model("usersModel").create(user);
 }
 
+module.exports.removeUser = async function (_id) {
+    return await mongoose.model("usersModel").deleteOne(_id);
+}
+
+module.exports.updataUser = async function ({ _id, userPwd, userPhone,userEmail}) {
+    return await mongoose.model("usersModel").updateOne({ _id }, { userPwd, userPhone,userEmail })
+
+}
+
+
 module.exports.getAuditShopkeepersByPage = async function ({ currentPage, eachPage, userStatus }) {
     let count = await mongoose.model("usersModel").find({ userStatus }).countDocuments();
     let totalPage = Math.ceil(count / eachPage);
@@ -29,12 +39,10 @@ module.exports.getAuditShopkeepersByPage = async function ({ currentPage, eachPa
     };
     return pageDate
 }
-//审核
+//对门店管理员的审核
 module.exports.editStatusByUserId = async function ({ _id, userStatus }) {
     return await mongoose.model("usersModel").updateOne({ _id }, { userStatus })
-
 }
-
 module.exports.getShopUsers = async function ({ currentPage, eachPage }) {
     let count = await mongoose.model("usersModel").find({ userType: "0", userStatus: "1" }).countDocuments();
     let totalPage = Math.ceil(count / eachPage);

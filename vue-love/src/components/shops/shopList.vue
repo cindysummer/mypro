@@ -14,6 +14,11 @@
                     <el-image style="width: 100px; height: 100px" :src="scope.row.shopImg"></el-image>
                 </template>
             </el-table-column>
+            <el-table-column label="营业执照照片">
+                <template slot-scope="scope">
+                    <el-image style="width: 100px; height: 100px" :src="scope.row.shopLicenceImg"></el-image>
+                </template>
+            </el-table-column>
             <el-table-column label="更多">
                 <template slot-scope="scope">
                     <el-button type="text" @click="handleClick(scope.row)" size="small">

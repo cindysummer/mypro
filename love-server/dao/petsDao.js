@@ -8,10 +8,21 @@ module.exports.addPets = async (shop) => {
 
 //宠物列表
 module.exports.findPets = async (shop) => {
-    // console.log(shop);
     
-    let pet = await mongoose.model("petModel").find({userId:shop.userId});
-    return pet
+    if (shop.select) {
+        console.log(shop);
+        let count=await mongoose.model("petModel").find({userId:shop.userId,[shop.select]:shop.input}).countDocuments();
+        let pet = await mongoose.model("petModel").find({userId:shop.userId,[shop.select]:shop.input})
+        .skip((shop.currentPage - 1) * shop.pageSize)
+        .limit(shop.pageSize - 0);
+        pet.push(count);
+        return pet
+    }else{
+        let pet = await mongoose.model("petModel").find({userId:shop.userId});
+        return pet
+    }
+    
+   
     
 }
 

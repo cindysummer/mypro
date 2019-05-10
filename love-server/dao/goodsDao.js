@@ -9,13 +9,23 @@ module.exports.getGoods = async () => {
 }
 
 // 按页获取goods
-module.exports.getGoodsByPage = async function ({ currentPage, eachPage }) {
-    let count = await mongoose.model("goodsModel").countDocuments();
+module.exports.getGoodsByPage = async function ({ currentPage, eachPage, userId, goodsType, text }) {
+    let goods, count;
+    if (goodsType == undefined || text == undefined) {
+        count = await mongoose.model("goodsModel").find({ userId }).countDocuments();
+        goods = await mongoose.model("goodsModel")
+            .find({ userId })
+            .skip((currentPage - 1) * eachPage)
+            .limit(eachPage - 0);
+    }
+    else {
+        count = await mongoose.model("goodsModel").find({ userId, [goodsType]: text }).countDocuments();
+        goods = await mongoose.model("goodsModel")
+            .find({ userId, [goodsType]: text })
+            .skip((currentPage - 1) * eachPage)
+            .limit(eachPage - 0);
+    }
     let totalPage = Math.ceil(count / eachPage);
-    let goods = await mongoose.model("goodsModel")
-        .find()
-        .skip((currentPage - 1) * eachPage)
-        .limit(eachPage - 0);
     let pageDate = {
         currentPage: ~~currentPage,
         eachPage: ~~eachPage,
@@ -24,6 +34,13 @@ module.exports.getGoodsByPage = async function ({ currentPage, eachPage }) {
         goods,
     };
     return pageDate
+
+
+}
+
+//搜索
+module.exports.searchGoodsByPage = async function ({ currentPage, eachPage, userId, goodsType, content }) {
+
 }
 
 //通过id删除商品

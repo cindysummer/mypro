@@ -1,17 +1,23 @@
 <template >
   <div>
-    <el-table
-      :data="tableData"
-      border
-      :stripe="true"
-      :highlight-current-row="true"
-    >
+    <div style="margin-top: 15px;margin-bottom: 20px">
+      <el-input placeholder="请输入搜索内容" v-model="search.input" style="width: 520px;">
+        <el-select v-model="search.select" slot="prepend" placeholder="请选择" style="width: 120px;">
+          <el-option label="宠物名" value="petName"></el-option>
+          <el-option label="宠物品类" value="petType"></el-option>
+          <el-option label="宠物种类" value="petKind"></el-option>
+        </el-select>
+        <el-button slot="append" icon="el-icon-search" @click="seek"></el-button>
+      </el-input>
+    </div>
+
+    <el-table :data="tableData" border :stripe="true" :highlight-current-row="true">
       <el-table-column prop="petName" label="宠物名"></el-table-column>
       <el-table-column prop="petType" label="宠物品类"></el-table-column>
       <el-table-column prop="petKind" label="宠物种类"></el-table-column>
       <el-table-column prop="price" label="价格(单位:元)"></el-table-column>
       <el-table-column prop="petColor" label="颜色"></el-table-column>
-      <el-table-column prop="petNature" label="性格" ></el-table-column>
+      <el-table-column prop="petNature" label="性格"></el-table-column>
       <el-table-column prop="petBirth" label="出生日期"></el-table-column>
       <el-table-column label="操作" fixed="right" width="100">
         <template slot-scope="scope" style="width:100px">
@@ -78,19 +84,79 @@ export default {
     };
   },
   methods: {
-    handleSizeChange(val) {
-      let msg = this.pageData;
-      msg.pageSize = `${val}`;
+    seek() {
+      if (this.search.select) {
+        if (this.search.input) {
+          let msg = {};
+          Object.assign(msg, this.pageData);
+          msg.currentPage = 1;
+          const userId = document.cookie.slice(4);
+          msg.userId = userId;
+          msg.select = this.search.select;
+          msg.input = this.search.input;
+          this.findpetsAsync(msg);
+        } else {
+          let msg = this.pageData;
+          msg.currentPage = 1;
+          const userId = document.cookie.slice(4);
+          msg.userId = userId;
+          this.findpetsAsync(msg);
+        }
+      } else {
+        this.$message({
+          showClose: true,
+          message: "没有选择搜索类型！",
+          type: "error"
+        });
+      }
+    },
 
+    handleSizeChange(val) {
+     if (this.search.input) {
+      //  console.log(this.pageData.userInputLastTime);
+         let msg = {};
+          Object.assign(msg, this.pageData);
+          msg.currentPage = 1;
+          const userId = document.cookie.slice(4);
+          msg.userId = userId;
+          msg.select =this.pageData.userSelectLastTime;
+          msg.input = this.pageData.userInputLastTime;
+          msg.pageSize = `${val}`;
+          this.findpetsAsync(msg);
+       
+     }else{
+      let msg={};
+      Object.assign(msg, this.pageData);
+      delete msg.userInputLastTime;
+      delete msg.userSelectLastTime;
+      msg.pageSize = `${val}`;
       msg.currentPage = 1;
       this.findpetsAsync(msg);
+     }
       // console.log(`每页 ${val} 条`);
     },
     handleCurrentChange(val) {
-      let msg = this.pageData;
-      msg.currentPage = `${val}` - 0;
-      //  console.log(msg);
+
+      if (this.search.input) {
+
+         let msg = {};
+          Object.assign(msg, this.pageData);
+          msg.currentPage = `${val}` - 0;    
+          const userId = document.cookie.slice(4);
+          msg.userId = userId;
+          msg.select =this.pageData.userSelectLastTime;
+          msg.input = this.pageData.userInputLastTime;
+          this.findpetsAsync(msg);       
+      }else{
+        let msg={};
+      Object.assign(msg, this.pageData);
+      delete msg.userInputLastTime;
+      delete msg.userSelectLastTime;
+      msg.currentPage = `${val}` - 0;     
       this.findpetsAsync(msg);
+      }
+
+   
       // console.log(`当前页: ${val}`);
     },
     change(row) {
@@ -100,13 +166,14 @@ export default {
     confirm() {
       this.dialogFormVisible = false;
       // console.log(this.petMsg);
-      this.petMsg.petBirth = this.moment(this.petMsg.petBirth).format("YYYY-MM-DD");
-      let a={};
-      a.petMsg=this.petMsg;
-      a.pageData=this.pageData
-      a.this=this;
+      this.petMsg.petBirth = this.moment(this.petMsg.petBirth).format(
+        "YYYY-MM-DD"
+      );
+      let a = {};
+      a.petMsg = this.petMsg;
+      a.pageData = this.pageData;
+      a.this = this;
       this.updatePetsAsync(a);
-      
     },
 
     ...mapActions(["findpetsAsync"]),
@@ -139,7 +206,7 @@ export default {
   computed: {
     ...mapState(["pageData"]),
     ...mapState(["tableData"]),
-    ...mapState(["petMsg"])
+    ...mapState(["petMsg", "search"])
   },
 
   mounted() {
@@ -158,6 +225,9 @@ export default {
 }
 .big {
   margin-left: 50px;
+}
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
 }
 </style>
 

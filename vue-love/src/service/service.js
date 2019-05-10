@@ -1,35 +1,15 @@
-const addService = async (obj) => await fetch(`/service/addServices`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-
-const getServicesByPage = async (
-    { currentPage, eachPage } = {}) =>
-    await fetch(`/service/getServicesByPage?currentPage=${currentPage}&eachPage=${eachPage}`).then(response => response.json());
-
+import Fetch from '../server/fetch';
+const addService = async (obj) => await Fetch(`/service/addServices`, obj).then(res => res);
+// const getServicesByPage = async (
+//     { currentPage, eachPage,service,text,userId } = {}) =>
+//     await fetch(`/service/getServicesByPage?currentPage=${currentPage}&eachPage=${eachPage}&service=${service}&text=${text}&userId=${userId}`).then(response => response.json());
+const getServicesByPage = async (obj) => await Fetch(`/service/getServicesByPage`, obj).then(res => res);
 //通过id删除对应服务
-const removeServiceById = async (obj) => await fetch(`/service/removeServiceById`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-
+const removeServiceById = async (obj) => await Fetch(`/service/removeServiceById`, obj).then(res => res);
 //更新服务信息
-const updateServices = async (obj) => await fetch(`/service/updateServices`, {
-    method: "post",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(obj)
-}).then(response => response.json());
-
+const updateServices = async (obj) => await Fetch(`/service/updateServices`, obj).then(res => res);
 export default {
-    addService,getServicesByPage,removeServiceById,updateServices
+    addService, getServicesByPage, removeServiceById, updateServices
 }
 
 

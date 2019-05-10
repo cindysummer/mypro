@@ -60,10 +60,17 @@ export default {
         },
 
         //通过分页信息获取服务列表
-        async getServicesByPageAsync(context) {
-            const { currentPage, eachPage } = context.state
-            const data = await serviceService.getServicesByPage({ currentPage, eachPage });
-            context.commit("getServicesByPage", data)
+        async getServicesByPageAsync(context, payload) {
+            const { currentPage, eachPage } = context.state;
+            const userId = document.cookie.slice(4);
+            if (payload) {
+                const { service, text } = payload;
+                const data = await serviceService.getServicesByPage({ currentPage, eachPage, service, text, userId });
+                context.commit("getServicesByPage", data);
+            } else {
+                const data = await serviceService.getServicesByPage({ currentPage, eachPage, userId });
+                context.commit("getServicesByPage", data);
+            }
         },
         //通过id删除服务
         async removeServiceByIdAsync({ dispatch }, payload) {
