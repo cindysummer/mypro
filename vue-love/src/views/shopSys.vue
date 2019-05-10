@@ -160,6 +160,6 @@
     padding:5px!important;
   }
   .el-card{
-    /* height: 88vh; */
+     height: 88vh; 
   }
 </style>

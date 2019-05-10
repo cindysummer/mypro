@@ -2,7 +2,7 @@
   <div>
     <div>
       <el-input placeholder="请输入内容" v-model="text" class="input-with-select">
-        <el-select v-model="type" slot="prepend" placeholder="请选择" style="width:100px">
+        <el-select v-model="type" slot="prepend" placeholder="请选择">
           <el-option label="商品名称" value="goodsName"></el-option>
           <el-option label="商品类型" value="goodsType"></el-option>
           <el-option label="商品产地" value="goodsRegion"></el-option>
