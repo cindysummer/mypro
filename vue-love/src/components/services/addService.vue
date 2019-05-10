@@ -62,6 +62,9 @@
     methods: {
       ...mapActions(["addServiceAsync"]),
       handleClick() {
+        this.form.serviceSchedule = this.moment(this.form.serviceSchedule).format(
+          "HH:mm:ss"
+        );
         this.form.servicePrice = ~~this.form.servicePrice;
         const userId = document.cookie.slice(4);
         const data = Object.assign(this.form, { userId });
@@ -70,10 +73,6 @@
       reset() {
 
       }
-    },
-    mounted() {
-      // 该生命周期发生时，页面所有节点都已经加载完毕，此时需要向后台获取数据
-      // this.getMessageAsync();
     }
   };
 </script>

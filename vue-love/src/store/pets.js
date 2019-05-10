@@ -92,10 +92,16 @@ export default {
         // },
         async addpetsAsync({ dispatch }, payload) {
             // console.log(payload)
+            let k=payload.k;
+            delete payload.k;
             const data = await petsService.addPets(payload);
             if (data) {
-                alert("添加成功");
-
+                k.$message({
+                    showClose: true,
+                    message: '新增成功',
+                    type: 'success'
+                  });
+                
             }
             // if (data) {
             //     dispatch("getMessageAsync")
@@ -103,15 +109,17 @@ export default {
         },
 
         async findpetsAsync({ commit }, payload) {
+            if (payload.currentPage==0) {
+                payload.currentPage=1
+            }
             const data = await petsService.findPets(payload);
             commit("update", data);
         },
 
         async removePetsAsync({ dispatch }, payload) {
-            // console.log(payload)
             const data = await petsService.removePets(payload);
             if (data) {
-                alert("删除成功");
+                
                 delete data._id;
                 if ((data.total - 1) % data.pageSize == 0) {
                     data.currentPage = data.currentPage - 1;
