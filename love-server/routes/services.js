@@ -5,11 +5,11 @@ const { addServices,getServicesByUserId,getServicesByPage,
   getServices,removeServiceById,updateServices} = require("../service/servicesServive");
   
 /* GET home page. */
-router.post('/addServices',async function(req, res, next) {
+router.post('/addServices', async function (req, res, next) {
   res.send(await addServices(req.body));
 });
 // 通过用户id去拿其名下所有的服务
-router.post('/getServicesByUserId',async function(req, res, next) {
+router.post('/getServicesByUserId', async function (req, res, next) {
   res.send(await getServicesByUserId(req.body));
 })
 //获取全部服务

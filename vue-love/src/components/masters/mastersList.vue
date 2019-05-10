@@ -1,18 +1,25 @@
 <template>
   <div>
     <el-table :data="masters" stripe fit>
-      <el-table-column prop="_id" label="编号" width="220"></el-table-column>
-      <el-table-column prop="memberAcount" label="昵称" width="110"></el-table-column>
-      <el-table-column prop="memberName" label="真实姓名" width="90"></el-table-column>
-      <el-table-column prop="menberCard" label="会员卡号" width="120"></el-table-column>
-      <el-table-column prop="memberPhone" label="联系电话" width="120"></el-table-column>
-      <el-table-column prop="memberAdd" label="送货地址" width="180"></el-table-column>
-      <el-table-column prop="memberArea" label="区域" width="80"></el-table-column>
-      <el-table-column prop="memberPoint" label="积分" width="80"></el-table-column>
-      <el-table-column prop="petId" label="宠物数量" :formatter="length" width="30"></el-table-column>
-      <el-table-column label="操作" width="120">
+      <el-table-column type="index" label="序号"></el-table-column>
+      <el-table-column prop="memberAcount" label="昵称" ></el-table-column>
+      <el-table-column prop="memberName" label="真实姓名" ></el-table-column>
+      <el-table-column prop="menberCard" label="会员卡号" ></el-table-column>
+      <el-table-column prop="memberPhone" label="联系电话" ></el-table-column>
+      <el-table-column prop="memberAdd" label="送货地址"></el-table-column>
+      <el-table-column prop="memberArea" label="区域" ></el-table-column>
+      <el-table-column prop="memberPoint" label="积分" ></el-table-column>
+      <el-table-column prop="petId" label="宠物数量" :formatter="length" ></el-table-column>
+      <el-table-column label="操作" >
       <template slot-scope="scope">
         <el-button size="mini" type="text" @click="pet(scope.$index, scope.row)">查看宠物</el-button>
+          <el-button
+          size="mini"
+            type="danger"
+            icon="el-icon-delete"
+            circle
+            @click="removeMaster(scope.$index, scope.row)"
+          ></el-button>
       </template>
     </el-table-column>
     </el-table>
@@ -46,6 +53,7 @@ const {
   mapActions,
   mapGetters
 } = createNamespacedHelpers("masters");
+import master from "../../service/master"
 export default {
   name: "mastersList",
   data() {
@@ -80,6 +88,30 @@ export default {
     pet(index,row) {
       this.dialogTableVisible=true;
       this.petArr=row.petId;
+    },
+     removeMaster(index, row) {
+      this.$confirm("此操作将永久删除该宠物主, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          master.removeMasterFetch({_id:row._id}).then(res => {
+            if (res.ok == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功!"
+              });
+              this.getMastersByPageAsync();
+            }
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
     },
     length(row){
       return row.petId.length
