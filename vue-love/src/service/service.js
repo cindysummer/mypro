@@ -28,9 +28,17 @@ const removeServiceById = async (obj) => await fetch(`/service/removeServiceById
     body: JSON.stringify(obj)
 }).then(response => response.json());
 
+//更新商品信息
+const updateServices = async (obj) => await fetch(`/service/updateServices`, {
+    method: "post",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(obj)
+}).then(response => response.json());
 
 export default {
-    addService,getServicesByPage,removeServiceById
+    addService,getServicesByPage,removeServiceById,updateServices
 }
 
 
