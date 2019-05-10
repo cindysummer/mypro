@@ -1,12 +1,12 @@
 <template>
   <div>
-    <el-table :data="users" stripe fit>
-      <el-table-column prop="_id" label="编号" width="180"></el-table-column>
-      <el-table-column prop="userAccount" label="登录名称" width="120"></el-table-column>
-      <el-table-column prop="userPwd" label="登录密码" width="100"></el-table-column>
-      <el-table-column prop="userPhone" label="手机号" width="120"></el-table-column>
-      <el-table-column prop="userEmail" label="邮箱" width="150"></el-table-column>
-      <el-table-column prop="userName" label="真实姓名" width="170"></el-table-column>
+    <el-table :data="users" stripe fit >
+      <el-table-column prop="_id" label="编号" width="220"></el-table-column>
+      <el-table-column prop="userAccount" label="登录名称" width="180"></el-table-column>
+      <el-table-column prop="userPwd" label="登录密码" width="150"></el-table-column>
+      <el-table-column prop="userPhone" label="手机号" width="180"></el-table-column>
+      <el-table-column prop="userEmail" label="邮箱" width="180"></el-table-column>
+      <el-table-column prop="userName" label="真实姓名" width="100"></el-table-column>
       <el-table-column label="操作">
       <template slot-scope="scope">
         <el-button size="mini" type="text" @click="shop(scope.$index, scope.row)">查看门店</el-button>
@@ -24,6 +24,11 @@
 
     <el-dialog title="店铺详情" :visible.sync="dialogTableVisible">
       <el-table :data="shopArr">
+         <el-table-column  label="店铺图片" width="80">
+           <template slot-scope="scope"> 
+             <el-image style="width:100px;height:100px" :src="scope.row.shopImg"></el-image>
+           </template>
+         </el-table-column>
         <el-table-column property="shopName" label="店铺名称" width="80"></el-table-column>
         <el-table-column property="shopLicenceNum" label="营业执照" width="80"></el-table-column>
         <el-table-column property="shopAdd" label="店铺地址" width="80"></el-table-column>

@@ -1,16 +1,16 @@
 <template>
   <div>
     <el-table :data="masters" stripe fit>
-      <el-table-column prop="_id" label="编号" width="180"></el-table-column>
-      <el-table-column prop="memberAcount" label="昵称" width="120"></el-table-column>
-      <el-table-column prop="memberName" label="真实姓名" width="100"></el-table-column>
+      <el-table-column prop="_id" label="编号" width="220"></el-table-column>
+      <el-table-column prop="memberAcount" label="昵称" width="110"></el-table-column>
+      <el-table-column prop="memberName" label="真实姓名" width="90"></el-table-column>
       <el-table-column prop="menberCard" label="会员卡号" width="120"></el-table-column>
-      <el-table-column prop="memberPhone" label="联系电话" width="150"></el-table-column>
-      <el-table-column prop="memberAdd" label="送货地址" width="170"></el-table-column>
-      <el-table-column prop="memberArea" label="区域" width="150"></el-table-column>
-      <el-table-column prop="memberPoint" label="积分" width="70"></el-table-column>
+      <el-table-column prop="memberPhone" label="联系电话" width="120"></el-table-column>
+      <el-table-column prop="memberAdd" label="送货地址" width="180"></el-table-column>
+      <el-table-column prop="memberArea" label="区域" width="80"></el-table-column>
+      <el-table-column prop="memberPoint" label="积分" width="80"></el-table-column>
       <el-table-column prop="petId" label="宠物数量" :formatter="length" width="30"></el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="120">
       <template slot-scope="scope">
         <el-button size="mini" type="text" @click="pet(scope.$index, scope.row)">查看宠物</el-button>
       </template>
