@@ -104,8 +104,7 @@
 <style scoped>
   .el-header {
     background-color: rgb(84, 92, 100);
-    padding-top: 35px !important;
-    padding-bottom: 35px !important;
+    height: 10vh;
     font-family: "Helvetica Neue";
     color: #fff;
     display: flex;
@@ -152,16 +151,15 @@
 
   .el-aside {
     width: 200px!important;
-    height: 100vh;
+    height: 90vh;
   }
   .el-menu-vertical-demo {
     height: 100%;
   }
   .el-main{
     padding:5px!important;
-    height: 100vh;
   }
   .el-card{
-    height: 100vh;
+    height: 88vh;
   }
 </style>
