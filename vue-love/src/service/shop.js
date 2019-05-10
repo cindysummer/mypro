@@ -6,7 +6,7 @@ const updateShop = async (obj) => await Fetch(`/shop/updateShop`,obj).then(res=>
 // 通过门店id获取门店店员信息
 const getEmployeeByShopId = async (obj) => await Fetch(`/shop/getEmployeeByShopId`,obj).then(res=>res);
 //通过用户id获取门店
-export const getShopByUserId = async (_id) => await fetch(`/shop/getShopByUserId?_id=${_id}`).then(Response => Response.json());
+const getShopByUserId = async (_id) => await fetch(`/shop/getShopByUserId?_id=${_id}`).then(Response => Response.json());
 
 // 通过当前页和每一页显示的条数去获取门店信息
 const getShopsByPage = async ({ currentPage = 1, eachPage = 3, userId } = {}) => await fetch(`/shop/getShopsByPage?currentPage=${currentPage}&eachPage=${eachPage}&userId=${userId}`).then(response => response.json())
@@ -32,5 +32,5 @@ export default {
     getEmployeeByShopId, removeEmployeeByShopId, getServicesByUserId,
     addServiceIdOnShops, getServiceByShopId, removeServiceOnShop,
     getGoodsByUserId, addGoodsIdOnShops, getGoodsByShopId, removeGoodsOnShop,
-    getPetsByUserId, addPetsIdOnShops, getPetsByShopId, removePetsOnShop
+    getPetsByUserId, addPetsIdOnShops, getPetsByShopId, removePetsOnShop,getShopByUserId
 }

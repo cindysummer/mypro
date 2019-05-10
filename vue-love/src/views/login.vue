@@ -81,10 +81,8 @@ export default {
           next("/register");
         }
       }
-    } else if (to.name == "register"){
+    } else {
       next();
-    }else{
-      next(false)
     }
   }
 };
