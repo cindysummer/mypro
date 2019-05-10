@@ -54,7 +54,7 @@
                     shopTel: "",
                     shopImg: "",
                     shopFeature: "",
-                    shopStatus: "已审批"
+                    shopStatus: "申请中"
                 }
             }
         },
@@ -73,9 +73,6 @@
             addShopLicenceImg(response, file, fileList) {
                 this.shopData.shopLicenceImg = response.data.url;
             },
-        },
-        mounted() {
-            this.getUserMesByIdAsync("5cd0fd8207833622b912a97f");
         }
     }
 </script>

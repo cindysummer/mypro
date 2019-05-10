@@ -70,7 +70,7 @@ export default {
         // 获取员工信息
         async getEmployeeByShopIdAsync({ state, commit }) {
             const shopId = state.eachShop._id;
-            const data = await ShopService.getEmployeeByShopId(shopId);
+            const data = await ShopService.getEmployeeByShopId({_id:shopId});
             commit("getEmployeeByShopId", data);
         },
         // 新增员工
@@ -93,7 +93,7 @@ export default {
         // 通过用户id去获取所有的服务
         async getServicesByUserIdAsync({ commit }) {
             const userId = document.cookie.slice(4);
-            const data = await ShopService.getServicesByUserId(userId);
+            const data = await ShopService.getServicesByUserId({userId});
             commit("getServicesByUserId", data);
         },
         // 获取门店服务
@@ -122,7 +122,7 @@ export default {
         // 通过用户id去获取所有的商品
         async getGoodsByUserIdAsync({ commit }) {
             const userId = document.cookie.slice(4);
-            const data = await ShopService.getGoodsByUserId(userId);
+            const data = await ShopService.getGoodsByUserId({userId});
             commit("getGoodsByUserId", data);
         },
         // 获取门店商品
@@ -151,7 +151,7 @@ export default {
         // 通过用户id去获取所有的宠物
         async getPetsByUserIdAsync({ commit }) {
             const userId = document.cookie.slice(4);
-            const data = await ShopService.getPetsByUserId(userId);
+            const data = await ShopService.getPetsByUserId({userId});
             commit("getPetsByUserId", data);
         },
         // 获取门店商品
