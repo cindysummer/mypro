@@ -47,10 +47,7 @@ router.get("/getShopsByPage", async function (req, res, next) {
 
 //寻找待审核门店
 router.post('/findshops', async function (req, res, next) {
-    res.send(await findshops(req.body))
-  
-    // console.log(req.body);
-    
+    res.send(await findshops(req.body))    
 });
 
 //updateshops  更改门店状态

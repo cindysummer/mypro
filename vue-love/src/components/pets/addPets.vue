@@ -75,10 +75,8 @@ export default {
           const userId = document.cookie.slice(4);
           msg.userId = userId;
           msg.price = this.ruleForm.price;
-
-          // console.log(msg);
-          // alert("submit!");
-
+          let k=this;
+          msg.k=k;
           this.addpetsAsync(msg);
         } else {
           return false;

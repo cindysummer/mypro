@@ -97,11 +97,8 @@ module.exports.findshops = async function (shop) {
     obj.state=Object.assign(shop,{total:count});
     obj.msg=msg;
     return obj;
-
-
 }
 
-//
 module.exports.updateshops = async function (shop) {
     return await mongoose.model("shopModel").updateOne({_id:shop._id},{shopStatus:shop.shopStatus})
 }

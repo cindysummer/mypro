@@ -81,8 +81,7 @@ export default {
    async  shop(index,row) {
       this.dialogTableVisible=true;
       let data =await shop.getShopByUserId(row._id);
-      this.shopArr=data
-      console.log(data)
+      this.shopArr=data;
     }
   },
   //生命周期，加载完成

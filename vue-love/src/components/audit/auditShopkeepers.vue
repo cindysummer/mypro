@@ -1,11 +1,11 @@
 <template>
   <div style="width:100%">
-    <el-table :data="rows" border style="width:100%">
-      <el-table-column prop="userAccount" label="申请名称" width="200"></el-table-column>
-      <el-table-column prop="userName" label="申请人姓名" width="200"></el-table-column>
-      <el-table-column prop="userPhone" label="手机号" width="200"></el-table-column>
-      <el-table-column prop="userEmail" label="邮箱" width="200"></el-table-column>
-      <el-table-column label="操作" width="200">
+    <el-table :data="rows">
+      <el-table-column prop="userAccount" label="申请名称"></el-table-column>
+      <el-table-column prop="userName" label="申请人姓名"></el-table-column>
+      <el-table-column prop="userPhone" label="手机号"></el-table-column>
+      <el-table-column prop="userEmail" label="邮箱"></el-table-column>
+      <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="text" @click="pass(scope.row._id)">审核通过</el-button>
           <el-button type="text" @click="forbid(scope.row._id)">禁止</el-button>

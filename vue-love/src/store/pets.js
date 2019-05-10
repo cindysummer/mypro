@@ -92,10 +92,16 @@ export default {
         // },
         async addpetsAsync({ dispatch }, payload) {
             // console.log(payload)
+            let k=payload.k;
+            delete payload.k;
             const data = await petsService.addPets(payload);
             if (data) {
-                alert("添加成功");
-
+                k.$message({
+                    showClose: true,
+                    message: '新增成功',
+                    type: 'success'
+                  });
+                
             }
             // if (data) {
             //     dispatch("getMessageAsync")
