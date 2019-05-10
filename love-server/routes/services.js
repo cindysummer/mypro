@@ -30,8 +30,6 @@ router.get('/getServicesByPage', async function (req, res, next) {
 
 //更新商品信息
 router.post('/updateServices', async function (req, res, next) {
-  console.log(req.body);
-  
   res.send(await updateServices(req.body))
 })
 

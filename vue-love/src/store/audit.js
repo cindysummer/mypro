@@ -43,7 +43,7 @@ export default {
         },
         async updateshopsAsync({ dispatch }, payload) {
             const data = await auditService.updateshops(payload);
-            console.log(data)
+            // console.log(data)
             if (data) {
                 alert("操作成功");
                 if ((data.total - 1) % data.pageSize == 0) {

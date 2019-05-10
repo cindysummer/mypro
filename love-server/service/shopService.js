@@ -42,12 +42,8 @@ module.exports.removeEmployeeByShopId = async function (shop) {
 
 //
 module.exports.findshops = async function (shop) {
-    // console.log(shop);
     const data = await findshops(shop);
-    // console.log(data);
-    
     return data;
-
 }
 //
 

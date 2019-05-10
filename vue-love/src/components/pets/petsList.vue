@@ -113,8 +113,6 @@ export default {
     ...mapActions(["removePetsAsync"]),
     ...mapActions(["updatePetsAsync"]),
     open(a) {
-      // console.log(a);
-
       this.$confirm(`是否删除  ${a.petName}  这条宠物信息?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
