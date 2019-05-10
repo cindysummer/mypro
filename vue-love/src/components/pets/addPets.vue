@@ -72,9 +72,6 @@ export default {
           msg.petBirth = this.moment(this.ruleForm.date1).format(
             "YYYY年MM月DD日"
           );
-          msg.petBirth = this.moment(this.ruleForm.date1).format(
-            "YYYY年MM月DD日"
-          );
           const userId = document.cookie.slice(4);
           msg.userId = userId;
           msg.price = this.ruleForm.price;

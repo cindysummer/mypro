@@ -23,11 +23,20 @@ const removePets = async (obj) => await fetch(`/pet/removePets`, {
 }).then(response => response.json());
 
 
+const updatePets = async (obj) => await fetch(`/pet/updatePets`, {
+    method: "post",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(obj)
+}).then(response => response.json());
+
+
 
 
 
 
 export default {
-    addPets,findPets,removePets
+    addPets,findPets,removePets,updatePets
 }
 
