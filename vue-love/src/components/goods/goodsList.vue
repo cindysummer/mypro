@@ -28,14 +28,7 @@
       <el-table-column prop="goodsDate" label="生产日期"></el-table-column>
       <el-table-column prop="goodsTime" label="保质期"></el-table-column>
       <el-table-column prop="goodsSupplier" label="供应商"></el-table-column>
-      <el-table-column
-        prop="goodsIntro"
-        label="简介"
-        width="150"
-        style="text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;"
-      ></el-table-column>
+      <el-table-column prop="goodsIntro" label="简介" width="150" :show-overflow-tooltip="true"></el-table-column>
       <el-table-column prop="goodsPrice" label="价格"></el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
@@ -155,14 +148,16 @@ export default {
     eachPage() {
       if (this.type) {
         this.getGoodsByPageAsync({ goodsType: this.type, text: this.text });
+      } else {
+        this.getGoodsByPageAsync();
       }
-      this.getGoodsByPageAsync();
     },
     currentPage() {
       if (this.type) {
         this.getGoodsByPageAsync({ goodsType: this.type, text: this.text });
+      } else {
+        this.getGoodsByPageAsync();
       }
-      this.getGoodsByPageAsync();
     }
   },
   methods: {
