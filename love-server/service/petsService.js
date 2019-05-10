@@ -13,6 +13,20 @@ module.exports.addPets = async (shop) => {
 
 //宠物列表
 module.exports.findPets = async (shop) => {
+   if (shop.select) {
+    let data = await findPets(shop);
+    shop.total=data[data.length-1];
+    data.splice(data.length-1,1);
+    shop.userInputLastTime=shop.input;
+    shop.userSelectLastTime=shop.select;
+    delete shop.select;
+    delete shop.input;
+    let all={}
+    all.data=data;
+    all.state=shop
+    return all
+
+   }else{
     let a=shop;
     let data = await findPets(shop);
     let msg={};
@@ -29,8 +43,8 @@ module.exports.findPets = async (shop) => {
     let all={}
     all.data=arr;
     all.state=msg
-
     return all
+   }
 }
 
 //删除宠物
