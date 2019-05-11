@@ -15,8 +15,6 @@ const goodsSchema = new mongoose.Schema({
     goodsSize: String,
     // 口味（鸡肉味、牛肉味）
     goodsTaste: String,
-    // 特殊功用（美毛、去泪痕）
-    goodsSpecial: String,
     // 产地（国产、广州、加拿大、美国等）
     goodsRegion: String,
     // 生产日期

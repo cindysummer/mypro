@@ -22,8 +22,13 @@
     </el-header>
     <el-container>
       <el-aside>
-        <el-menu router class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff"
-          active-text-color="#ffd04b">
+        <el-menu
+          router
+          class="el-menu-vertical-demo"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+        >
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-goods"></i>
@@ -75,91 +80,93 @@
         </el-menu>
       </el-aside>
       <el-main>
-        <el-card><router-view></router-view></el-card>
+        <el-card>
+          <router-view></router-view>
+        </el-card>
       </el-main>
     </el-container>
   </el-container>
 </template>
 <script>
-  import { getUserById } from "../service/users";
-  export default {
-    name: "shopSystem",
-    data() {
-      return {
-        userAccount: "",
-      }
-    },
-    methods: {
-      quit() {
-        this.$router.push("/")
-      }
-    },
-    async mounted() {
-      let string = document.cookie.slice(4);
-      let [data] = await getUserById(string);
-      this.userAccount = data.userAccount
+import { getUserById } from "../service/users";
+export default {
+  name: "shopSystem",
+  data() {
+    return {
+      userAccount: ""
+    };
+  },
+  methods: {
+    quit() {
+      this.$router.push("/");
     }
-  };
+  },
+  async mounted() {
+    let string = document.cookie.slice(4);
+    let [data] = await getUserById(string);
+    this.userAccount = data.userAccount;
+  }
+};
 </script>
 <style scoped>
-  .el-header {
-    background-color: rgb(84, 92, 100);
-    height: 10vh;
-    font-family: "Helvetica Neue";
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.el-header {
+  background-color: rgb(84, 92, 100);
+  height: 10vh;
+  font-family: "Helvetica Neue";
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .el-header .logo {
-    width: 111px;
-    height: 60px;
-    display: flex;
-  }
+.el-header .logo {
+  width: 111px;
+  height: 60px;
+  display: flex;
+}
 
-  .el-header .logo>img {
-    width: 100%;
-    margin-right: 5px;
-  }
+.el-header .logo > img {
+  width: 100%;
+  margin-right: 5px;
+}
 
-  .el-header .logo>span {
-    color: #fff;
-    font-size: 16px;
-  }
+.el-header .logo > span {
+  color: #fff;
+  font-size: 16px;
+}
 
-  li {
-    list-style: none;
-  }
+li {
+  list-style: none;
+}
 
-  .el-header ul {
-    display: flex;
-  }
+.el-header ul {
+  display: flex;
+}
 
-  .el-header a {
-    text-decoration: none;
-    color: #fff;
-  }
+.el-header a {
+  text-decoration: none;
+  color: #fff;
+}
 
-  .el-header a i {
-    font-size: 22px;
-  }
+.el-header a i {
+  font-size: 22px;
+}
 
-  .el-header a:hover {
-    color: #fdcb32;
-  }
+.el-header a:hover {
+  color: #fdcb32;
+}
 
-  .el-aside {
-    width: 200px!important;
-    height: 90vh;
-  }
-  .el-menu-vertical-demo {
-    height: 100%;
-  }
-  .el-main{
-    padding:5px!important;
-  }
-  .el-card{
-    /* height: 88vh; */
-  }
+.el-aside {
+  width: 200px !important;
+  height: 90vh;
+}
+.el-menu-vertical-demo {
+  height: 100%;
+}
+.el-main {
+  padding: 5px !important;
+}
+.el-card {
+  height: 88vh;
+}
 </style>

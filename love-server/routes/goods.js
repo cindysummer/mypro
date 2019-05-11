@@ -23,8 +23,6 @@ router.post('/addImg', async function (req, res, next) {
 })
 //按分页进行查询goods
 router.post('/getGoodsByPage', async function (req, res, next) {
-  console.log(req.body);
-
   res.send(await getGoodsByPage(req.body))
 });
 //，根据id删除商品
