@@ -27,7 +27,12 @@
       <el-table-column prop="goodsRegion" label="产地" align="center"></el-table-column>
       <el-table-column prop="goodsDate" label="生产日期" align="center"></el-table-column>
       <el-table-column prop="goodsTime" label="保质期" align="center"></el-table-column>
-      <el-table-column prop="goodsSupplier" label="供应商"  :show-overflow-tooltip="true" align="center"></el-table-column>
+      <el-table-column
+        prop="goodsSupplier"
+        label="供应商"
+        :show-overflow-tooltip="true"
+        align="center"
+      ></el-table-column>
       <el-table-column prop="goodsIntro" label="说明" :show-overflow-tooltip="true" align="center"></el-table-column>
       <el-table-column prop="goodsPrice" label="价格" align="center"></el-table-column>
       <el-table-column fixed="right" label="操作" width="100" align="center">
@@ -41,7 +46,7 @@
       <el-pagination
         @size-change="setEachPage"
         @current-change="setCurrentPage"
-        :page-sizes="[4,7,10]"
+        :page-sizes="[4,5,6]"
         :page-size="eachPage"
         layout="total, sizes, prev, pager, next, jumper"
         :total="count"
@@ -137,7 +142,15 @@ export default {
     };
   },
   computed: {
-    ...mapState(["currentPage","eachPage","totalPage","count","goods","form","updateForm"])
+    ...mapState([
+      "currentPage",
+      "eachPage",
+      "totalPage",
+      "count",
+      "goods",
+      "form",
+      "updateForm"
+    ])
   },
   watch: {
     eachPage() {
@@ -177,7 +190,7 @@ export default {
     },
     //确认修改商品信息
     comfire() {
-      //格式化事件时间
+      //格式化时间
       this.updateForm.goodsDate = this.moment(this.updateForm.goodsDate).format(
         "YYYY-MM-DD"
       );

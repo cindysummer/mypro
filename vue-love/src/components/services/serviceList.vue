@@ -27,8 +27,19 @@
         </template>
       </el-table-column>
     </el-table>
+<<<<<<< HEAD
+    <el-pagination
+      @size-change="setEachPage"
+      @current-change="setCurrentPage"
+      :page-sizes="[2,4,6]"
+      :page-size="~~eachPage"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="~~count"
+    ></el-pagination>
+=======
     <el-pagination @size-change="setEachPage" @current-change="setCurrentPage" :page-sizes="[1,2,3]"
       :page-size="~~eachPage" layout="total, sizes, prev, pager, next, jumper" :total="~~count"></el-pagination>
+>>>>>>> 391c6688431336e239c62e2431442343570ccf85
 
     <el-dialog title="服务信息修改" :visible.sync="dialogFormVisible">
       <el-form ref="form" :inline="true" :model="form">
@@ -167,7 +178,7 @@
     }
   };
 </script>
-<style>
+<style scoped>
   .el-select .el-input {
     width: 130px;
   }

@@ -7,21 +7,21 @@ export default {
     state: {
         form: {
             // 名称
-            serviceName: '1',
+            serviceName: '',
             // 服务类型
-            serviceType: '1',
+            serviceType: '',
             // 服务时间
-            serviceSchedule: '1',
+            serviceSchedule: '',
             // 适用规格
-            serviceCanFor: '1',
+            serviceCanFor: '',
             // 服务规格
-            serviceDetial: '1',
+            serviceDetial: '',
             //    耗时
-            serviceTime: '1',
+            serviceTime: '',
             // 服务员等级
-            serviceLevel: "1",
+            serviceLevel: "",
             // 价格
-            servicePrice: `1`,
+            servicePrice: ``,
         },
         currentPage: 1,
         eachPage: 2,
@@ -81,7 +81,6 @@ export default {
         },
         //更新服务信息
         async updateServicesAsync({ dispatch }, payload) {
-            // console.log(payload);
             const data = await serviceService.updateServices(payload);
             if (data) {
                 dispatch("getServicesByPageAsync")
