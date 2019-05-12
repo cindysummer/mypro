@@ -19,7 +19,6 @@ module.exports.removeUser = async function (_id) {
 
 module.exports.updataUser = async function ({ _id, userPwd, userPhone,userEmail}) {
     return await mongoose.model("usersModel").updateOne({ _id }, { userPwd, userPhone,userEmail })
-
 }
 
 

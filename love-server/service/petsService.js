@@ -55,9 +55,7 @@ module.exports.removePets = async (shop) => {
 //修改宠物信息
 module.exports.updatePets = async (shop) => {
     let data = await updatePets(shop);
-    return data
- 
-  
+    return data;
 }
 module.exports.getPetsByUserId=async function(userId){
     return await getPetsByUserId(userId);

@@ -56,9 +56,7 @@ export default {
     },
     ...mapActions(["findshopsAsync"]),
     ...mapActions(["updateshopsAsync"]),
-    open(a) {
-      console.log(a);
-
+    open1(a) {
       this.$confirm(`是否通过  ${a.shopName}  的审核?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -77,7 +75,7 @@ export default {
           });
         });
     },
-    open1(a) {
+    open(a) {
       this.$confirm(`是否禁止  ${a.shopName}  审核的通过?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -102,7 +100,6 @@ export default {
     ...mapState(["shopData"])
   },
   mounted() {
-    // console.log(555555);
     let msg = this.pageData;
     msg.currentPage = 1;
     this.findshopsAsync(msg);

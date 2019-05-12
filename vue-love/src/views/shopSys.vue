@@ -75,7 +75,9 @@
         </el-menu>
       </el-aside>
       <el-main>
-        <el-card><router-view></router-view></el-card>
+        <el-card>
+          <router-view></router-view>
+        </el-card>
       </el-main>
     </el-container>
   </el-container>
@@ -150,16 +152,19 @@
   }
 
   .el-aside {
-    width: 200px!important;
-    height: 90vh;
+    width: 200px !important;
+    height: 117vh;
   }
+
   .el-menu-vertical-demo {
     height: 100%;
   }
-  .el-main{
-    padding:5px!important;
+
+  .el-main {
+    padding: 5px !important;
   }
-  .el-card{
-     height: 88vh; 
+
+  .el-card {
+    height: 115vh;
   }
 </style>

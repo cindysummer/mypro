@@ -17,6 +17,17 @@ module.exports.removeEmployeeByShopId = async function (shop) {
     const newShopEmployee = data.shopEmployee.filter(item => item._id != shopEmployeeId);
     return await mongoose.model("shopModel").updateOne({ _id }, { shopEmployee: newShopEmployee });
 }
+module.exports.updateEmployeeByShopId=async function(shop){
+    const { _id, shopEmployee } = shop;
+    const [data] = await mongoose.model("shopModel").find({ _id });
+    const newShopEmployee=data.shopEmployee.filter(item=>{
+        if(item._id.toString()!==shopEmployee._id){
+            return item;
+        }
+    });
+    newShopEmployee.push(shopEmployee);
+    return await mongoose.model("shopModel").updateOne({ _id }, { shopEmployee: newShopEmployee });
+}
 // 新增服务
 module.exports.addServiceIdOnShops=async function({_id,serviceId}){
     const [data]=await mongoose.model("shopModel").find({ _id });
