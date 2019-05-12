@@ -22,19 +22,23 @@
       <el-form-item required label="口味" prop="goodsTaste">
         <el-input v-model="form.goodsTaste"></el-input>
       </el-form-item>
-      <el-form-item required label="产地" prop="goodsRegion">
-        <el-input v-model="form.goodsRegion"></el-input>
-      </el-form-item>
       <el-form-item required label="生产日期" prop="goodsDate">
         <div class="block">
           <el-date-picker v-model="form.goodsDate" type="date" placeholder="选择日期"></el-date-picker>
         </div>
       </el-form-item>
+      <el-form-item required label="产地" prop="goodsRegion">
+        <el-select v-model="form.goodsRegion" placeholder="请选择">
+          <el-option value="国产"></el-option>
+          <el-option value="进口"></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item required label="保质期" prop="goodsTime">
         <el-select v-model="form.goodsTime" placeholder="请选择">
-          <el-option value="3个月"></el-option>
           <el-option value="6个月"></el-option>
           <el-option value="12个月"></el-option>
+          <el-option value="18个月"></el-option>
+          <el-option value="其他"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item required label="供应商" prop="goodsSupplier">
@@ -116,5 +120,4 @@ export default {
 .el-form-item {
   width: 40%;
 }
-
 </style>

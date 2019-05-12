@@ -19,9 +19,9 @@ module.exports.getGoodsByPage = async function ({ currentPage, eachPage, userId,
             .limit(eachPage - 0);
     }
     else {
-        count = await mongoose.model("goodsModel").find({ userId, [goodsType]: text }).countDocuments();
+        count = await mongoose.model("goodsModel").find({ userId, [goodsType]: { $regex: `${text}`, $options: 'i' } }).countDocuments();
         goods = await mongoose.model("goodsModel")
-            .find({ userId, [goodsType]: text })
+            .find({ userId, [goodsType]: { $regex: `${text}`, $options: 'i' } })
             .skip((currentPage - 1) * eachPage)
             .limit(eachPage - 0);
     }

@@ -2,7 +2,8 @@
   <div>
     <div>
       <el-input placeholder="请输入内容" v-model="text" class="input-with-select">
-        <el-select v-model="type" slot="prepend" placeholder="请选择">
+        <el-select v-model="type" slot="prepend" placeholder="请选择" style="width:100px">
+          <el-option label="查看全部" value></el-option>
           <el-option label="商品名称" value="goodsName"></el-option>
           <el-option label="商品类型" value="goodsType"></el-option>
           <el-option label="商品产地" value="goodsRegion"></el-option>
@@ -11,26 +12,30 @@
       </el-input>
     </div>
     <el-table :data="goods" border>
-      <el-table-column fixed="left" prop="goodsName" label="商品名称"></el-table-column>
-      <el-table-column label="商品图片" width="120px">
+      <el-table-column fixed="left" prop="goodsName" label="商品名称" align="center"></el-table-column>
+      <el-table-column label="商品图片" width="120px" align="center">
         <template slot-scope="scope">
           <el-image style="width: 100px; height: 100px" :src="scope.row.goodsImg[0]"></el-image>
         </template>
       </el-table-column>
-      <el-table-column prop="goodsType" label="商品类型"></el-table-column>
-      <el-table-column prop="goodsMaterial" label="材质"></el-table-column>
-      <el-table-column prop="goodsCanFor" label="适用"></el-table-column>
-      <el-table-column prop="goodsOnlyFor" label="专属"></el-table-column>
-      <el-table-column prop="goodsSize" label="规则"></el-table-column>
-      <el-table-column prop="goodsTaste" label="口味"></el-table-column>
-      <el-table-column prop="goodsSpecial" label="特殊功用"></el-table-column>
-      <el-table-column prop="goodsRegion" label="产地"></el-table-column>
-      <el-table-column prop="goodsDate" label="生产日期"></el-table-column>
-      <el-table-column prop="goodsTime" label="保质期"></el-table-column>
-      <el-table-column prop="goodsSupplier" label="供应商"></el-table-column>
-      <el-table-column prop="goodsIntro" label="简介" width="150" :show-overflow-tooltip="true"></el-table-column>
-      <el-table-column prop="goodsPrice" label="价格"></el-table-column>
-      <el-table-column fixed="right" label="操作" width="100">
+      <el-table-column prop="goodsType" label="商品类型" align="center"></el-table-column>
+      <el-table-column prop="goodsMaterial" label="制作方法" align="center"></el-table-column>
+      <el-table-column prop="goodsCanFor" label="适用" :show-overflow-tooltip="true" align="center"></el-table-column>
+      <el-table-column prop="goodsOnlyFor" label="专属规格" align="center"></el-table-column>
+      <el-table-column prop="goodsSize" label="包装规格" align="center"></el-table-column>
+      <el-table-column prop="goodsTaste" label="口味" align="center"></el-table-column>
+      <el-table-column prop="goodsRegion" label="产地" align="center"></el-table-column>
+      <el-table-column prop="goodsDate" label="生产日期" align="center"></el-table-column>
+      <el-table-column prop="goodsTime" label="保质期" align="center"></el-table-column>
+      <el-table-column
+        prop="goodsSupplier"
+        label="供应商"
+        :show-overflow-tooltip="true"
+        align="center"
+      ></el-table-column>
+      <el-table-column prop="goodsIntro" label="说明" :show-overflow-tooltip="true" align="center"></el-table-column>
+      <el-table-column prop="goodsPrice" label="价格" align="center"></el-table-column>
+      <el-table-column fixed="right" label="操作" width="100" align="center">
         <template slot-scope="scope">
           <el-button type="text" @click="edit(scope.row)">编辑</el-button>
           <el-button type="text" @click="removeGoods(scope.row._id)">删除</el-button>
@@ -41,7 +46,7 @@
       <el-pagination
         @size-change="setEachPage"
         @current-change="setCurrentPage"
-        :page-sizes="[4,7,10]"
+        :page-sizes="[4,5,6]"
         :page-size="eachPage"
         layout="total, sizes, prev, pager, next, jumper"
         :total="count"
@@ -50,7 +55,7 @@
 
     <!-- 商品信息修改 -->
     <el-dialog title="商品信息修改" :visible.sync="dialogFormVisible">
-      <el-form :inline="true" :model="updateForm">
+      <el-form :inline="true" :model="updateForm" label-width="80px">
         <el-form-item required label="商品名称" prop="goodsName">
           <el-input v-model="updateForm.goodsName"></el-input>
         </el-form-item>
@@ -72,13 +77,16 @@
         <el-form-item required label="口味" prop="goodsTaste">
           <el-input v-model="updateForm.goodsTaste"></el-input>
         </el-form-item>
-        <el-form-item required label="产地" prop="goodsRegion">
-          <el-input v-model="updateForm.goodsRegion"></el-input>
-        </el-form-item>
         <el-form-item required label="生产日期" prop="goodsDate">
           <div class="block">
             <el-date-picker v-model="updateForm.goodsDate" type="date" placeholder="选择日期"></el-date-picker>
           </div>
+        </el-form-item>
+        <el-form-item required label="商品产地" prop="goodsRegion">
+          <el-select v-model="updateForm.goodsRegion" placeholder="请选择" style="width:50%">
+            <el-option value="国产"></el-option>
+            <el-option value="进口"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item required label="保质期" prop="goodsTime">
           <el-select v-model="updateForm.goodsTime" placeholder="请选择">
@@ -93,7 +101,7 @@
         <el-form-item required label="特色说明" prop="goodsIntro">
           <el-input v-model="updateForm.goodsIntro"></el-input>
         </el-form-item>
-        <el-form-item required label="价格" prop="goodsPrice">
+        <el-form-item required label="商品价格" prop="goodsPrice">
           <el-input v-model="updateForm.goodsPrice"></el-input>
         </el-form-item>
         <el-form-item required label="图片">
@@ -146,14 +154,14 @@ export default {
   },
   watch: {
     eachPage() {
-      if (this.type) {
+      if (this.text) {
         this.getGoodsByPageAsync({ goodsType: this.type, text: this.text });
       } else {
         this.getGoodsByPageAsync();
       }
     },
     currentPage() {
-      if (this.type) {
+      if (this.text) {
         this.getGoodsByPageAsync({ goodsType: this.type, text: this.text });
       } else {
         this.getGoodsByPageAsync();
@@ -182,7 +190,7 @@ export default {
     },
     //确认修改商品信息
     comfire() {
-      //格式化事件时间
+      //格式化时间
       this.updateForm.goodsDate = this.moment(this.updateForm.goodsDate).format(
         "YYYY-MM-DD"
       );
@@ -211,7 +219,11 @@ export default {
     },
     //
     search() {
-      this.getGoodsByPageAsync({ goodsType: this.type, text: this.text });
+      if (this.text) {
+        this.getGoodsByPageAsync({ goodsType: this.type, text: this.text });
+      } else {
+        this.getGoodsByPageAsync();
+      }
     }
   },
   mounted() {
@@ -225,10 +237,9 @@ export default {
 
 <style scoped>
 .el-form-item {
-  width: 40%;
+  width: 45%;
 }
 .el-form-item__label {
-  text-align: left;
-  width: 80px;
+  text-align: left !important;
 }
 </style>

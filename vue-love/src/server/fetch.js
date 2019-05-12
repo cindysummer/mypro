@@ -1,4 +1,4 @@
-export default function(url,data){
+export default function (url, data) {
     return fetch(url, {
         method: "post",
         headers: {
