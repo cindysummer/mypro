@@ -156,17 +156,20 @@ li {
   color: #fdcb32;
 }
 
-.el-aside {
-  width: 200px !important;
-  height: 90vh;
-}
-.el-menu-vertical-demo {
-  height: 100%;
-}
-.el-main {
-  padding: 5px !important;
-}
-.el-card {
-  height: 88vh;
-}
+  .el-aside {
+    width: 200px !important;
+    height: 117vh;
+  }
+
+  .el-menu-vertical-demo {
+    height: 100%;
+  }
+
+  .el-main {
+    padding: 5px !important;
+  }
+
+  .el-card {
+    height: 115vh;
+  }
 </style>

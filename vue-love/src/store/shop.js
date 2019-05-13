@@ -98,6 +98,14 @@ export default {
                 dispatch("getEmployeeByShopIdAsync")
             }
         },
+        // 修改员工
+        async updateEmployeeByShopIdAsync({ state, dispatch },payload){
+            const shopId = state.eachShop._id;
+            const data = await ShopService.updateEmployeeByShopId({ _id: shopId, shopEmployee: payload});
+            if (data) {
+                dispatch("getEmployeeByShopIdAsync")
+            }
+        },
         // 通过用户id去获取所有的服务
         async getServicesByUserIdAsync({ commit }) {
             const userId = document.cookie.slice(4);

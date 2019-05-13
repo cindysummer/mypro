@@ -1,5 +1,5 @@
 <template>
-  <el-tabs style="width:100%;height:88vh" >
+  <el-tabs style="width:100%;height:88vh">
     <el-tab-pane>
       <span slot="label">
         <i class="el-icon-goods"></i> 商品信息
@@ -10,19 +10,8 @@
       <el-dialog :visible.sync="goodsDialogVisible">
         <el-form label-width="180px" ref="goodsData" :model="goodsData">
           <el-form-item label="商品名称">
-            <el-select
-              style="width:300px"
-              v-model="goods"
-              filterable
-              placeholder="请选择"
-              @change="changeGoods(goods)"
-            >
-              <el-option
-                v-for="item in goodsArr"
-                :key="item._id"
-                :label="item.goodsName"
-                :value="item._id"
-              ></el-option>
+            <el-select style="width:300px" v-model="goods" filterable placeholder="请选择" @change="changeGoods(goods)">
+              <el-option v-for="item in goodsArr" :key="item._id" :label="item.goodsName" :value="item._id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="商品类型">
@@ -70,19 +59,9 @@
       <el-dialog :visible.sync="centerDialogVisible">
         <el-form label-width="180px" ref="serData" :model="serData">
           <el-form-item label="服务名称">
-            <el-select
-              style="width:300px"
-              v-model="value"
-              filterable
-              placeholder="请选择"
-              @change="changeSelect(value)"
-            >
-              <el-option
-                v-for="item in serviceArr"
-                :key="item._id"
-                :label="item.serviceName"
-                :value="item._id"
-              ></el-option>
+            <el-select style="width:300px" v-model="value" filterable placeholder="请选择" @change="changeSelect(value)">
+              <el-option v-for="item in serviceArr" :key="item._id" :label="item.serviceName" :value="item._id">
+              </el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="服务类别">
@@ -130,19 +109,8 @@
       <el-dialog :visible.sync="petDialogVisible">
         <el-form label-width="180px" ref="petsData" :model="petsData">
           <el-form-item label="宠物名称">
-            <el-select
-              style="width:300px"
-              v-model="pets"
-              filterable
-              placeholder="请选择"
-              @change="changePets(pets)"
-            >
-              <el-option
-                v-for="item in petsArr"
-                :key="item._id"
-                :label="item.petName"
-                :value="item._id"
-              ></el-option>
+            <el-select style="width:300px" v-model="pets" filterable placeholder="请选择" @change="changePets(pets)">
+              <el-option v-for="item in petsArr" :key="item._id" :label="item.petName" :value="item._id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="宠物品类">
@@ -210,98 +178,131 @@
         <el-table-column prop="empPhone" label="联系电话"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
+            <el-button size="mini" @click="updateEmp(scope.row)">修改</el-button>
             <el-button size="mini" type="danger" @click="removeEmployeeByShopIdAsync(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
+      <!-- 修改面板 -->
+      <el-dialog :visible.sync="dialogUpdateVisible">
+        <el-form label-width="180px" :model="updateData">
+          <el-form-item label="姓名">
+            <el-input style="width:300px" disabled v-model="updateData.empName"></el-input>
+          </el-form-item>
+          <el-form-item label="职级">
+            <el-input style="width:300px" v-model="updateData.empLevel"></el-input>
+          </el-form-item>
+          <el-form-item label="联系电话">
+            <el-input style="width:300px" v-model="updateData.empPhone"></el-input>
+          </el-form-item>
+        </el-form>
+        <div style="margin-left:200px">
+          <el-button type="primary" @click="updateEmployeeByShopId">确认修改</el-button>
+          <el-button @click="cancel">取 消</el-button>
+        </div>
+      </el-dialog>
     </el-tab-pane>
   </el-tabs>
 </template>
 <script>
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers("shop");
-export default {
-  name: "moreMes",
-  data() {
-    return {
-      empData: {
-        empName: "张三",
-        empLevel: "初级",
-        empPhone: "12312312311"
-      },
-      serData: {},
-      goodsData: {},
-      petsData: {},
-      value: "",
-      goods: "",
-      pets: "",
-      dialogFormVisible: false,
-      centerDialogVisible: false,
-      goodsDialogVisible: false,
-      petDialogVisible: false
-    };
-  },
-  computed: mapState([
-    "shopEmployee",
-    "serviceArr",
-    "shopService",
-    "goodsArr",
-    "shopGoods",
-    "petsArr",
-    "shopPets"
-  ]),
-  methods: {
-    ...mapActions([
-      "updateShopAsync",
-      "getEmployeeByShopIdAsync",
-      "removeEmployeeByShopIdAsync",
-      "getServicesByUserIdAsync",
-      "addServiceIdOnShopsAsync",
-      "getServiceByShopIdAsync",
-      "removeServiceOnShopAsync",
-      "getGoodsByUserIdAsync",
-      "addGoodsIdOnShopsAsync",
-      "getGoodsByShopIdAsync",
-      "removeGoodsOnShopAsync",
-      "getPetsByUserIdAsync",
-      "addPetsIdOnShopsAsync",
-      "getPetsByShopIdAsync",
-      "removePetsOnShopAsync"
+  import { createNamespacedHelpers } from "vuex";
+  const { mapState, mapActions, mapMutations } = createNamespacedHelpers("shop");
+  export default {
+    name: "moreMes",
+    data() {
+      return {
+        empData: {
+          empName: "张三",
+          empLevel: "初级",
+          empPhone: "12312312311"
+        },
+        updateData:{},
+        serData: {},
+        goodsData: {},
+        petsData: {},
+        value: "",
+        goods: "",
+        pets: "",
+        dialogFormVisible: false,
+        centerDialogVisible: false,
+        goodsDialogVisible: false,
+        petDialogVisible: false,
+        dialogUpdateVisible: false
+      };
+    },
+    computed: mapState([
+      "shopEmployee",
+      "serviceArr",
+      "shopService",
+      "goodsArr",
+      "shopGoods",
+      "petsArr",
+      "shopPets"
     ]),
-    addEmp() {
-      this.updateShopAsync(this.empData);
-      this.dialogFormVisible = false;
+    methods: {
+      ...mapActions([
+        "updateShopAsync",
+        "getEmployeeByShopIdAsync",
+        "removeEmployeeByShopIdAsync",
+        "getServicesByUserIdAsync",
+        "addServiceIdOnShopsAsync",
+        "getServiceByShopIdAsync",
+        "removeServiceOnShopAsync",
+        "getGoodsByUserIdAsync",
+        "addGoodsIdOnShopsAsync",
+        "getGoodsByShopIdAsync",
+        "removeGoodsOnShopAsync",
+        "getPetsByUserIdAsync",
+        "addPetsIdOnShopsAsync",
+        "getPetsByShopIdAsync",
+        "removePetsOnShopAsync",
+        "updateEmployeeByShopIdAsync"
+      ]),
+      addEmp() {
+        this.updateShopAsync(this.empData);
+        this.dialogFormVisible = false;
+      },
+      changeSelect(_id) {
+        this.serData = this.serviceArr.filter(item => item._id === _id)[0];
+      },
+      changeGoods(_id) {
+        this.goodsData = this.goodsArr.filter(item => item._id === _id)[0];
+      },
+      changePets(_id) {
+        this.petsData = this.petsArr.filter(item => item._id === _id)[0];
+      },
+      addSer() {
+        this.centerDialogVisible = false;
+        this.addServiceIdOnShopsAsync(this.serData);
+      },
+      addGoods() {
+        this.goodsDialogVisible = false;
+        this.addGoodsIdOnShopsAsync(this.goodsData);
+      },
+      addPet() {
+        this.petDialogVisible = false;
+        this.addPetsIdOnShopsAsync(this.petsData);
+      },
+      updateEmp(emp){
+        this.updateData=emp;
+        this.dialogUpdateVisible=true;
+      },
+      cancel(){
+        this.dialogUpdateVisible = false;
+      },
+      updateEmployeeByShopId(){
+          this.updateEmployeeByShopIdAsync(this.updateData);
+          this.dialogUpdateVisible = false;
+      }
     },
-    changeSelect(_id) {
-      this.serData = this.serviceArr.filter(item => item._id === _id)[0];
-    },
-    changeGoods(_id) {
-      this.goodsData = this.goodsArr.filter(item => item._id === _id)[0];
-    },
-    changePets(_id) {
-      this.petsData = this.petsArr.filter(item => item._id === _id)[0];
-    },
-    addSer() {
-      this.centerDialogVisible = false;
-      this.addServiceIdOnShopsAsync(this.serData);
-    },
-    addGoods() {
-      this.goodsDialogVisible = false;
-      this.addGoodsIdOnShopsAsync(this.goodsData);
-    },
-    addPet() {
-      this.petDialogVisible = false;
-      this.addPetsIdOnShopsAsync(this.petsData);
+    mounted() {
+      this.getServicesByUserIdAsync();
+      this.getServiceByShopIdAsync();
+      this.getEmployeeByShopIdAsync();
+      this.getGoodsByUserIdAsync();
+      this.getGoodsByShopIdAsync();
+      this.getPetsByUserIdAsync();
+      this.getPetsByShopIdAsync();
     }
-  },
-  mounted() {
-    this.getServicesByUserIdAsync();
-    this.getServiceByShopIdAsync();
-    this.getEmployeeByShopIdAsync();
-    this.getGoodsByUserIdAsync();
-    this.getGoodsByShopIdAsync();
-    this.getPetsByUserIdAsync();
-    this.getPetsByShopIdAsync();
-  }
-};
+  };
 </script>

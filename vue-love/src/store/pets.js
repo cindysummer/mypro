@@ -80,10 +80,6 @@ export default {
         ]
     },
     mutations: {
-        // getMessage: (state, payload) => {
-        //     //一定不能解构state赋值，这样会破坏掉vue原本的响应式原理
-        //     Object.assign(state, { message: payload });
-        // }
         update: (state, payload) => {
             state.tableData = payload.data;
             Object.assign(state.pageData, payload.state)
@@ -92,12 +88,7 @@ export default {
 
     },
     actions: {
-        // async getMessageAsync({ commit }) {
-        //     const data = await MesService.getMessage();
-        //     commit("getMessage", data);
-        // },
         async addpetsAsync({ dispatch }, payload) {
-            // console.log(payload)
             let k=payload.k;
             delete payload.k;
             const data = await petsService.addPets(payload);
@@ -109,9 +100,6 @@ export default {
                   });
                 
             }
-            // if (data) {
-            //     dispatch("getMessageAsync")
-            // }
         },
 
         async findpetsAsync({ commit }, payload) {
@@ -130,7 +118,6 @@ export default {
                 if ((data.total - 1) % data.pageSize == 0) {
                     data.currentPage = data.currentPage - 1;
                 }
-                // console.log(data);
                 dispatch("findpetsAsync", data)
 
             }
@@ -139,19 +126,13 @@ export default {
             let k = payload.this;
             delete payload.this;
             const data = await petsService.updatePets(payload);
-            // commit("update", data);
             delete data._id;
-            // delete data.userId;
-            // console.log(data);
             dispatch("findpetsAsync", data);
             k.$message({
                 showClose: true,
                 message: '修改成功',
                 type: 'success'
               });
-
-
-
         },
     }
 }

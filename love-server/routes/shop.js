@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const { addShop,getShopsByPage ,updateShop,findshops,updateshops,
-    getEmployeeByShopId,removeEmployeeByShopId,
+    getEmployeeByShopId,removeEmployeeByShopId,updateEmployeeByShopId,
     addServiceIdOnShops,getServiceByShopId,removeServiceOnShop,
     addGoodsIdOnShops,getGoodsByShopId,removeGoodsOnShop,
     addPetsIdOnShops,getPetsByShopId,removePetsOnShop,getShopByUserId } = require("../service/shopService");
@@ -22,6 +22,10 @@ router.post('/getEmployeeByShopId', async function (req, res, next) {
 // 删除员工
 router.post('/removeEmployeeByShopId', async function (req, res, next) {
     res.send(await removeEmployeeByShopId(req.body));
+});
+// 修改员工
+router.post('/updateEmployeeByShopId', async function (req, res, next) {
+    res.send(await updateEmployeeByShopId(req.body));
 });
 //营业执照图片上传
 router.post('/addShopLicenceImg', async function (req, res, next) {

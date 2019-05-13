@@ -113,7 +113,6 @@ export default {
 
     handleSizeChange(val) {
      if (this.search.input) {
-      //  console.log(this.pageData.userInputLastTime);
          let msg = {};
           Object.assign(msg, this.pageData);
           msg.currentPage = 1;
@@ -133,12 +132,10 @@ export default {
       msg.currentPage = 1;
       this.findpetsAsync(msg);
      }
-      // console.log(`每页 ${val} 条`);
     },
     handleCurrentChange(val) {
 
       if (this.search.input) {
-
          let msg = {};
           Object.assign(msg, this.pageData);
           msg.currentPage = `${val}` - 0;    
@@ -155,9 +152,6 @@ export default {
       msg.currentPage = `${val}` - 0;     
       this.findpetsAsync(msg);
       }
-
-   
-      // console.log(`当前页: ${val}`);
     },
     change(row) {
       this.dialogFormVisible = true;
@@ -165,7 +159,6 @@ export default {
     },
     confirm() {
       this.dialogFormVisible = false;
-      // console.log(this.petMsg);
       this.petMsg.petBirth = this.moment(this.petMsg.petBirth).format(
         "YYYY-MM-DD"
       );
@@ -189,10 +182,6 @@ export default {
           let msg = this.pageData;
           msg._id = a._id;
           this.removePetsAsync(msg);
-          // this.$message({
-          //   type: "success",
-          //   message: "删除成功!"
-          // });
         })
         .catch(() => {
           this.$message({
@@ -210,7 +199,6 @@ export default {
   },
 
   mounted() {
-    // console.log(555555);
     let msg = this.pageData;
     msg.currentPage = 1;
     const userId = document.cookie.slice(4);

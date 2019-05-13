@@ -12,6 +12,8 @@ const getShopByUserId = async (_id) => await fetch(`/shop/getShopByUserId?_id=${
 const getShopsByPage = async ({ currentPage = 1, eachPage = 3, userId } = {}) => await fetch(`/shop/getShopsByPage?currentPage=${currentPage}&eachPage=${eachPage}&userId=${userId}`).then(response => response.json())
 // 删除员工
 const removeEmployeeByShopId = async (obj) => await Fetch(`/shop/removeEmployeeByShopId`,obj).then(res=>res);
+// 修改员工
+const updateEmployeeByShopId=async (obj) => await Fetch(`/shop/updateEmployeeByShopId`,obj).then(res=>res);
 const getServicesByUserId = async (obj) => await Fetch(`/service/getServicesByUserId`,obj).then(res=>res);
 // 新增服务
 const addServiceIdOnShops = async (obj) => await Fetch(`/shop/addServiceIdOnShops`,obj).then(res=>res);
@@ -29,7 +31,7 @@ const getPetsByShopId = async (obj) => await Fetch(`/shop/getPetsByShopId`,obj).
 const removePetsOnShop = async (obj) => await Fetch(`/shop/removePetsOnShop`,obj).then(res=>res);
 export default {
     addShop,  getShopsByPage, updateShop,
-    getEmployeeByShopId, removeEmployeeByShopId, getServicesByUserId,
+    getEmployeeByShopId, removeEmployeeByShopId,updateEmployeeByShopId, getServicesByUserId,
     addServiceIdOnShops, getServiceByShopId, removeServiceOnShop,
     getGoodsByUserId, addGoodsIdOnShops, getGoodsByShopId, removeGoodsOnShop,
     getPetsByUserId, addPetsIdOnShops, getPetsByShopId, removePetsOnShop,getShopByUserId

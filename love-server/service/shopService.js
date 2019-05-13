@@ -1,6 +1,6 @@
 const {
     getEmployeeByShopId, removeEmployeeByShopId,addShop,getShopsByPage,updateShop,findshops,updateshops,
-    addServiceIdOnShops,getServiceByShopId,removeServiceOnShop,
+    addServiceIdOnShops,getServiceByShopId,removeServiceOnShop,updateEmployeeByShopId,
     addGoodsIdOnShops,getGoodsByShopId,removeGoodsOnShop,
     addPetsIdOnShops,getPetsByShopId,removePetsOnShop,getShopByUserId } = require("../dao/shopDao");
 module.exports.addShop = async (shop) => {
@@ -39,7 +39,14 @@ module.exports.removeEmployeeByShopId = async function (shop) {
         return false;
     }
 }
-
+module.exports.updateEmployeeByShopId=async function(shop){
+    const data = await updateEmployeeByShopId(shop);
+    if (data.ok > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 //
 module.exports.findshops = async function (shop) {
     const data = await findshops(shop);

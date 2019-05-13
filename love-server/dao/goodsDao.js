@@ -35,7 +35,6 @@ module.exports.getGoodsByPage = async function ({ currentPage, eachPage, userId,
     };
     return pageDate
 }
-
 //通过id删除商品
 module.exports.removeGoodById = async function (_id) {
     return await mongoose.model("goodsModel").deleteOne(_id)
