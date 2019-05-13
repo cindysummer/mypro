@@ -21,17 +21,3 @@ const petSchema = new mongoose.Schema({
 
 mongoose.model('petModel', petSchema, "pet");
 
-
-
-
-
-// db.master.insert({
-//     memberPhone: "13536985214",
-//     memberAcount: "疯狂的泰迪",
-//     memberName: "王石",
-//     menberCard: "111114785",
-//     memberAdd: "抚琴东南路",
-//     memberArea: "金牛区",
-//     memberPoint: "66",
-//     petId: ["5cd545416486608bf8388062"]
-// })

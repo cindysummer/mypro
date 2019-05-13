@@ -10,7 +10,7 @@ export default {
         shopData: [],
         rows: [],
         currentPage: 1,
-        eachPage: 10,
+        eachPage: 1,
         count: 0,
         totalPage: 0,
     },
@@ -55,6 +55,8 @@ export default {
         //通过分页信息获取待审核门店管理员列表
         async getAuditShopkeepersByPageAsync(context) {
             const { currentPage, eachPage } = context.state
+            console.log(eachPage);
+
             const data = await auditService.getAuditShopkeepersByPage({ currentPage, eachPage });
             context.commit("getAuditShopkeepersByPage", data)
         },

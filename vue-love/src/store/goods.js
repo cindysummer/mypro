@@ -79,13 +79,13 @@ export default {
         },
         //通过分页信息获取商品列表
         async getGoodsByPageAsync(context, payload) {
-            // console.log(payload);
             const userId = document.cookie.slice(4);
             const { currentPage, eachPage } = context.state
             if (payload) {
                 const { goodsType, text } = payload
                 const data = await GoodsService.getGoodsByPage({ currentPage, eachPage, userId, goodsType, text });
                 context.commit("getGoodsByPage", data)
+                
             } else {
                 const data = await GoodsService.getGoodsByPage({ currentPage, eachPage, userId });
                 context.commit("getGoodsByPage", data)
