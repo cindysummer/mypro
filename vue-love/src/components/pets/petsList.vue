@@ -64,6 +64,23 @@
         <el-form-item label="出生日期" :label-width="formLabelWidth">
           <el-date-picker type="date" style="width: 300px;" v-model="petMsg.petBirth"></el-date-picker>
         </el-form-item>
+
+        <!--  -->
+        <el-form-item required label="图片">
+          <el-upload
+            action="/pet/addPetImg"
+            ref="upload"
+            :on-success="successUpload"
+            list-type="picture-card"
+            :limit="1"
+          >
+            <i class="el-icon-plus"></i>
+          </el-upload>
+          <el-dialog>
+            <img width="100%" alt>
+          </el-dialog>
+        </el-form-item>
+        <!--  -->
       </el-form>
 
       <div slot="footer" class="dialog-footer">
@@ -84,6 +101,10 @@ export default {
     };
   },
   methods: {
+    successUpload(response, file, fileList) {
+      this.petMsg.image = response.data.url;
+      console.log( this.petMsg);
+    },
     seek() {
       if (this.search.select) {
         if (this.search.input) {
@@ -112,45 +133,43 @@ export default {
     },
 
     handleSizeChange(val) {
-     if (this.search.input) {
-         let msg = {};
-          Object.assign(msg, this.pageData);
-          msg.currentPage = 1;
-          const userId = document.cookie.slice(4);
-          msg.userId = userId;
-          msg.select =this.pageData.userSelectLastTime;
-          msg.input = this.pageData.userInputLastTime;
-          msg.pageSize = `${val}`;
-          this.findpetsAsync(msg);
-       
-     }else{
-      let msg={};
-      Object.assign(msg, this.pageData);
-      delete msg.userInputLastTime;
-      delete msg.userSelectLastTime;
-      msg.pageSize = `${val}`;
-      msg.currentPage = 1;
-      this.findpetsAsync(msg);
-     }
+      if (this.search.input) {
+        let msg = {};
+        Object.assign(msg, this.pageData);
+        msg.currentPage = 1;
+        const userId = document.cookie.slice(4);
+        msg.userId = userId;
+        msg.select = this.pageData.userSelectLastTime;
+        msg.input = this.pageData.userInputLastTime;
+        msg.pageSize = `${val}`;
+        this.findpetsAsync(msg);
+      } else {
+        let msg = {};
+        Object.assign(msg, this.pageData);
+        delete msg.userInputLastTime;
+        delete msg.userSelectLastTime;
+        msg.pageSize = `${val}`;
+        msg.currentPage = 1;
+        this.findpetsAsync(msg);
+      }
     },
     handleCurrentChange(val) {
-
       if (this.search.input) {
-         let msg = {};
-          Object.assign(msg, this.pageData);
-          msg.currentPage = `${val}` - 0;    
-          const userId = document.cookie.slice(4);
-          msg.userId = userId;
-          msg.select =this.pageData.userSelectLastTime;
-          msg.input = this.pageData.userInputLastTime;
-          this.findpetsAsync(msg);       
-      }else{
-        let msg={};
-      Object.assign(msg, this.pageData);
-      delete msg.userInputLastTime;
-      delete msg.userSelectLastTime;
-      msg.currentPage = `${val}` - 0;     
-      this.findpetsAsync(msg);
+        let msg = {};
+        Object.assign(msg, this.pageData);
+        msg.currentPage = `${val}` - 0;
+        const userId = document.cookie.slice(4);
+        msg.userId = userId;
+        msg.select = this.pageData.userSelectLastTime;
+        msg.input = this.pageData.userInputLastTime;
+        this.findpetsAsync(msg);
+      } else {
+        let msg = {};
+        Object.assign(msg, this.pageData);
+        delete msg.userInputLastTime;
+        delete msg.userSelectLastTime;
+        msg.currentPage = `${val}` - 0;
+        this.findpetsAsync(msg);
       }
     },
     change(row) {

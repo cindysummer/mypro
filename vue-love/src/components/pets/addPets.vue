@@ -38,6 +38,22 @@
           </el-form-item>
         </el-col>
       </el-form-item>
+
+      <el-form-item required label="图片">
+        <el-upload
+          action="/pet/addPetImg"
+          :on-success="successUpload"
+          ref="upload"
+          list-type="picture-card"
+          :limit="1"
+        >
+          <i class="el-icon-plus"></i>
+        </el-upload>
+        <el-dialog>
+          <img width="100%" alt>
+        </el-dialog>
+      </el-form-item>
+
       <el-form-item size="medium">
         <el-button
           style="margin-top: 50px;margin-left: 100px;"
@@ -69,14 +85,13 @@ export default {
           msg.petKind = this.ruleForm.name2;
           msg.petColor = this.ruleForm.name3;
           msg.petNature = this.ruleForm.name4;
-          msg.petBirth = this.moment(this.ruleForm.date1).format(
-            "YYYY-MM-DD"
-          );
+          msg.petBirth = this.moment(this.ruleForm.date1).format("YYYY-MM-DD");
           const userId = document.cookie.slice(4);
           msg.userId = userId;
           msg.price = this.ruleForm.price;
-          let k=this;
-          msg.k=k;
+          msg.image = this.ruleForm.image;
+          let k = this;
+          msg.k = k;
           this.addpetsAsync(msg);
         } else {
           return false;
@@ -85,6 +100,9 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    successUpload(response, file, fileList) {
+      this.ruleForm.image = response.data.url;
     }
   }
 };

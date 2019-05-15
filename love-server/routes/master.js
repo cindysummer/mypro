@@ -3,9 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 
-const {getMastersByPage,removeMaster,addMaster ,isLogin,getMaster} = require("../service/masterService");
+const { getMastersByPage, removeMaster, addMaster, isLogin, getMaster, login } = require("../service/masterService");
 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
@@ -26,6 +26,10 @@ router.post('/removeMaster', async function (req, res, next) {
 });
 router.get("/isLogin", async function (req, res, next) {
   res.send(await isLogin(req.query));//get传过来的数据在req的query身上
+})
+router.post('/login', async function (req, res, next) {
+  let data = await login(req.body);
+  res.send(data);
 });
 
 

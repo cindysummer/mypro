@@ -1,8 +1,8 @@
 const {
-    getEmployeeByShopId, removeEmployeeByShopId,addShop,getShopsByPage,updateShop,findshops,updateshops,
-    addServiceIdOnShops,getServiceByShopId,removeServiceOnShop,updateEmployeeByShopId,
-    addGoodsIdOnShops,getGoodsByShopId,removeGoodsOnShop,
-    addPetsIdOnShops,getPetsByShopId,removePetsOnShop,getShopByUserId,getShopsAll } = require("../dao/shopDao");
+    getEmployeeByShopId, removeEmployeeByShopId, addShop, getShopsByPage, updateShop, findshops, updateshops,
+    addServiceIdOnShops, getServiceByShopId, removeServiceOnShop, updateEmployeeByShopId,
+    addGoodsIdOnShops, getGoodsByShopId, removeGoodsOnShop,
+    addPetsIdOnShops, getPetsByShopId, removePetsOnShop, getShopByUserId, getShopsAll, getShop } = require("../dao/shopDao");
 module.exports.addShop = async (shop) => {
     let data = await addShop(shop);
     if (data) {
@@ -27,7 +27,7 @@ module.exports.getEmployeeByShopId = async function (shopId) {
 }
 
 module.exports.getShopByUserId = async function (userId) {
-   
+
     return await getShopByUserId(userId);
 }
 
@@ -39,7 +39,7 @@ module.exports.removeEmployeeByShopId = async function (shop) {
         return false;
     }
 }
-module.exports.updateEmployeeByShopId=async function(shop){
+module.exports.updateEmployeeByShopId = async function (shop) {
     const data = await updateEmployeeByShopId(shop);
     if (data.ok > 0) {
         return true;
@@ -63,8 +63,8 @@ module.exports.updateshops = async function (shop) {
     }
 }
 // 新增服务
-module.exports.addServiceIdOnShops=async function(obj){
-    const data= await addServiceIdOnShops(obj);
+module.exports.addServiceIdOnShops = async function (obj) {
+    const data = await addServiceIdOnShops(obj);
     if (data.ok > 0) {
         return true;
     } else {
@@ -73,12 +73,12 @@ module.exports.addServiceIdOnShops=async function(obj){
 }
 
 // 获取服务
-module.exports.getServiceByShopId=async function(shopId){
+module.exports.getServiceByShopId = async function (shopId) {
     return await getServiceByShopId(shopId);
 }
 // 删除服务
-module.exports.removeServiceOnShop=async function(obj){
-    const data= await removeServiceOnShop(obj);
+module.exports.removeServiceOnShop = async function (obj) {
+    const data = await removeServiceOnShop(obj);
     if (data.ok > 0) {
         return true;
     } else {
@@ -86,8 +86,8 @@ module.exports.removeServiceOnShop=async function(obj){
     }
 }
 // 新增商品
-module.exports.addGoodsIdOnShops=async function(obj){
-    const data= await addGoodsIdOnShops(obj);
+module.exports.addGoodsIdOnShops = async function (obj) {
+    const data = await addGoodsIdOnShops(obj);
     if (data.ok > 0) {
         return true;
     } else {
@@ -95,12 +95,12 @@ module.exports.addGoodsIdOnShops=async function(obj){
     }
 }
 // 获取商品
-module.exports.getGoodsByShopId=async function(shopId){
+module.exports.getGoodsByShopId = async function (shopId) {
     return await getGoodsByShopId(shopId);
 }
 // 删除商品
-module.exports.removeGoodsOnShop=async function(obj){
-    const data= await removeGoodsOnShop(obj);
+module.exports.removeGoodsOnShop = async function (obj) {
+    const data = await removeGoodsOnShop(obj);
     if (data.ok > 0) {
         return true;
     } else {
@@ -108,8 +108,8 @@ module.exports.removeGoodsOnShop=async function(obj){
     }
 }
 // 新增宠物
-module.exports.addPetsIdOnShops=async function(obj){
-    const data= await addPetsIdOnShops(obj);
+module.exports.addPetsIdOnShops = async function (obj) {
+    const data = await addPetsIdOnShops(obj);
     if (data.ok > 0) {
         return true;
     } else {
@@ -117,12 +117,12 @@ module.exports.addPetsIdOnShops=async function(obj){
     }
 }
 // 获取宠物
-module.exports.getPetsByShopId=async function(shopId){
+module.exports.getPetsByShopId = async function (shopId) {
     return await getPetsByShopId(shopId);
 }
 // 删除宠物
-module.exports.removePetsOnShop=async function(obj){
-    const data= await removePetsOnShop(obj);
+module.exports.removePetsOnShop = async function (obj) {
+    const data = await removePetsOnShop(obj);
     if (data.ok > 0) {
         return true;
     } else {
@@ -130,6 +130,10 @@ module.exports.removePetsOnShop=async function(obj){
     }
 }
 // 获取所有门店信息
-module.exports.getShopsAll=async function(){
+module.exports.getShopsAll = async function () {
     return await getShopsAll();
+}
+// 获取所有门店
+module.exports.getShop = async function () {
+    return await getShop();
 }

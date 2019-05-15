@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const { addGoods, getGoods, getGoodsByPage, removeGoodById, updateGoods, getGoodsByUserId } = require("../service/goodsService");
-// const { addGoods, getGoods, getGoodsByPage, removeGoodById, } = require("../service/goodsService");
 const { uploadFile } = require("../util/upload");
 //新增商品
 router.post('/addGoods', async function (req, res, next) {
@@ -16,6 +15,14 @@ router.get('/getGoods', async function (req, res, next) {
 router.post('/addImg', async function (req, res, next) {
   let result = await uploadFile(req, res, {
     fileType: "goods", //图片保存文件名
+    path: './public/images' //保存路径
+  });
+  res.send(result)
+})
+
+router.post('/addPetImg', async function (req, res, next) {
+  let result = await uploadFile(req, res, {
+    fileType: "pets", //图片保存文件名
     path: './public/images' //保存路径
   });
   res.send(result)

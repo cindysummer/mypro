@@ -3,24 +3,26 @@ const mongoose = require('mongoose');
 const masterSchema = new mongoose.Schema({
     //电话号码
     memberPhone: String,
+    // 密码
+    memberPass: String,
     // 昵称
     memberAcount: String,
     // 真实姓名
-    memberName:String,
+    memberName: String,
     // 会员卡
-    menberCard:String,
+    menberCard: String,
     // 头图
-    memberImg:String,
+    memberImg: String,
     // 送货地址
     memberAdd: String,
     //区域
-    memberArea:String,
+    memberArea: String,
     // 积分
     memberPoint:String,
     // 密码
     memberPwd:String,
     // 宠物id
-    petId:[{
+    petId: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'petModel'
     }]
