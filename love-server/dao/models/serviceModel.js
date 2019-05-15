@@ -15,6 +15,8 @@ const serviceSchema = new mongoose.Schema({
     serviceLevel:String,
     // 耗时
     serviceTime: String,
+    // 图片
+    serviceImg: String,
     // 价格
     servicePrice:Number,
     userId:{

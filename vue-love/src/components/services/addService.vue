@@ -38,6 +38,11 @@
           <el-radio label="普通"></el-radio>
         </el-radio-group>
       </el-form-item>
+      <el-form-item label="服务图片:">
+        <el-upload class="upload-demo" action="/service/addserviceImg" :on-success="addServiceImg" :limit="1">
+          <el-button size="small" type="primary">点击上传</el-button>
+        </el-upload>
+      </el-form-item>
       <el-form-item label="价格:">
         <el-input v-model="form.servicePrice" style="width: 500px" placeholder="基准价格，会员价和活动价都以它为基准"></el-input>
       </el-form-item>
@@ -69,6 +74,10 @@
         const userId = document.cookie.slice(4);
         const data = Object.assign(this.form, { userId });
         this.addServiceAsync(data);
+      },
+      // 获取头图的路径
+      addServiceImg(response, file, fileList) {
+        this.form.serviceImg = response.data.url;
       },
       reset() {
 

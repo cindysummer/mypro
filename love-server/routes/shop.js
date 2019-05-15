@@ -5,7 +5,8 @@ const { addShop,getShopsByPage ,updateShop,findshops,updateshops,
     getEmployeeByShopId,removeEmployeeByShopId,updateEmployeeByShopId,
     addServiceIdOnShops,getServiceByShopId,removeServiceOnShop,
     addGoodsIdOnShops,getGoodsByShopId,removeGoodsOnShop,
-    addPetsIdOnShops,getPetsByShopId,removePetsOnShop,getShopByUserId } = require("../service/shopService");
+    addPetsIdOnShops,getPetsByShopId,removePetsOnShop,getShopByUserId,
+    getShopsAll } = require("../service/shopService");
 const { uploadFile } = require("../util/upload");
 // 新增门店
 router.post('/addShop', async function (req, res, next) {
@@ -100,7 +101,10 @@ router.post("/removePetsOnShop", async function (req, res, next) {
 router.get("/getShopByUserId", async function (req, res, next) {
     res.send(await getShopByUserId(req.query));
 });
-
+// 获取所有门店的商品服务宠物信息
+router.get("/getShopsAll", async function (req, res, next) {
+    res.send(await getShopsAll());
+});
 
 
 module.exports = router;

@@ -25,3 +25,9 @@ module.exports.addMaster = async (master) => {
 module.exports.removeMaster = async function (_id) {
     return await mongoose.model("masterModel").deleteOne(_id);
 }
+module.exports.isLogin=async function(user){
+    return await mongoose.model("masterModel").find(user);
+}
+module.exports.getMaster=async function(memberAcount){
+    return await mongoose.model("masterModel").find(memberAcount);
+}

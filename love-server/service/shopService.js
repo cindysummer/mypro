@@ -2,7 +2,7 @@ const {
     getEmployeeByShopId, removeEmployeeByShopId,addShop,getShopsByPage,updateShop,findshops,updateshops,
     addServiceIdOnShops,getServiceByShopId,removeServiceOnShop,updateEmployeeByShopId,
     addGoodsIdOnShops,getGoodsByShopId,removeGoodsOnShop,
-    addPetsIdOnShops,getPetsByShopId,removePetsOnShop,getShopByUserId } = require("../dao/shopDao");
+    addPetsIdOnShops,getPetsByShopId,removePetsOnShop,getShopByUserId,getShopsAll } = require("../dao/shopDao");
 module.exports.addShop = async (shop) => {
     let data = await addShop(shop);
     if (data) {
@@ -128,4 +128,8 @@ module.exports.removePetsOnShop=async function(obj){
     } else {
         return false;
     }
+}
+// 获取所有门店信息
+module.exports.getShopsAll=async function(){
+    return await getShopsAll();
 }

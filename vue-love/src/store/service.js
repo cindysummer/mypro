@@ -20,6 +20,8 @@ export default {
             serviceTime: '',
             // 服务员等级
             serviceLevel: "",
+            // 服务图片
+            serviceImg:"",
             // 价格
             servicePrice: ``,
         },

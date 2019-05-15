@@ -17,6 +17,8 @@ const masterSchema = new mongoose.Schema({
     memberArea:String,
     // 积分
     memberPoint:String,
+    // 密码
+    memberPwd:String,
     // 宠物id
     petId:[{
         type: mongoose.Schema.Types.ObjectId,

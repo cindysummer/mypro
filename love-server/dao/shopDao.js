@@ -116,4 +116,8 @@ module.exports.updateshops = async function (shop) {
 module.exports.getShopByUserId = async (userId) => {
     return await mongoose.model("shopModel").find({userId});
 }
-   
+// 获取所有门店信息
+module.exports.getShopsAll=async function(){
+    return await mongoose.model("shopModel").find({shopStatus:"已审批"})
+    .populate("goodsId").populate("serviceId").populate("petsId")
+}
