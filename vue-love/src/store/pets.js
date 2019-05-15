@@ -2,9 +2,9 @@ import petsService from '../service/pets';
 export default {
     namespaced: true,
     state: {
-        search:{
-            input:"",
-            select:"",
+        search: {
+            input: "",
+            select: "",
         },
         petMsg: {
             petBirth: "",
@@ -15,6 +15,8 @@ export default {
             petType: "",// 品类(猫、狗类)
             price: "",
             _id: "",
+            image: ""
+
         },
         ruleForm: {
             name: "64645",
@@ -23,7 +25,8 @@ export default {
             name3: "45645",
             name4: "4564564",
             price: "45",
-            date1: ""
+            date1: "",
+            image: ""
         },
         rules: {
             name: [
@@ -71,8 +74,8 @@ export default {
             total: 0,
             currentPage: 1,
             pageSize: 3,
-            userInputLastTime:"",
-            userSelectLastTime:"",
+            userInputLastTime: "",
+            userSelectLastTime: "",
         },
 
         tableData: [
@@ -89,7 +92,7 @@ export default {
     },
     actions: {
         async addpetsAsync({ dispatch }, payload) {
-            let k=payload.k;
+            let k = payload.k;
             delete payload.k;
             const data = await petsService.addPets(payload);
             if (data) {
@@ -97,14 +100,14 @@ export default {
                     showClose: true,
                     message: '新增成功',
                     type: 'success'
-                  });
-                
+                });
+
             }
         },
 
         async findpetsAsync({ commit }, payload) {
-            if (payload.currentPage==0) {
-                payload.currentPage=1
+            if (payload.currentPage == 0) {
+                payload.currentPage = 1
             }
             const data = await petsService.findPets(payload);
             commit("update", data);
@@ -113,7 +116,7 @@ export default {
         async removePetsAsync({ dispatch }, payload) {
             const data = await petsService.removePets(payload);
             if (data) {
-                
+
                 delete data._id;
                 if ((data.total - 1) % data.pageSize == 0) {
                     data.currentPage = data.currentPage - 1;
@@ -132,7 +135,7 @@ export default {
                 showClose: true,
                 message: '修改成功',
                 type: 'success'
-              });
+            });
         },
     }
 }

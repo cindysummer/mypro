@@ -17,11 +17,11 @@ module.exports.removeEmployeeByShopId = async function (shop) {
     const newShopEmployee = data.shopEmployee.filter(item => item._id != shopEmployeeId);
     return await mongoose.model("shopModel").updateOne({ _id }, { shopEmployee: newShopEmployee });
 }
-module.exports.updateEmployeeByShopId=async function(shop){
+module.exports.updateEmployeeByShopId = async function (shop) {
     const { _id, shopEmployee } = shop;
     const [data] = await mongoose.model("shopModel").find({ _id });
-    const newShopEmployee=data.shopEmployee.filter(item=>{
-        if(item._id.toString()!==shopEmployee._id){
+    const newShopEmployee = data.shopEmployee.filter(item => {
+        if (item._id.toString() !== shopEmployee._id) {
             return item;
         }
     });
@@ -29,57 +29,57 @@ module.exports.updateEmployeeByShopId=async function(shop){
     return await mongoose.model("shopModel").updateOne({ _id }, { shopEmployee: newShopEmployee });
 }
 // 新增服务
-module.exports.addServiceIdOnShops=async function({_id,serviceId}){
-    const [data]=await mongoose.model("shopModel").find({ _id });
+module.exports.addServiceIdOnShops = async function ({ _id, serviceId }) {
+    const [data] = await mongoose.model("shopModel").find({ _id });
     data.serviceId.push(serviceId);
     return await mongoose.model("shopModel").updateOne({ _id }, { serviceId: data.serviceId });
 }
 // 获取服务
-module.exports.getServiceByShopId=async function({shopId}){
-    const [data]=await mongoose.model("shopModel").find({_id:shopId}).populate("serviceId");
-    const service=data.serviceId;
+module.exports.getServiceByShopId = async function ({ shopId }) {
+    const [data] = await mongoose.model("shopModel").find({ _id: shopId }).populate("serviceId");
+    const service = data.serviceId;
     return service;
 }
 // 删除服务
-module.exports.removeServiceOnShop=async function({_id,serviceId}){
+module.exports.removeServiceOnShop = async function ({ _id, serviceId }) {
     const [data] = await mongoose.model("shopModel").find({ _id });
-    const newSer=data.serviceId.filter(item=>item!=serviceId);
+    const newSer = data.serviceId.filter(item => item != serviceId);
     return await mongoose.model("shopModel").updateOne({ _id }, { serviceId: newSer });
 }
 // 新增商品
-module.exports.addGoodsIdOnShops=async function({_id,goodsId}){
-    const [data]=await mongoose.model("shopModel").find({ _id });
+module.exports.addGoodsIdOnShops = async function ({ _id, goodsId }) {
+    const [data] = await mongoose.model("shopModel").find({ _id });
     data.goodsId.push(goodsId);
     return await mongoose.model("shopModel").updateOne({ _id }, { goodsId: data.goodsId });
 }
 // 获取商品
-module.exports.getGoodsByShopId=async function({shopId}){
-    const [data]=await mongoose.model("shopModel").find({_id:shopId}).populate("goodsId");
-    const goods=data.goodsId;
+module.exports.getGoodsByShopId = async function ({ shopId }) {
+    const [data] = await mongoose.model("shopModel").find({ _id: shopId }).populate("goodsId");
+    const goods = data.goodsId;
     return goods;
 }
 // 删除商品
-module.exports.removeGoodsOnShop=async function({_id,goodsId}){
+module.exports.removeGoodsOnShop = async function ({ _id, goodsId }) {
     const [data] = await mongoose.model("shopModel").find({ _id });
-    const newGoods=data.goodsId.filter(item=>item!=goodsId);
+    const newGoods = data.goodsId.filter(item => item != goodsId);
     return await mongoose.model("shopModel").updateOne({ _id }, { goodsId: newGoods });
 }
 // 新增宠物
-module.exports.addPetsIdOnShops=async function({_id,petsId}){
-    const [data]=await mongoose.model("shopModel").find({ _id });
+module.exports.addPetsIdOnShops = async function ({ _id, petsId }) {
+    const [data] = await mongoose.model("shopModel").find({ _id });
     data.petsId.push(petsId);
     return await mongoose.model("shopModel").updateOne({ _id }, { petsId: data.petsId });
 }
 // 获取宠物
-module.exports.getPetsByShopId=async function({shopId}){
-    const [data]=await mongoose.model("shopModel").find({_id:shopId}).populate("petsId");
-    const pets=data.petsId;
+module.exports.getPetsByShopId = async function ({ shopId }) {
+    const [data] = await mongoose.model("shopModel").find({ _id: shopId }).populate("petsId");
+    const pets = data.petsId;
     return pets;
 }
 // 删除宠物
-module.exports.removePetsOnShop=async function({_id,petsId}){
+module.exports.removePetsOnShop = async function ({ _id, petsId }) {
     const [data] = await mongoose.model("shopModel").find({ _id });
-    const newPets=data.petsId.filter(item=>item!=petsId);
+    const newPets = data.petsId.filter(item => item != petsId);
     return await mongoose.model("shopModel").updateOne({ _id }, { petsId: newPets });
 }
 module.exports.getShopsByPage = async function ({ currentPage, eachPage, userId }) {
@@ -102,18 +102,25 @@ module.exports.getShopsByPage = async function ({ currentPage, eachPage, userId 
 module.exports.findshops = async function (shop) {
     let count = await mongoose.model("shopModel").find({ shopStatus: "申请中" }).countDocuments();
     let msg = await mongoose.model("shopModel").find({ shopStatus: "申请中" })
-                                            .skip((shop.currentPage - 1) * shop.pageSize)
-                                            .limit(shop.pageSize - 0);
-    let obj={}
-    obj.state=Object.assign(shop,{total:count});
-    obj.msg=msg;
+        .skip((shop.currentPage - 1) * shop.pageSize)
+        .limit(shop.pageSize - 0);
+    let obj = {}
+    obj.state = Object.assign(shop, { total: count });
+    obj.msg = msg;
     return obj;
 }
 
 module.exports.updateshops = async function (shop) {
-    return await mongoose.model("shopModel").updateOne({_id:shop._id},{shopStatus:shop.shopStatus})
+    return await mongoose.model("shopModel").updateOne({ _id: shop._id }, { shopStatus: shop.shopStatus })
 }
 module.exports.getShopByUserId = async (userId) => {
-    return await mongoose.model("shopModel").find({userId});
+    return await mongoose.model("shopModel").find({ userId });
 }
-   
+module.exports.getShop = async () => {
+    return await mongoose.model("shopModel").find({shopStatus:"已审批"})
+        .populate("goodsId")
+        .populate("serviceId")
+        .populate("petId")
+
+
+}  

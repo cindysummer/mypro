@@ -25,6 +25,7 @@ router.get('/getUserById', async function (req, res, next) {
 
 router.post('/register', async function (req, res, next) {
   let data = await register(req.body);
+  
   res.send(data);
 });
 //获取待审核门店管理员

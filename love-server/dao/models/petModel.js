@@ -16,7 +16,8 @@ const petSchema = new mongoose.Schema({
     price: String,
     userId: {
         type: mongoose.Schema.Types.ObjectId
-    }
+    },
+    image: String
 })
 
 mongoose.model('petModel', petSchema, "pet");

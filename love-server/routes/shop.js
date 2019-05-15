@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-const { addShop,getShopsByPage ,updateShop,findshops,updateshops,
-    getEmployeeByShopId,removeEmployeeByShopId,updateEmployeeByShopId,
-    addServiceIdOnShops,getServiceByShopId,removeServiceOnShop,
-    addGoodsIdOnShops,getGoodsByShopId,removeGoodsOnShop,
-    addPetsIdOnShops,getPetsByShopId,removePetsOnShop,getShopByUserId } = require("../service/shopService");
+const { addShop, getShopsByPage, updateShop, findshops, updateshops,
+    getEmployeeByShopId, removeEmployeeByShopId, updateEmployeeByShopId,
+    addServiceIdOnShops, getServiceByShopId, removeServiceOnShop,
+    addGoodsIdOnShops, getGoodsByShopId, removeGoodsOnShop,
+    addPetsIdOnShops, getPetsByShopId, removePetsOnShop, getShopByUserId, getShop } = require("../service/shopService");
 const { uploadFile } = require("../util/upload");
 // 新增门店
 router.post('/addShop', async function (req, res, next) {
@@ -48,17 +48,16 @@ router.get("/getShopsByPage", async function (req, res, next) {
     res.send(await getShopsByPage(req.query));
 });
 
-
 //寻找待审核门店
 router.post('/findshops', async function (req, res, next) {
-    res.send(await findshops(req.body))    
+    res.send(await findshops(req.body))
 });
 
 //updateshops  更改门店状态
 router.post('/updateshops', async function (req, res, next) {
     res.send(await updateshops(req.body))
 })
-    
+
 // 新增服务
 router.post("/addServiceIdOnShops", async function (req, res, next) {
     res.send(await addServiceIdOnShops(req.body));
@@ -96,11 +95,14 @@ router.post("/removePetsOnShop", async function (req, res, next) {
     res.send(await removePetsOnShop(req.body));
 });
 
-
 router.get("/getShopByUserId", async function (req, res, next) {
     res.send(await getShopByUserId(req.query));
 });
 
+// 获取所有门店
+router.get("/getShop", async function (req, res, next) {
+    res.send(await getShop(req.query));
+});
 
 
 module.exports = router;
