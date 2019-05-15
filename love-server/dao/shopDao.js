@@ -116,19 +116,14 @@ module.exports.updateshops = async function (shop) {
 module.exports.getShopByUserId = async (userId) => {
     return await mongoose.model("shopModel").find({ userId });
 }
-<<<<<<< HEAD
 // 获取所有门店信息
 module.exports.getShopsAll=async function(){
     return await mongoose.model("shopModel").find({shopStatus:"已审批"})
     .populate("goodsId").populate("serviceId").populate("petsId")
 }
-=======
 module.exports.getShop = async () => {
     return await mongoose.model("shopModel").find({shopStatus:"已审批"})
         .populate("goodsId")
         .populate("serviceId")
         .populate("petId")
-
-
 }  
->>>>>>> 2ac7204f054d414a5054a4e4db6ba3b9016692ae
